@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //陣列(Array)
+        //一種資料結構
+        var a = 123;
+
+        var item = ["S001", "王小明", "07-821084687"];
+        var item2 = ["S002", "陳小華", "07-8674861"];
+
+
+        document.write(item);
+        document.write("<hr>");
+        document.write(item2);
+        document.write("<hr>");
+
+        var Rainbow = ["紅", "橙", "黃", "綠", "藍", "靛", "紫"];
+        document.write(Rainbow);
+        document.write(Rainbow[2]);
+        document.write(Rainbow[5]);
+        document.write("<hr>");
+
+        var i = 0;
+        do {
+            document.write( Rainbow[i] );
+            i++;
+        } while (i < Rainbow.length);
+        document.write("<hr>");
+
+        //全部拜訪 不管資料有多長
+        var RainbowColor = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"];
+        for (var item in RainbowColor) {
+            document.write(RainbowColor[item]);
+        }
+        document.write("<hr>");
+
+        for (var item of RainbowColor) {
+            document.write(item);
+        }
+            document.write("<hr>");
+
+        for (var item of Rainbow) {
+            document.write(item);
+        }
+        document.write("<hr>");
+        /////////////////////////////////////////////////////
+
+        //ES6
+        var i = 0;
+        do {
+            document.write(`<span style="color:${RainbowColor[i]}">${Rainbow[i]}</span>`);
+            i++;
+        } while (i < Rainbow.length);
+        document.write("<hr>");
+
+        //ES5
+        var i = 0;
+        do {
+            document.write("<span style=color:"+RainbowColor[i]+">" + Rainbow[i] + "</span>");
+            i++;
+        } while (i < Rainbow.length);
+        
+    </script>
+    <!--<span style="color:red">紅</span>-->
+</body>
+</html>

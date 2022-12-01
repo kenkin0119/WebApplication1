@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //迴圈敘述
+        //while
+        //用在不知道要幾次
+        //while( 條件 )
+
+        var x = 1, sum = 0;
+        while (x<=100) {
+            sum += x;
+            x++;
+            console.log(sum);
+        }
+        document.write(sum);
+
+        document.write("<hr>");
+
+        //for (var i = 1; i < 7; i++) {
+        //    document.write("<h" + i + ">Hello World!!</h" + i + ">");
+
+        //    console.log("i=" + i);
+        //}
+        var i=1
+        while (i < 7) {
+            document.write("<h" + i + ">Hello World</h" + i + ">");
+            console.log("i=" + i);
+            i++;
+        }
+        document.write("<hr>");
+
+        //var z = prompt("要畫幾列?")
+        //var x = 0, a = "";
+        //for (var i = 1; i <= z; i++) {
+        //    a += "*";
+        //    document.write(a + "<br>")
+        //    x += i;
+        //}
+        //document.write("<hr>");
+
+        //document.write("總共有" + x + "顆星星");
+        //document.write("<hr>");
+        var z = prompt("要畫幾列?");
+        var i = 1, a = "",x=0;
+        while (i<=z) {
+            a += "*";
+            document.write(a + "<br>");
+            x += i;
+            i++;
+        }
+        document.write("<hr>")
+        //for (var x = 0; x <= 35; x++) {
+
+        //    if (2 * x + 4 * (35 - x) == 94)
+        //        document.write("設雞為" + x + "隻,則兔子為" + (35 - x) + "隻<br>");
+        //}
+        var x = 0;
+        while (x <= 35) {
+            if (2 * x + 4 * (35 - x) == 94)
+                document.write("設雞為" + x + "隻,則兔子為" + (35 - x) + "隻<br>");
+
+            x++;
+        }
+        document.write("<hr>");
+        //   !=不等於
+        var x = 0;
+        while (2 * x + 4 * (35 - x) != 94) {
+            x++;
+        }
+        document.write("設雞為" + x + "隻,則兔子為" + (35 - x) + "隻<br>");
+        document.write("<hr>");
+        //後測迴圈
+        var z = 0;
+        do {
+            document.write("Hello!!");
+            z++;
+        } while (z <= 10)
+
+        document.write("<hr>")
+
+        
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

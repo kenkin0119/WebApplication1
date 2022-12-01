@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        h1{
+            color:red;
+            font-size:3rem;
+        }
+        .h1{
+            color:green;
+            font-size:3rem;
+        }
+        .test{
+            box-shadow:0px 0px 7px black;
+            color:blue
+        }
+        .test2{
+            font-size:5rem;
+            color:fuchsia;
+        }
+        #h1{
+            color:#efa011;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <!--不同類別衝突:in line>selector{id>Class>html tag}>link-->
+    <!--同類別衝突:style尾端優先(後面蓋前面)，與標籤class前後順序無關-->
+
+    <h1 class="h1" id="h1" style="color:aqua">Welcome My Homepage</h1>
+    <h1>Welcome My Homepage</h1>
+    <h1 class="h1">Welcome My Homepage</h1>
+    <h1>Welcome My Homepage</h1>
+    <h1 class="h1">Welcome My Homepage</h1>
+    <h1>Welcome My Homepage</h1>
+    <h1 tag="h1">Welcome My Homepage</h1>
+    <h1 class="test test2">Welcome My Homepage</h1>
+    <h1 class="test h1">Welcome My Homepage</h1>
+    <h1 class="h1">Welcome My Homepage</h1>
+    <h1>Welcome My Homepage</h1>
+
+
+
+
+
+
+
+
+</body>
+</html>

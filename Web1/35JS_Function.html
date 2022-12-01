@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //函數(function)
+        //一段預先寫好的程式,會有某種特定功用
+
+        //內建函數
+        //alert("test");
+        //prompt("請輸入姓名")
+        //Math.random()
+        //////0~1 含0不含1   故*100最大只有99
+
+         //1~99      不能*100因為有0
+        document.write(parseInt(Math.random() * 99)+1);
+        document.write("<hr>");
+
+        var a = Math.random() * 99;
+        document.write(Math.floor(a)+1);
+        document.write("<hr>");
+
+        document.write(Math.floor(Math.random() * 99)+1);
+        document.write("<hr>");
+
+        function RandomColor() {
+            let  r = Math.floor(Math.random() * 256);     //0~255
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }
+        document.write(`<span style="color:${RandomColor()}">${Math.floor(Math.random() * 99) + 1}</span>`)
+        document.write("<hr>");
+
+        /////////////////////////////////////////////////////////////////////////////
+
+        function SwitchNumbers(a,b) {
+            var x=a,y=b
+            document.write("交換前 x=" + x + ", y=" + y);
+            document.write("<br>");
+            x = x + y;
+            y = x - y;
+            x = x - y;
+            document.write("交換後 x=" + x + ", y=" + y);
+            document.write("<hr>");
+        }
+        var n = parseInt(prompt("請輸入第一個數"));     //由prompt得到之值為字串 所以要先轉成數字
+        var m = parseInt(prompt("請輸入第二個數"));
+        SwitchNumbers(n, m);
+    </script>
+    
+    <!--<span style="color:rgb(255, 255, 255) "></span>-->
+</body>
+</html>

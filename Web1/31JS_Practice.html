@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <p id="demo"></p>
+    <script>
+        ///////////////////////////////////////////
+
+        var x = 0;
+        for (var i = 1; i <= 100; i++) {
+
+            x += i;
+            console.log(i);
+        }
+        document.write('總合=' + " " + x);
+        document.write('<hr>');
+
+        ///////////////////////////////////////////
+        //G=x R=y
+        //x+y=35           ax+by=c
+        //2x+4y=94      dx+ey=f
+        //                          y=(dc-af)/(db-ae)
+        //                          x=c-b*y
+        a = prompt("a");b = prompt("b");c = prompt("c");
+        d = prompt("d");e = prompt("e");f = prompt("f");
+        function GR(a, b, c, d, e, f) {
+
+            let y = (d * c - a * f) / (d * b - a * e);
+            let x = c - b * y;
+            return [x, y];
+
+        }
+        document.write(GR(a, b, c, d, e, f));
+        document.write("<br>")
+
+        //////////////////////////////////////////////////////////////////
+
+
+        for (var x = 0; x <= 35; x++) {
+
+            if (2 * x + 4 * (35 - x) == 94)
+                document.write("設雞為" + x + "隻,則兔子為" + (35 - x) + "隻<br>");
+        }
+        /////////////////////////////////////////////////////////////////
+        //費氏數列1.1.2.3.5
+        //
+        var i = prompt("請輸入您要找第幾個數")
+        var x = 0, a = 1, b = 1;
+
+        if (i == 1 || i == 2)
+            x = 1;
+
+        else {
+            for (var z = 2; z < i; z++) {
+                x = a + b;
+                b = a;
+                a = x;
+            }
+        }
+
+        document.write("第" + i + "個數是" + x);
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

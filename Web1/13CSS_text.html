@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <h1>Welcome My Homepage!!</h1>
+    <h1 style="text-decoration:underline">Welcome My Homepage!!</h1>
+    <h1 style="text-decoration:overline">Welcome My Homepage!!</h1>
+    <h1 style="text-decoration:line-through">Welcome My Homepage!!</h1>
+    <h1 style="text-decoration:none">Welcome My Homepage!!</h1>
+
+    <a href="#" style="text-decoration:none; font-size:2rem">前往GOOGLE</a>
+    <hr />
+
+    <h1 style="color:#70cf47">Welcome My Homepage!!</h1>
+    <h1 style="color:rgb(198 78 78); background-color:rgb(91 215 120)">Welcome My Homepage!!</h1>
+    <h1 style="text-align:center">Welcome My Homepage!!</h1>
+    <h1 style="text-align:left">Welcome My Homepage!!</h1>
+    <h1 style="text-align:right">Welcome My Homepage!!</h1>
+    <hr />
+
+    <h1 style="text-transform:uppercase">Welcome My Homepage!!</h1>
+    <h1 style="text-transform:lowercase">Welcome My Homepage!!</h1>
+    <h1 style="text-transform:capitalize">welcome my homepage!!</h1>
+    <h1 style="text-transform:capitalize">WELCOME MY HOMEPAGE!!</h1>
+    <hr />
+
+    <!--shadow: x平移 y平移(下方為正) 柔化效果(暈開) 陰影顏色-->
+    <h1 style="text-shadow:5px 5px 10px black">Welcome My Homepage!!</h1>
+    <h1 style="color:white ;text-shadow:0px 0px 10px black">Welcome My Homepage!!</h1>
+    <h1 style="text-shadow:3px 3px 5px red,5px 5px 5px yellow,7px 7px 5px pink">Welcome My Homepage!!</h1>
+    <hr />
+
+    <input type="button" value="放大" id="btn1" />
+    <input type="button" value="還原" id="btn2"/>
+    <input type="button" value="縮小" id="btn3"/>
+    <div id="news">
+        金管會4日召開線上視訊金融資產重分類公聽會，有意參加的壽險公司皆可派代表參與，會中國泰人壽、南山人壽及中國人壽強烈表達支持資產重分類，其他壽險公司大都沒有表達意見，其中安聯人壽9月淨值比低於3％，但德國母公司並不打算進行資產重分類，將走金管會個案監理的寬容措施，以用IFRS17試算負債面，證明清償能力未受影響。
+
+        根據《信傳媒》掌握，國泰人壽、南山人壽以及中國人壽是最支持資產重分類的三家壽險公司，只是這三家壽險雖然都力推資產重分類，但國壽、中壽背後的盤算可是跟南山大不相同。
+
+        「人兩腳、錢四腳」，錢永遠跑得比人還快。先從股價來看，除了南山人壽未上市沒掛牌以外，台股今年大幅回檔，今年以來（截至10月4日收盤）加權指數下跌了24.2%，但8家民營金控公司中，國泰金（國壽）下跌36.72%、富邦金（富邦人壽）下跌35.1%、開發金（中壽）下跌32%、新光金（新壽）下跌26.4%、元大金（元大人壽）下跌23.5％、中信金（台灣人壽）下跌22.35％、玉山金下跌9.8％，僅有永豐金上漲4.95％，壽險比重高的金控跌幅都超過大盤。
+
+        金控未實現損失超過可發放盈餘，隔年就不能發現金股利
+
+        三家壽險中，南山以外的國壽跟中壽打的是什麼算盤？知情人士透露，這與金控配股規定有關。
+
+        根據《保險法》及金管會的規定，金融股在配發現金股利前，金控公司須提列10％的法定盈餘公積，若有未實現金融資產評價損失、避險工具之損益等，導致其他權益淨額為負數時，則須再提同數額的特別盈餘公積，多出來的部分才能配現金股利。
+
+        簡單的說，就是金控公司期末的未分配盈餘的餘額需高於其他權益減項淨額，隔年才能配發現金股利。
+
+        由於金控當年度未實現損失若超過了可發放盈餘的時候，隔年就不能發現金股利，因此，有時候我們就會看到有金控公司損益表上EPS很高，但卻未必能配發現金股利，這就是金控資產負債表上未實現金融資產評價損失太多所造成。
+    </div>
+
+    <hr />
+    <script>
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var btn3 = document.getElementById("btn3");
+        var news = document.getElementById("news");
+
+        btn1.addEventListener('click', function () {
+            news.style.fontSize = "2rem";
+        })
+        btn2.addEventListener('click', function () {
+            news.style.fontSize = "1rem";
+        })
+        btn3.addEventListener('click', function () {
+            news.style.fontSize = "0.8rem";
+        })
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

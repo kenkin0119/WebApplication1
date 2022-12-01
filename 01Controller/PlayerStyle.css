@@ -1,0 +1,223 @@
+﻿#controlPanel {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    border: 5px groove black;
+    width: 800px;
+    margin: auto;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 10px;
+    /*padding: 1px;*/
+    background-color: #428afc;
+}
+
+#btnArea > span {
+    font-family: Webdings;
+    font-size: 4rem;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 20px;
+    /*color:inherit*/
+}
+
+    #btnArea > span:hover {
+        font-family: Webdings;
+        font-size: 4rem;
+        cursor: pointer;
+        border: 2px solid red;
+        background-color: yellow;
+        border-radius: 20px;
+    }
+
+    #btnArea > span:active {
+        font-family: Webdings;
+        font-size: 4rem;
+        cursor: pointer;
+        border: 2px solid green;
+        background-color: aqua;
+        border-radius: 20px;
+    }
+
+/*#btnArea>span:nth-of-type(7){
+                color:red;
+            }*/
+
+.btnStatusActive {
+    font-family: Webdings;
+    font-size: 4rem;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 20px;
+    color: red;
+    background-color: yellow;
+}
+
+
+
+#barVol {
+    width: 90px;
+    height: 5px;
+    border: 3px solid;
+    appearance: none;
+    transition: .8s;
+    cursor: pointer;
+}
+
+
+    #barVol::-webkit-slider-thumb {
+        appearance: none;
+        background-color: #272727;
+        border-radius: 5px;
+        width: 12px;
+        height: 11px;
+        transition: 1s;
+    }
+
+    #barVol::-moz-range-thumb {
+        border: 3px solid #272727;
+        background-color: #272727;
+        width: 12px;
+        height: 11px;
+        transition: 1s;
+    }
+
+    #barVol:hover {
+        width: 250px;
+        height: 10px;
+    }
+
+    #barVol:is(:hover)::-webkit-slider-thumb {
+        width: 35px;
+        height: 25px;
+    }
+
+    #barVol:is(:hover)::-moz-range-thumb {
+        width: 35px;
+        height: 25px;
+    }
+
+.btnVol {
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 1.3px #000000;
+    background: #d8d0d0;
+}
+
+    .btnVol:hover {
+        border: 1px solid black;
+        border-radius: 10px;
+        box-shadow: 1px 1.3px #000000;
+        background: #f7f2f2;
+        cursor: pointer;
+    }
+
+    .btnVol:active {
+        border: 1px solid black;
+        border-radius: 10px;
+        box-shadow: 1px 1.3px #000000;
+        background: #756f6f;
+    }
+
+#vol {
+    width: 25px;
+    text-align: center;
+    background-color: black;
+    color: yellow;
+}
+
+#music {
+    font-family: 'Arial Rounded MT';
+    width: inherit;
+    font-size: 2rem;
+    background-color: black;
+    color: chartreuse;
+    text-align: center;
+}
+
+#info {
+    font-family: 'Arial Rounded MT';
+    width: inherit;
+    font-size: 2rem;
+    background-color: black;
+    color: chartreuse;
+    text-align: center;
+    height: 138px;
+}
+
+    #info > marquee {
+        height: 52px;
+    }
+
+#progress {
+    width: 798px;
+    height: 5px;
+    appearance: none;
+    margin-bottom: 10px;
+    background-color: #f83f4a;
+    transition: .8s;
+    cursor: pointer;
+}
+
+    #progress::-webkit-slider-thumb {
+        appearance: none;
+        background-color: #b40000;
+        width: 10px;
+        height: 5px;
+        transition: .5s;
+    }
+
+    #progress::-moz-range-thumb {
+        background-color: #b40000;
+        width: 10px;
+        height: 5px;
+        transition: .5s;
+    }
+
+    #progress:hover {
+        width: 798px;
+        height: 10px;
+    }
+
+    #progress:is(:hover)::-webkit-slider-thumb {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+    }
+
+    #progress:is(:hover)::-moz-range-thumb {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+    }
+
+#book > div {
+    border: 1px groove;
+    width: 398px;
+    height: 480px;
+    float: left;
+    background-color: azure;
+}
+
+    #book > div > div {
+        padding: 2px;
+        border-bottom: 1px solid red;
+        cursor: pointer;
+    }
+
+#book > button {
+    background-color: aqua;
+    width: 100%;
+    cursor: pointer;
+    text-align: center
+}
+
+    #book > button:hover {
+        background-color: aquamarine;
+    }
+
+    #book > button:active {
+        background-color: aliceblue;
+    }
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+        #controlPanel {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            border: 5px groove black;
+            width: 1000px;
+            margin: auto;
+            box-shadow: 0px 0px 5px black;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #ed8bfc;
+        }
+
+        #btnArea > span {
+            font-family: Webdings;
+            font-size: 4rem;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 20px;
+            /*color:inherit*/
+        }
+
+            #btnArea > span:hover {
+                font-family: Webdings;
+                font-size: 4rem;
+                cursor: pointer;
+                border: 2px solid red;
+                background-color: yellow;
+                border-radius: 20px;
+            }
+
+            #btnArea > span:active {
+                font-family: Webdings;
+                font-size: 4rem;
+                cursor: pointer;
+                border: 2px solid green;
+                background-color: aqua;
+                border-radius: 20px;
+            }
+
+            /*#btnArea>span:nth-of-type(7){
+                color:red;
+            }*/
+
+        .btnStatusActive {
+            font-family: Webdings;
+            font-size: 4rem;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 20px;
+            color:red;
+            background-color:yellow;
+        }
+        
+        
+
+        #barVol {
+            width: 90px;
+            height: 5px;
+            border: 3px solid;
+            appearance: none;
+            transition: .8s;
+            cursor: pointer;
+        }
+
+
+            #barVol::-webkit-slider-thumb {
+                appearance: none;
+                background-color: #272727;
+                border-radius: 5px;
+                width: 12px;
+                height: 11px;
+                transition: 1s;
+            }
+
+            #barVol::-moz-range-thumb {
+                border: 3px solid #272727;
+                background-color: #272727;
+                width: 12px;
+                height: 11px;
+                transition: 1s;
+            }
+
+            #barVol:hover {
+                width: 250px;
+                height: 10px;
+            }
+
+            #barVol:is(:hover)::-webkit-slider-thumb {
+                width: 35px;
+                height: 25px;
+            }
+
+            #barVol:is(:hover)::-moz-range-thumb {
+                width: 35px;
+                height: 25px;
+            }
+
+        .btnVol {
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 1px 1.3px #000000;
+            background: #d8d0d0;
+        }
+
+            .btnVol:hover {
+                border: 1px solid black;
+                border-radius: 10px;
+                box-shadow: 1px 1.3px #000000;
+                background: #f7f2f2;
+                cursor: pointer;
+            }
+
+            .btnVol:active {
+                border: 1px solid black;
+                border-radius: 10px;
+                box-shadow: 1px 1.3px #000000;
+                background: #756f6f;
+            }
+
+        #vol {
+            width: 25px;
+            text-align: center;
+            background-color: black;
+            color: yellow;
+        }
+
+        #music, #info {
+            width: inherit;
+            font-size: 2rem;
+            background-color: #ed8bfc;
+            color: chartreuse;
+            text-align: center;
+        }
+
+        #progress {
+            width: inherit;
+            height: 5px;
+            appearance: none;
+            margin-bottom: 10px;
+            background-color: #f83f4a;
+            transition: .8s;
+            cursor: pointer;
+        }
+
+            #progress::-webkit-slider-thumb {
+                appearance: none;
+                background-color: #b40000;
+                width: 10px;
+                height: 5px;
+                transition: .5s;
+            }
+
+            #progress::-moz-range-thumb {
+                background-color: #b40000;
+                width: 10px;
+                height: 5px;
+                transition: .5s;
+            }
+
+            #progress:hover {
+                width: inherit;
+                height: 10px;
+            }
+
+            #progress:is(:hover)::-webkit-slider-thumb {
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+            }
+
+            #progress:is(:hover)::-moz-range-thumb {
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+            }
+    </style>
+</head>
+<body>
+
+    <audio controls="controls" id="myAudio" hidden>
+        <source src="music/aiue.mp3" type="audio/mpeg" title="aiue" />
+
+    </audio>
+
+
+    <hr />
+    <div id="controlPanel">
+        <select id="music" onchange="changeMusic(0)">
+            <option value="music/aiue.mp3">aiue</option>
+            <option value="music/alive.mp3">alive</option>
+            <option value="music/BeatEateri.mp3">Beat Eater</option>
+            <option value="music/BUMPOFCHICKEN.mp3">BUMP OF CHICKEN</option>
+            <option value="music/daiba.mp3">臨界ダイバー</option>
+            <option value="music/Daylight.mp3">Daylight</option>
+            <option value="music/DEADEND.mp3">頭ん中DEAD END</option>
+            <option value="music/gedousannka.mp3">外道讃歌</option>
+            <option value="music/identity.mp3">アイデンティティ</option>
+            <option value="music/kimisora.mp3">キミソラ</option>
+            <option value="music/MixedNuts.mp3">Mixed Nuts</option>
+            <option value="music/sikisai.mp3">色彩</option>
+            <option value="music/SparklingWorld.mp3">キズナ Sparkling World</option>
+            <option value="music/Stuckonyou.mp3">Stuck on you</option>
+            <option value="music/TokyoShandyRendezvous.mp3">Tokyo Shandy Rendez-vous</option>
+            <option value="music/TowerofFlower.mp3">Tower of Flower</option>
+            <option value="music/TRUEFOOLLOV.mp3">TRUE FOOL LOV</option>
+            <option value="music/yuureitokyo.mp3">幽霊東京</option>
+        </select>
+        <hr />
+        <div id="btnArea">
+            <span onclick="playAudio()">4</span>
+            <span onclick="stopAudio()"><</span>
+            <span onclick="changeMusic(-1)">9</span>
+            <span onclick="changeTime(-10)">7</span>
+            <span onclick="changeTime(10)">8</span>
+            <span onclick="changeMusic(1)">:</span>
+            <span onclick="setLoop()">r</span>
+            <span onclick="stopAudio()">s</span>
+            <span onclick="stopAudio()">`</span>
+            <span onclick="stopAudio()">@</span>
+            <span onclick="mutedIcon()">U</span>
+        </div>
+        <hr />
+        <input id="progress" type="range" value="0" oninput="setProgressBar()" />
+        <input id="barVol" oninput="changeVol()" type="range" min="0" max="100" value="40" step="1" />
+        <button class="btnVol" onclick="btnVol(-1)" onmousedown="holdDown(-1)" onmouseup="holdUp()" onmouseleave="holdUp()"> -</button>
+        <button class="btnVol" onclick="btnVol(1)" onmousedown="holdDown(1)" onmouseup="holdUp()" onmouseleave="holdUp()">+</button>
+        <input type="text" id="vol" value="40" disabled>
+
+
+        <hr />
+        <div id="info">
+            <marquee>請按下播放紐</marquee>
+            <div>00:00 / 00:00</div>
+            <div>正常播放</div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        var audio = document.getElementById("myAudio");
+        var controlPanel = document.getElementById("controlPanel")
+        var btnArea = document.getElementById("btnArea")
+        var info = document.getElementById("info")
+        var barVol = document.getElementById("barVol");
+        var progress = document.getElementById("progress");
+        var music = document.getElementById("music");
+        
+
+        let btnPlay = btnArea.children[0];
+        let mute = btnArea.children[10];
+        let cir = btnArea.children[6];
+
+        audio.load();
+        getDuration();
+        setVol();
+
+        var w = 0;
+        function getDuration() {
+            info.children[1].innerText = getTimeFormat(audio.currentTime) + " / " + getTimeFormat(audio.duration);
+            w = (audio.currentTime / audio.duration) * 100;
+            progress.style.backgroundImage = "-webkit-linear-gradient(left,aqua,aqua " + w + "%, #f83f4a " + w + "% ,#f83f4a)";
+            progress.max = parseInt(audio.duration);
+            progress.value = parseInt(audio.currentTime);
+            /*if (audio.currentTime < audio.duration) {*/
+            setTimeout(getDuration, 10);
+            //    }
+            //    else
+            //        setTimeout(getDuration, 10);
+
+            if (w == 100) {
+                console.log(btnArea.children[6].style.color == "red");
+                if (btnArea.children[6].style.color == "red") {
+                    changeMusic(0);
+                }
+                 else if (music.selectedIndex == music.options.length - 1) {
+                    stopAudio();
+                }
+                else {
+                    changeMusic(1);
+                }
+            }
+        }
+
+        function setProgressBar() {
+            audio.currentTime = progress.value;
+        }                                  //進度條
+
+        var min = 0, sec = 0;
+        function getTimeFormat(timeSec) {
+            //三元表達式 a=a<10? a+5:a-1    若a<10則a+5 否則a-1
+            min = parseInt(timeSec / 60);
+            sec = parseInt(timeSec % 60);
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+
+            return min + ":" + sec;
+        }                 //時間換算 分.秒
+
+        function playAudio() {
+            audio.play();
+            btnPlay.innerText = ";";
+            btnPlay.onclick = pauseAudio;
+            info.children[0].innerText = "現正播放:" + audio.children[0].title;
+        }                                         //播放
+
+        function pauseAudio() {
+            audio.pause();
+            btnPlay.innerText = "4";
+            btnPlay.onclick = playAudio;
+            info.children[0].innerText = "音樂暫停";
+        }                                     //暫停
+
+        function stopAudio() {
+            pauseAudio();
+            audio.currentTime = 0;
+            info.children[0].innerText = "音樂停止";
+        }                                       //停止
+
+        function changeTime(sec) {
+            audio.currentTime += sec;
+        }                             //快進
+
+        function changeVol() {
+            audio.muted = false;
+            setVol();
+        }                                     //靜音
+
+        function btnVol(a) {
+            barVol.value = parseInt(vol.value) + a;
+            console.log(barVol.value);
+            setVol();
+        }                                          //音量紐  barVol最大值是100
+
+
+        var timeStart, timeEnd, time;
+
+        function getTimeNow() {
+            var now = new Date();
+            return now.getTime();
+        }                              //長按音量紐
+
+        function holdDown(a)                                            //滑鼠按下時觸發
+        {
+            timeStart = getTimeNow();
+            time = setInterval(function ()                      //setInterval會每100毫秒執行一次
+            {
+                timeEnd = getTimeNow();
+                if (timeEnd - timeStart > 500) {
+                    btnVol(a)
+                }
+            }, 100);
+        }
+
+        function holdUp() {
+            clearInterval(time);
+        }
+
+        function setVol() {
+            vol.value = barVol.value;
+            audio.volume = vol.value / 100;
+            barVol.style.backgroundImage = "-webkit-linear-gradient(left,aqua,aqua " + barVol.value + "%, #c8c8c8 " + barVol.value + "% ,#c8c8c8)";
+            if (barVol.value == 0) {
+                mute.innerText = "V";
+            }
+            else {
+                mute.innerText = "U";
+            }
+        }                                         //設定音量.音量條
+
+        function mutedIcon() {
+
+            if (mute.innerText == "V") {
+                mute.innerText = "U";
+                audio.muted = false;
+                barVol.value = audio.volume * 100;
+                vol.value = barVol.value;
+                barVol.style.backgroundImage = "-webkit-linear-gradient(left,aqua,aqua " + barVol.value + "%, #c8c8c8 " + barVol.value + "% ,#c8c8c8)";
+            }
+            else {
+                mute.innerText = "V";
+                audio.muted = true;
+                barVol.value = 0;
+                vol.value = barVol.value;
+                barVol.style.backgroundImage = "-webkit-linear-gradient(left,aqua,aqua " + barVol.value + "%, #c8c8c8 " + barVol.value + "% ,#c8c8c8)";
+            }
+        }                               //靜音紐
+
+        function changeMusic(a) {
+            console.log(music.selectedIndex + a);
+
+            audio.children[0].src = music.options[music.selectedIndex + a].value;
+            audio.children[0].title = music.options[music.selectedIndex + a].innerText;
+            music.options[music.selectedIndex + a].selected = true;
+            audio.load();
+
+            if (btnPlay.innerText == ";") {
+                playAudio();
+            }
+
+            console.log(btnPlay.innerText);
+        }                       //換歌
+
+        function setLoop() {
+            info.children[2].innerText = "單曲循環";
+            console.log(btnArea.children[6].className);
+            
+            if (btnArea.children[6].className == "") {
+                btnArea.children[6].className = "btnStatusActive";
+                btnArea.children[7].className = "";
+                btnArea.children[8].className = "";
+            }
+            else if (btnArea.children[7].className == "") {
+                btnArea.children[7].className = "btnStatusActive"
+                btnArea.children[6].className = "";
+                btnArea.children[8].className = "";
+            }
+            else if (btnArea.children[8].className == "") {
+
+            }
+
+            
+            
+            //if (btnArea.children[6].style.color == '') {
+            //    btnArea.children[6].style.color = "red";
+            //}
+            //else {
+            //    btnArea.children[6].style.color = "";
+            //}
+           
+            
+        }
+    </script>
+</body>
+</html>

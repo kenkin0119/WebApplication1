@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="PlayerStyle.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <audio controls="controls" id="myAudio" hidden>
+        <source src="music/aiue.mp3" type="audio/mpeg" title="aiue" />
+
+    </audio>
+
+
+    <hr />
+    <div id="controlPanel">
+        <select id="music" onchange="changeMusic(0)">
+        </select>
+        <hr />
+        <div id="btnArea">
+            <span onclick="playAudio()">4</span>
+            <span onclick="stopAudio()"><</span>
+            <span onclick="changeMusic(-1)">9</span>
+            <span onclick="changeTime(-10)">7</span>
+            <span onclick="changeTime(10)">8</span>
+            <span onclick="changeMusic(1)">:</span>
+            <span onclick="mutedIcon()">U</span>
+            <span onclick="setLoop()">q</span>
+            <span onclick="setRandom()">s</span>
+            <span onclick="setAllLoop()">`</span>
+            <span onclick="showBook()">@</span>
+        </div>
+        <hr />
+        <input id="progress" type="range" value="0" oninput="setProgressBar()" />
+        <input id="barVol" oninput="changeVol()" type="range" min="0" max="100" value="40" step="1" />
+        <button class="btnVol" onclick="btnVol(-1)" onmousedown="holdDown(-1)" onmouseup="holdUp()" onmouseleave="holdUp()"> -</button>
+        <button class="btnVol" onclick="btnVol(1)" onmousedown="holdDown(1)" onmouseup="holdUp()" onmouseleave="holdUp()">+</button>
+        <input type="text" id="vol" value="40" disabled>
+
+
+        <hr />
+        <div id="info">
+            <marquee>請按下播放紐</marquee>
+            <div>00:00 / 00:00</div>
+            <div>正常播放</div>
+
+        </div>
+        <div id="book" class="hide">
+            <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div title="music/aiue.mp3">aiue</div>
+                <div title="music/alive.mp3">alive</div>
+                <div title="music/BeatEateri.mp3">Beat Eater</div>
+                <div title="music/BUMPOFCHICKEN.mp3">BUMP OF CHICKEN</div>
+                <div title="music/daiba.mp3">臨界ダイバー</div>
+                <div title="music/Daylight.mp3">Daylight</div>
+                <div title="music/DEADEND.mp3">頭ん中DEAD END</div>
+                <div title="music/gedousannka.mp3">外道讃歌</div>
+                <div title="music/identity.mp3">アイデンティティ</div>
+                <div title="music/kimisora.mp3">キミソラ</div>
+                <div title="music/MixedNuts.mp3">Mixed Nuts</div>
+                <div title="music/sikisai.mp3">色彩</div>
+                <div title="music/SparklingWorld.mp3">キズナ Sparkling World</div>
+                <div title="music/Stuckonyou.mp3">Stuck on you</div>
+                <div title="music/TokyoShandyRendezvous.mp3">Tokyo Shandy Rendez-vous</div>
+                <div title="music/TowerofFlower.mp3">Tower of Flower</div>
+                <div title="music/TRUEFOOLLOV.mp3">TRUE FOOL LOV</div>
+                <div title="music/yuureitokyo.mp3">幽霊東京</div>
+            </div>
+            <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <button onclick="updateMusic()">更新歌單</button>
+        </div>
+    </div>
+    <script src="PlayerJS.js"></script>
+
+</body>
+</html>

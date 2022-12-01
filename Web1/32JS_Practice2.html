@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //畫星星(巢狀迴圈)
+        //var z = prompt("要畫幾列?")
+        //var x = 0;
+        //for (var i = 1; i <= z; i++) {
+        //    for (var j = 0; j < i; j++) {
+        //        document.write("*")
+        //    }
+        //    document.write("<br>")
+        //    x += i;
+        //}
+        //document.write("<hr>");
+
+        //document.write("總共有" + x + "顆星星");
+        //document.write("<br>")
+        /////////////////////////////////////////////////////////////
+
+        var z = prompt("要畫幾列?")
+        var x = 0, a = "";
+        for (var i = 1; i <= z; i++) {
+            a += "*";
+            document.write(a + "<br>")
+            x += i;
+        }
+        document.write("<hr>");
+
+        document.write("總共有" + x + "顆星星");
+        document.write("<hr>");
+        //////////////////////////////////////////////////////////////////////
+        //九九乘法表
+        document.write("九九乘法表<br>")
+        for (var m = 2; m <= 9; m++) {
+            for (var n = 1; n <= 9; n++) {
+                document.write(m + "*" + n + "=" + m * n + "<br>");
+
+            }
+            document.write("<hr>");
+        }
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

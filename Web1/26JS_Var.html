@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+    <script>
+        //變數
+        name = 123;
+        document.write(name);
+        document.write("<br>");
+        name = 456;
+        document.write(name);
+        document.write("<hr>");
+
+        var a = 123;   /*宣告變數即初始化*/
+        var c;       //宣告變數
+        c = 133;  //初始化
+        let b = 456;  //宣告變數即初始化
+        var d;
+        document.write(d);
+        //document.write(f);  //錯誤:未被定義資料型態之變數
+        document.write("dasdasf")//因錯誤而沒被執行
+
+        document.write("<hr>");
+
+        a = 456;   //宣告時定義資料型態
+        document.write("a=" + a);
+        document.write("<br>");
+        a = "456";
+        document.write("a=" + a);
+        document.write("<hr>");
+
+
+
+
+
+        a = 456;   //數值
+        document.write("a=" + a);
+        document.write("<br>");
+        a = a + 1;
+        document.write("a=" + a);
+        document.write("<br>");
+
+        b = "456";  //字串
+        document.write("b=" + b);
+        document.write("<br>");
+        b = b + 1;
+        document.write("b=" + b);
+        ///////////////////////////////////////////////////////
+        //三大資料型態(DataType)
+        //數值(Number).字串(String).布林(Boolean)
+        //////////////////////////////////////////////////////
+        document.write("<hr>");
+        //數值(Number)資料型態分類
+        var n = 1234567895648861387451688746549496847358485647378648654568435873874653745;
+        document.write("n=" + n);
+        document.write("<br>");
+
+        var n1 = 1.3; //浮點數
+        var n2 = 1.5;
+        var r = n1 + n2;
+        var r2 = n2 - n1;
+        document.write("r=" + r);
+        document.write("<br>");
+        document.write(n1 + n2);
+        document.write("<br>");
+        document.write("r2=" + r2);
+        document.write("<hr>");
+
+        //整數
+        n = 123;  //十進位整數
+        document.write("n="+n);
+        document.write("<br>");
+
+        n = 0123;  //八進位整數
+        document.write("n=" + n);
+        document.write("<br>");
+
+        n = 0x123; //十六進位整數
+        document.write("n="+n);
+        document.write("<br>");
+
+        n = 5e-10;  //浮點數
+        document.write("n=" + n);
+        document.write("<br>");
+
+        //精準度遺失    因為轉2進制後運算造成
+        var t = 0.1;
+        var x = 0.2;
+        document.write(t + x);
+        document.write("<hr>");
+
+
+        document.write("隨堂練習x.y互換");
+        document.write("<br>");
+        var x = prompt("請輸入x");
+        var y = prompt("請輸入y");
+        document.write("未交換前 x=" + x + "y=" + y);
+        document.write("<br>");
+        var z = x;
+        x = y;
+        y = z;
+        
+        document.write("交換後 x=" + x + "y=" + y);
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

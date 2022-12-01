@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        #first {
+            color: aqua
+        }
+        .title{
+            width:250px;
+            font-size:32px;
+            background-color:chartreuse;
+        }
+        #row1 {
+            display: none;
+            background-color:antiquewhite;
+        }
+        #row2 {
+            display: none;
+            background-color: antiquewhite;
+        }
+        #row3 {
+            display: none;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+
+    <ul id="first">
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+    </ul>
+
+
+
+    <ol>
+        <li class="title" 
+            onclick="document.getElementById('row1').style.display = 'block';
+                              document.getElementById('row2').style.display = 'none';
+                              document.getElementById('row3').style.display = 'none'">
+            aaa
+            <ul id="row1">
+                <li>abc</li>
+                <li>aca</li>
+            </ul>
+        </li>
+            
+        <li class="title" 
+            onclick="document.getElementById('row2').style.display = 'block';
+                              document.getElementById('row1').style.display = 'none';
+                              document.getElementById('row3').style.display = 'none'">
+            bbb
+            <ul id="row2">
+                <li>abc</li>
+                <li>aca</li>
+            </ul>
+        </li>
+
+        <li class="title" 
+            onclick="document.getElementById('row3').style.display = 'block';
+                             document.getElementById('row1').style.display = 'none';
+                             document.getElementById('row2').style.display = 'none'">
+            ccc
+            <ul id="row3">
+                <li>abc</li>
+                <li>aca</li>
+            </ul>
+        </li>
+    </ol>
+
+    
+
+
+
+
+
+
+</body>
+</html>

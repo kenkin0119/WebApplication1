@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #table1{
+            border:5px double black;
+        }
+        #table1 th,#table1 td  {
+            border: 1px solid black;
+            text-align: center;
+        }
+        /*container "空一格" 找子孫輩;   ">"找下一代(子)*/
+        #table1 tfoot> tr > td{                                 
+            text-align:left;
+        }
+
+        #table1>tbody>tr:nth-last-child(2)>td:first-child+td+td+td,
+        #table1>tbody>tr:nth-child(3)>td:nth-child(3){
+            color:red;
+        }
+    </style>
+    
+
+
+
+
+
+</head>
+<body>
+
+    <!--container 容器-->
+
+
+
+    <table id="table1">
+
+        <caption>成績單</caption>
+
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>國文</th>
+                <th>數學</th>
+                <th>英文</th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td>aa</td>
+            <td>80</td>
+            <td>97</td>
+            <td>54</td>
+        </tr>
+
+        <tr>
+            <td>bb</td>
+            <td>90</td>
+            <td>80</td>
+            <td>35</td>
+        </tr>
+
+        <tr>
+            <td>cc</td>
+            <td>50</td>
+            <td>20</td>
+            <td>29</td>
+
+        <tr>
+            <td>dd</td>
+            <td>30</td>
+            <td>10</td>
+            <td>37</td>
+        </tr>
+
+
+        <tfoot>
+            <tr>
+                <td class="bottom" colspan="4">製表人:大熊</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <table>
+
+        <caption>成績單</caption>
+
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>國文</th>
+                <th>數學</th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td>aa</td>
+            <td>80</td>
+            <td>97</td>
+        </tr>
+
+        <tr>
+            <td>bb</td>
+            <td>90</td>
+            <td>80</td>
+        </tr>
+
+        <tfoot>
+            <tr>
+                <td colspan="3">製表人:大熊</td>
+            </tr>
+        </tfoot>
+
+
+
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //scope
+
+        var a = 123;
+        var c = 0;
+        var f;
+
+        function test1() {
+            document.write("裡面的a=" + a);
+            document.write("<br>");
+            var b = 456;
+            document.write("裡面的b=" + b);
+
+
+            c += 10;
+
+            d = 888;
+
+        }
+        test1();
+
+        document.write("<br>");
+        document.write("外面的a=" + a);
+        document.write("<br>");
+        //document.write("外面的b=" + b);
+        document.write("<br>");
+        document.write("外面的c=" + c);
+        document.write("<br>");
+        document.write("外面的d=" + d);
+        document.write("<br>");
+        document.write("外面的f=" + f);
+        document.write("<br>");
+        //document.write("外面的f=" + g);
+
+        ///////////////////////////
+        document.write("<hr>");
+
+        //ES6
+        var x = 5, y = 0;
+        let xx = 10, yy = 0;
+        {
+            var c = x + y;
+            let cc = xx + yy;
+        }
+
+        document.write(c);
+        document.write("<br>");
+        document.write(cc);
+    </script>
+
+</body>
+</html>
