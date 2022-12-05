@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B410E30B-A999-41AF-851F-85C9CBB44B50}</ProjectGuid>
+    <ProjectGuid>{F1038E9B-9E06-4D10-8BED-FD3EDDC6313B}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_01Controller</RootNamespace>
-    <AssemblyName>01Controller</AssemblyName>
+    <RootNamespace>_02View</RootNamespace>
+    <AssemblyName>02View</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -89,55 +89,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="image\1.jpg" />
-    <Content Include="image\2.jpg" />
-    <Content Include="image\3.jpg" />
-    <Content Include="image\4.jpg" />
-    <Content Include="image\5.jpg" />
-    <Content Include="image\6.jpg" />
-    <Content Include="music\aiue.mp3" />
-    <Content Include="music\alive.mp3" />
-    <Content Include="music\BeatEateri.mp3" />
-    <Content Include="music\BUMPOFCHICKEN.mp3" />
-    <Content Include="music\daiba.mp3" />
-    <Content Include="music\Daylight.mp3" />
-    <Content Include="music\DEADEND.mp3" />
-    <Content Include="music\gedousannka.mp3" />
-    <Content Include="music\identity.mp3" />
-    <Content Include="music\kimisora.mp3" />
-    <Content Include="music\MixedNuts.mp3" />
-    <Content Include="music\sikisai.mp3" />
-    <Content Include="music\SparklingWorld.mp3" />
-    <Content Include="music\Stuckonyou.mp3" />
-    <Content Include="music\TokyoShandyRendezvous.mp3" />
-    <Content Include="music\TowerofFlower.mp3" />
-    <Content Include="music\TRUEFOOLLOV.mp3" />
-    <Content Include="music\yuureitokyo.mp3" />
-    <Content Include="PlayerJS.js" />
-    <Content Include="PlayerStyle.css" />
+    <Content Include="images\A01.jpg" />
+    <Content Include="images\A02.JPG" />
+    <Content Include="images\A03.JPG" />
+    <Content Include="images\A04.jpg" />
+    <Content Include="images\A05.jpg" />
+    <Content Include="images\A06.jpg" />
+    <Content Include="images\A07.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ComplexBindController.cs" />
-    <Compile Include="Controllers\FileUpLoadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MultiFileUploadController.cs" />
-    <Compile Include="Controllers\SimpleBindController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\NightMarket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\SimpleBind\Index.cshtml" />
-    <Content Include="Views\SimpleBind\Create.cshtml" />
-    <Content Include="Views\ComplexBind\Create.cshtml" />
-    <Content Include="Views\FileUpLoad\Create.cshtml" />
-    <Content Include="Views\MultiFileUpload\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -147,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="photos\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
@@ -163,9 +134,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51205</DevelopmentServerPort>
+          <DevelopmentServerPort>61078</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51205/</IISUrl>
+          <IISUrl>http://localhost:61078/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
