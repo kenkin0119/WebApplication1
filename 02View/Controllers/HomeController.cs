@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _02View.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,10 +18,20 @@ namespace _02View.Controllers
                 "80652高雄市前鎮區凱旋四路758號", "台南市北區海安路三段533號", "台南市東區林森路一段276號",
                 "台南市中西區武聖路69巷42號" };
 
-            List<int> list = new List<int>();
+            List<NightMarket> list = new List<NightMarket>();
+            NightMarket nm; //宣告
+
+            for (int i = 0; i < id.Length; i++)
+            {
+                nm = new NightMarket();
+                nm.Id = id[i];
+                nm.Name = name[i];
+                nm.Address = address[i];
+                list.Add(nm);
+            }
 
 
-            return View();
+            return View(list);
         }
     }
 }
