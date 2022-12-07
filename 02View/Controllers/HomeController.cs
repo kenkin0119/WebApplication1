@@ -18,7 +18,7 @@ namespace _02View.Controllers
                 "80652高雄市前鎮區凱旋四路758號", "台南市北區海安路三段533號", "台南市東區林森路一段276號",
                 "台南市中西區武聖路69巷42號" };
 
-            List<NightMarket> list = new List<NightMarket>();
+            List<NightMarket> list = new List<NightMarket>(); //NightMarket:View Model
             NightMarket nm; //宣告
 
             for (int i = 0; i < id.Length; i++)
@@ -32,6 +32,26 @@ namespace _02View.Controllers
 
 
             return View(list);
+        }
+
+        public ActionResult Create()
+        {
+
+
+            return View();
+        }
+
+        public ActionResult Display(string id)
+        {
+            ViewBag.id = id;
+
+
+            return View();
+        }
+
+        public ActionResult Razor()
+        {
+            return View();
         }
     }
 }
