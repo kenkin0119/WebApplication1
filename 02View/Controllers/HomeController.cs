@@ -41,6 +41,22 @@ namespace _02View.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(NightMarket nightMarket)
+        {
+            ViewBag.Id = nightMarket.Id;
+            ViewBag.Name = nightMarket.Name;
+            ViewBag.Address = nightMarket.Address;
+
+            ViewBag.Result = "已新增一筆資料"+"<br>"+
+                "夜市編號:" + nightMarket.Id + "<br>" +
+                "夜市名稱:" + nightMarket.Name + "<br>" +
+                "夜市地址:" + nightMarket.Address + "<br>";
+            
+
+            return View();
+        }
+
         public ActionResult Display(string id)
         {
             ViewBag.id = id;

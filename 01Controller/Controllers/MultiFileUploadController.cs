@@ -28,12 +28,13 @@ namespace _01Controller.Controllers
                     if (photo.ContentLength > 0)
                     {
                         string subName = "";
-                        string nowStr = DateTime.Now.ToString("yyyyMMddhhmmssff") ; //取時間
+                        string nowStr = DateTime.Now.ToString("yyyyMMddhhmmssff"); //取上傳時間(命名用)
+                        string random = Guid.NewGuid().ToString(); //給變數 (命名用)
                         subName = photo.FileName.Substring(photo.FileName.IndexOf(".") + 1, 3);
                         subName = subName.ToLower();
                         if (subName == "jpg" || subName == "png" || subName == "gif")
-                        {                                                    //給變數
-                            photo.SaveAs(Server.MapPath("~/photos/" +nowStr+Guid.NewGuid().ToString()+"."+subName));
+                        {                                                    
+                            photo.SaveAs(Server.MapPath("~/photos/" +nowStr+ random + "."+subName));
                             ViewBag.Message = "上傳成功";
                             
                         }

@@ -15,15 +15,16 @@
 <table class="table">
     <tr>
         <th>
-            編號
+            @*編號*@
+            @Html.DisplayNameFor(model=>model.Id)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Name)*@  @*到模型裡面取出屬性名稱*@
-            夜市名稱
+            @Html.DisplayNameFor(model => model.Name)  @*到模型裡面取出屬性名稱*@
+            @*夜市名稱*@
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.Address)*@
-            地址
+            @Html.DisplayNameFor(model => model.Address)
+            @*地址*@
         </th>
         <th>
             照片
