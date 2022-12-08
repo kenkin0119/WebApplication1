@@ -1,0 +1,25 @@
+﻿@model IEnumerable<_02View.Models.NightMarket>
+@*列舉式物件 多筆*@
+
+@{
+    ViewBag.Title = "IndexRWD";
+}
+
+<h2 class="alert alert-success text-center">各大夜市列表</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6"> @*一列row分12格 lg-3 高解析度的話一筆資料佔3格(一列4張)  md-6 中解析度佔6格(一列2張) 沒指定維持原始div堆疊(一列1張)*@
+            <div class="thumbnail"> @* <=白色外框圓角矩形  照片白色外框圓角矩形*@
+                <img src="~/images/@(item.Id).jpg" class="img-thumbnail" />
+                <div class="caption">
+                    <h2>@item.Name</h2>
+                    <p>@item.Address</p>
+                    <p><a href="https://www.google.com.tw/maps/search/@item.Address" target="_blank" class="btn btn-primary btn-block">查看地圖</a></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
