@@ -1,0 +1,51 @@
+﻿@model IEnumerable<_03Model.Models.tStudent>
+
+@{
+    ViewBag.Title = "主頁";
+}
+
+<h2>主頁</h2>
+
+<p>
+    @Html.ActionLink("新增資料", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fStuId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fScore)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fStuId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fScore)
+        </td>
+        <td>
+            @*@Html.ActionLink("編輯", "Edit", new { id = item.fStuId }) |
+            @Html.ActionLink("詳細", "Details", new { id = item.fStuId }) |*@
+            @Html.ActionLink("刪除", "Delete", new { id = item.fStuId }, new {@class="btn btn-danger",onclick= "return confirm('你確定要刪除" + item.fStuId+item.fName+"的資料嗎?')"})
+        </td>
+    </tr>
+}
+
+</table>
