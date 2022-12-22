@@ -12,7 +12,7 @@ namespace _04ViewModel.Controllers
 {
     public class tDepartmentsController : Controller
     {
-        private dbEmployeeEntities db = new dbEmployeeEntities();
+        private dbEmployeeEntities1 db = new dbEmployeeEntities1();
 
         // GET: tDepartments
         public ActionResult Index()

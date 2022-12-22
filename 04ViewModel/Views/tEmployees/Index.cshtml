@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<_04ViewModel.ViewModels.EmpDept>*@
+
+@model _04ViewModel.ViewModels.EmpDept
+
+@{
+    ViewBag.Title = "員工管理作業";
+}
+
+<h2>員工管理作業</h2>
+
+<div class="row well">
+    <div class="col-xs-3">
+
+        <ul class="list-group text-center">
+            <li class="list-group-item text-danger">
+                <h4>部門</h4>
+            </li>
+            @foreach (var item in Model.department)
+            {
+                <li class="list-group-item">
+                    <a href="/tEmployees/Index?deptId=@item.fDepId">@item.fDepName</a>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-xs-9">
+        <p class="text-right">
+            @Html.ActionLink("新增員工資料", "Create", new {fDepId= ViewBag.deptId}, new { @class = "btn btn-primary" })
+        </p>
+        <h3 class="text-center">@ViewBag.deptName</h3>
+
+
+        @if (Model.employee.Count == 0)
+        {
+            <h3 class="text-danger text-center">目前沒有任何員工</h3>
+        }
+        else
+        {
+            <table class="table">
+
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.employee.FirstOrDefault().fEmpId)</th>
+                    <th>@Html.DisplayNameFor(model => model.employee.FirstOrDefault().fName)</th>
+                    <th>@Html.DisplayNameFor(model => model.employee.FirstOrDefault().fPhone)</th>
+                    <th>資料管理</th>
+                </tr>
+
+                @foreach (var item in Model.employee)
+                {
+                    <tr>
+                        <td>
+                            @item.fEmpId
+                        </td>
+                        <td>
+                            @item.fName
+                        </td>
+                        <td>
+                            @item.fPhone
+                        </td>
+                        <td>
+                            @Html.ActionLink("編輯", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        </div>
+    </div>

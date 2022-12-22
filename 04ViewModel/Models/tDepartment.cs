@@ -19,9 +19,8 @@ namespace _04ViewModel.Models
         [DisplayName("部門代碼")]
         public int fDepId { get; set; }
 
-
         [DisplayName("部門名稱")]
-        [Required(ErrorMessage = "部門名稱為必填")]
+        [Required(ErrorMessage = "部門名稱必填")]
         public string fDepName { get; set; }
     }
 }

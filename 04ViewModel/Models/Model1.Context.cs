@@ -13,10 +13,10 @@ namespace _04ViewModel.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbEmployeeEntities : DbContext
+    public partial class dbEmployeeEntities1 : DbContext
     {
-        public dbEmployeeEntities()
-            : base("name=dbEmployeeEntities")
+        public dbEmployeeEntities1()
+            : base("name=dbEmployeeEntities1")
         {
         }
     

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<_04ViewModel.Models.tEmployee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="alert alert-info text-center">員工資料管理作業</h2>
+
+<p class="text-right">
+    @Html.ActionLink("新增資料", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fEmpId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fDepId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fEmpId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fDepId)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.fEmpId }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("刪除", "Delete", new { id = item.fEmpId }, new { onclick = "return confirm('你確定要刪除" + item.fEmpId + item.fName + "的資料嗎?')", @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

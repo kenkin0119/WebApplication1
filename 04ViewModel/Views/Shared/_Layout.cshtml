@@ -9,8 +9,8 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
+    
 
-    @RenderBody()
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -24,8 +24,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li><a href="#">員工管理作業</a></li>*@
-                    <li>@Html.ActionLink("員工管理作業", "Index", "tEmplyoees")</li>
+                    <li>@Html.ActionLink("員工管理作業", "Index", "tEmployees")</li>
+                    @*<li><a href="/tDepartments/Index">部門管理作業</a></li>*@
                     <li>@Html.ActionLink("部門管理作業", "Index", "tDepartments")</li>
                 </ul>
             </div>
@@ -33,10 +33,10 @@
     </div>
 
     <div class="container body-content">
-
+        @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.ToString("D") - 如果還有明天股份有限公司 All Rights Reserved</p>
+            <p class="text-center">Copyrihgt &copy; @DateTime.Now.ToString("D")-如果還有明天股份有限公司 All Rights Reserved.</p>
         </footer>
     </div>
 

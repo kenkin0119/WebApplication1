@@ -46,7 +46,7 @@
           <Property Name="fPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="fDepId" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="dbEmployeeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dbEmployeeEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tDepartment" EntityType="Self.tDepartment" />
           <EntitySet Name="tEmployee" EntityType="Self.tEmployee" />
         </EntityContainer>
@@ -55,7 +55,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbEmployeeModelStoreContainer" CdmEntityContainer="dbEmployeeEntities">
+        <EntityContainerMapping StorageEntityContainer="dbEmployeeModelStoreContainer" CdmEntityContainer="dbEmployeeEntities1">
           <EntitySetMapping Name="tDepartment">
             <EntityTypeMapping TypeName="dbEmployeeModel.tDepartment">
               <MappingFragment StoreEntitySet="tDepartment">

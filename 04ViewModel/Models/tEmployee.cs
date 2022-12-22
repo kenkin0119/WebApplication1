@@ -12,19 +12,23 @@ namespace _04ViewModel.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class tEmployee
     {
         [DisplayName("員工代碼")]
+        [Required(ErrorMessage = "員工代碼必填")]
+        [RegularExpression("[A-FS-W][0-9]{2}",ErrorMessage ="格式有誤")] //AorBorC...orForS...orW
         public string fEmpId { get; set; }
 
         [DisplayName("姓名")]
+        [Required(ErrorMessage = "姓名必填")]
         public string fName { get; set; }
 
-        [DisplayName("員工代碼")]
+        [DisplayName("電話")]
         public string fPhone { get; set; }
 
-        [DisplayName("員工所屬部門代碼")]
+        [DisplayName("所屬部門")]
         public Nullable<int> fDepId { get; set; }
     }
 }
