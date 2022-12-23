@@ -19,6 +19,7 @@ namespace _04ViewModel.Models
         [DisplayName("員工代碼")]
         [Required(ErrorMessage = "員工代碼必填")]
         [RegularExpression("[A-FS-W][0-9]{2}",ErrorMessage ="格式有誤")] //AorBorC...orForS...orW
+        [Key]//標註哪個欄位是主鍵
         public string fEmpId { get; set; }
 
         [DisplayName("姓名")]
@@ -26,6 +27,7 @@ namespace _04ViewModel.Models
         public string fName { get; set; }
 
         [DisplayName("電話")]
+        [RegularExpression("[0-9]{10}", ErrorMessage = "格式有誤")]
         public string fPhone { get; set; }
 
         [DisplayName("所屬部門")]

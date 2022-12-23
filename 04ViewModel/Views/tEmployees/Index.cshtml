@@ -58,8 +58,8 @@
                             @item.fPhone
                         </td>
                         <td>
-                            @Html.ActionLink("編輯", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-warning" })
-                            @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink("編輯", "Edit", new { id = item.fEmpId}, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("刪除", "Delete", new { id = item.fEmpId },new { onclick = "return confirm('你確定要刪除" + item.fEmpId + item.fName + "的資料嗎?')", @class = "btn btn-danger" })
                         </td>
                     </tr>
                 }
