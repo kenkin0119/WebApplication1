@@ -18,6 +18,39 @@ namespace _06ADOnet.Models
         SqlDataReader rd;
 
 
+
+        SqlDataAdapter adp = new SqlDataAdapter("", conn);
+
+
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+        public DataTable TableQuery(string sql)
+        {
+            adp.SelectCommand.CommandText = sql;  //指定 Select Command
+            adp.Fill(ds);  //把取到的Table填入DataSet
+
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+
+        public DataTable TableQuery(string sql, List<SqlParameter> para)   //多載:同樣方法名稱只要參數不同就OK
+        {
+            adp.SelectCommand.CommandText = sql;  //指定 Select Command
+
+            foreach (SqlParameter p in para)
+            {
+                adp.SelectCommand.Parameters.Add(p);
+            }
+
+            adp.Fill(ds);  //把取到的Table填入DataSet
+
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+
         public SqlDataReader LoginQuery(string sql,List<SqlParameter> para)
         {
             cmd.CommandText = sql;

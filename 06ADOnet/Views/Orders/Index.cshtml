@@ -1,0 +1,40 @@
+﻿@using System.Data;
+
+@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <td>@Model.Columns[0].ColumnName</td>
+            <td>@Model.Columns[3].ColumnName</td>
+            <td>@Model.Columns[8].ColumnName</td>
+            <td>@Model.Columns[14].ColumnName</td>
+            <td></td>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["OrderID"]</td>
+                <td>@Convert.ToDateTime(row["OrderDate"]).ToShortDateString()</td>
+                <td>@row["收件人姓名"]</td>
+                <td>@row["CompanyName"]</td>
+                @*<td><a href="#" class="btn btn-success">訂單資料</a></td>*@
+            <td>@Html.ActionLink("詳細訂單資料", "Display", new { id = row["OrderID"] }, new { @class = "btn btn-success" })</td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>

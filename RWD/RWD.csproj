@@ -83,6 +83,9 @@
     <Content Include="08BS_GridSystemOrder_org.html" />
     <Content Include="10BS_Flex.html" />
     <Content Include="09BS_Utilities_Display.html" />
+    <Content Include="13BS_Card.html" />
+    <Content Include="14BS_Form.html" />
+    <Content Include="15BS_Form_Validation.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -90,6 +93,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\MyStyle.css" />
+    <Content Include="FL3bm9KUYAATA5_.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
