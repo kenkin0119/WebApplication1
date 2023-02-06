@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #table1 {
+            margin: auto;
+            border: 3px double black;
+        }
+
+            #table1 > tbody > tr:nth-child(2n+1) {
+                background-color: #5edcd8;
+            }
+
+            #table1 > tbody > tr:hover {
+                background-color: #b6ff00;
+            }
+
+            #table1 td {
+                border-bottom: 1px solid black;
+                padding: 5px;
+            }
+
+            #table1 > thead {
+                background-color: #262424;
+                color: white;
+            }
+
+        .center {
+            text-align: center;
+        }
+
+        .left {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <table id="table1">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td class="left">Name</td>
+                <td class="left">Tel</td>
+                <td class="left">Address</td>
+                <td>地圖</td>
+                <td>管理</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+    <script src="Scripts/jquery-3.6.1.min.js"></script>
+    <script>
+        //要使用open data資料介接必須使用ajax
+
+        $.ajax({
+            type: 'get',
+            url: 'https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx',
+            success: function (data) {
+                //alert("資料取得成功");
+                console.log(data);
+
+                for (var item of data) {
+                    var row = "";
+                    row = `<tr>
+                               <td>${item.ID}</td>
+                               <td>${item.Name}</td>
+                               <td>${item.Tel}</td>
+                               <td>${item.Address}</td>
+                               <td><a href="https://www.google.com.tw/maps/place/${item.Name}">地圖</a></td>
+                               <td><input id="Button1" type="button" value="刪除" /></td>
+                          </tr>`;
+                    $('#table1>tbody').append(row);
+                    //console.log(a);
+                }
+                //document.write(`<div>${item.ID} ${item.Name} ${item.Tel} ${item.Name} ${item.Address}</div>`);
+
+
+
+
+
+
+            },
+            error: function () {
+                alert("資料取得失敗");
+            }
+        })
+
+    </script>
+</body>
+</html>

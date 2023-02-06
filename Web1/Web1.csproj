@@ -106,6 +106,10 @@
     <Content Include="35JS_Function.html" />
     <Content Include="36JS_Function2.html" />
     <Content Include="37JS_Function_VarScope.html" />
+    <Content Include="39JQuery.html" />
+    <Content Include="40jQuery-DOM.html" />
+    <Content Include="41JQuery-API.html" />
+    <Content Include="42JQuery.html" />
     <Content Include="car.jpg" />
     <Content Include="GitHUbTest.html" />
     <Content Include="image\09image2.html" />
@@ -152,6 +156,11 @@
     <Content Include="music\daiba.mp3" />
     <Content Include="PlayerJS.js" />
     <Content Include="PlayerStyle.css" />
+    <None Include="Scripts\jquery-3.6.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.1.js" />
+    <Content Include="Scripts\jquery-3.6.1.min.js" />
+    <Content Include="Scripts\jquery-3.6.1.slim.js" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.js" />
     <Content Include="Web.config" />
     <Content Include="完成結果檔\image\banner1.jpg" />
     <Content Include="完成結果檔\image\banner2.jpg" />
@@ -166,6 +175,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

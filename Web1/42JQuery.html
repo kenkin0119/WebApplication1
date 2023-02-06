@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        #table1 {
+            margin: auto;
+            border: 3px double black;
+        }
+
+
+            /*#table1 > tbody > tr:hover {
+                background-color: #b6ff00;
+            }*/
+
+            #table1 td {
+                border-bottom: 1px solid black;
+                padding: 5px;
+            }
+
+            #table1 > thead {
+                background-color: #262424;
+                color: white;
+            }
+
+            .verygood {
+                background-color:#29ff45;
+            }
+
+            .good{
+                background-color:#b6ff00;
+            }
+
+            .normal{
+                background-color:yellow;
+            }
+
+            .bad{
+                background-color:red;
+            }
+
+    </style>
+</head>
+<body>
+
+    <table id="table1">
+        <thead>
+            <tr>
+                <td>縣市</td>
+                <td>測站名稱</td>
+                <td>aqi</td>
+                <td>狀態</td>
+                <td>pm10</td>
+                <td>資料發布時間</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="Scripts/jquery-3.6.1.min.js"></script>
+    <script>
+        $.ajax({
+            type: 'get',
+            url: 'https://data.epa.gov.tw/api/v2/aqx_p_432?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=ImportDate%20desc&format=JSON',
+            success: function (data) {
+                console.log(data);
+                console.log(data.records);
+                
+                
+                var ad = 1;
+
+                for (var item of data.records) {
+                    row = `<tr><td>${item.county}</td> <td>${item.sitename}</td> <td>${item.aqi}</td>  <td>${item.status}</td>  <td>${item.pm10_avg}</td> <td>${item.publishtime}</td> </tr>`
+                    $('#table1>tbody').append(row);
+                    
+                    var Aqi = parseInt(item.aqi / 50);
+
+                    switch (Aqi) {
+                        case 0:
+                            $(`#table1>tbody>tr:nth-child(${ad})`).addClass("verygood");
+                            break
+                        case 1:
+                            $(`#table1>tbody>tr:nth-child(${ad})`).addClass("good");
+                            break
+                        case 2:
+                            $(`#table1>tbody>tr:nth-child(${ad})`).addClass("normal");
+                            break
+                        case 3:
+                            $(`#table1>tbody>tr:nth-child(${ad})`).addClass("bad");
+                            break
+                    }
+
+                    ad++;
+
+                }
+ 
+                },
+            error: function () {
+                alert("資料讀取失敗");
+            }
+        })
+       
+    </script>
+</body>
+</html>

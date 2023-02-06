@@ -1,0 +1,16 @@
+﻿.table-green {
+    background-color:#86cb69;
+}
+
+.table-lightgreen {
+    background-color:#abdd2e
+}
+
+
+.table-danger th,
+.table-danger td,
+.table-danger thead th,
+.table-danger tbody + tbody {
+    /*border-color: #ff6a00;*/
+    border-bottom: 3px double #ff6a00;
+}

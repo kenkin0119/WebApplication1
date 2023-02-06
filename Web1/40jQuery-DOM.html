@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        #container {
+            /*opacity:0.5;*/
+            display: none;
+        }
+
+            #container > h1 {
+                background-color: #3facfb;
+                padding: 5px;
+                color: white;
+                /*text-shadow:0 0 3px yellow;*/
+            }
+
+
+            #container > div {
+                /*border:1px solid black;*/
+                width: 600px;
+                height: 570px;
+                border-radius: 5px;
+                float: left;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                box-shadow: 0 0 5px black;
+                padding: 5px;
+            }
+
+                #container > div:hover {
+                    background-color: aqua;
+                }
+
+            #container img {
+                width: 100%;
+            }
+
+        /*        #container h1,
+        #container h2,
+        #container h3,
+        #container > div ~ div { ~div:找子節點內的所有div套用
+            text-align: center;
+        }*/
+
+        .text-center {
+            text-align: center;
+        }
+
+        #switcher {
+            text-align: right;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+        }
+
+            #switcher > span {
+                border: 1px solid gray;
+                padding: 2px;
+                cursor: pointer;
+            }
+
+        .selected {
+            background-color: yellow;
+        }
+
+        .larger {
+            font-size: 1.2em;
+        }
+
+        .smaller {
+            font-size: 0.8em;
+        }
+
+        .default {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="switcher">
+        <span id="smaller">小</span>
+        <span id="default">中</span>
+        <span id="larger">大</span>
+    </div>
+
+
+    <div id="container">
+
+    </div>
+
+    <script src="Scripts/jquery-3.6.1.min.js"></script>
+    <script>
+
+        var switcher = document.getElementById("switcher");
+        $('#switcher').click(function (evt) {
+            id = evt.target.id;
+
+            if (id != "switcher") {
+                $('#container>div').removeClass().addClass(id);
+                $('#switcher>span').removeClass('selected');
+                $(evt.target).addClass('selected')
+            };
+        });
+
+        //switcher.addEventListener('click', function (evt){
+        //    id = evt.target.id;
+        //    if (id != "switcher") {
+        //        $('#container>div').removeClass().addClass(id);
+        //        $('#switcher>span').removeClass('selected');
+        //        $(evt.target).addClass('selected');
+        //    }
+        //});
+        //function larger() {
+        //    $('#container>div').removeClass().addClass('larger');
+        //    $('#switcher>span').removeClass('selected');
+        //    $('#switcher>span:last-child').addClass('selected');
+        //}
+
+        //function smaller() {
+        //    $('#container>div').removeClass().addClass('smaller');
+        //    $('#switcher>span').removeClass('selected');
+        //    $('#switcher>span:first-child').addClass('selected');
+        //}
+
+        //function getDefault() {
+        //    $('#container>div').removeClass().addClass('default');
+        //    $('#switcher>span').removeClass('selected')
+        //    $('#switcher>span:nth-child(2)').addClass('selected');
+        //}
+
+
+        let item = `<h1 class="text-center">全國農業旅遊休閒園區</h1>`;
+        $('#container').append(item);
+
+        function toBlack() {
+            $('#container > h1').css({ 'text-shadow': '0 0 3px black' });
+            setTimeout(toYellow, 500);
+        }
+
+        function toYellow() {
+            $('#container > h1').css({ 'text-shadow': '0 0 3px yellow' });
+            setTimeout(toBlack, 500);
+        }
+
+        toYellow();
+
+        $.ajax({
+            type: 'get',
+            url: 'https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx',
+            success: function (data) {
+                console.log(data);
+
+                for (let i = 0; i < data.length; i++) {
+                    item = `<div title="${data[i].Introduction}">
+                                            <h2 class="text-center"> ${data[i].Name} </h2>
+                                            <div><img src=${data[i].Photo}/></div>
+                                            <h3 class="text-center">${data[i].City} ${data[i].Town}</h3>
+                                            <div class="text-center">
+                                                <span>電話：${data[i].Tel}<span> |
+                                                <span>地址：${data[i].Address}<span> |
+                                                <a href="https://www.google.com.tw/maps/place/${data[i].Name}" target="_blank">地圖</a>
+                                            </div >
+                                     </div>`;
+                    $('#container').append(item);
+                }
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+
+        //var n = 0;
+        //function myFadeIn() {
+        //    n += 0.1;
+        //    $('#container').css({ 'opacity': n });
+        //    if (n < 1) {
+        //        setTimeout(myFadeIn, 200);
+        //    }<
+        //}
+        //myFadeIn();
+
+        $('#container').fadeIn(2000);
+    </script>
+</body>
+</html>
