@@ -1,0 +1,12 @@
+﻿@using System.Data;
+
+@model System.Data.DataTable
+
+<table class="table">
+    @foreach (DataRow row in Model.Rows)
+    {
+        <tr>
+            <th class="text-right">總計:@row[0]</th>
+        </tr>
+    }
+</table>

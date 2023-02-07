@@ -17,14 +17,18 @@
                 <tr>
                     <td>訂單編號</td>
 
-                    <td><strong>@row["OrderID"]</strong></td>
+                    <td>
+                        <strong>@row["OrderID"]</strong>
+                    </td>
 
                     <td>客戶</td>
                     <td>@row["CompanyName"] (@row["CustomerID"])</td>
                 </tr>
                 <tr>
                     <td>訂單日期</td>
-                    <td><strong>@Convert.ToDateTime(row["OrderDate"]).ToShortDateString()</strong></td>
+                    <td>
+                        <strong>@Convert.ToDateTime(row["OrderDate"]).ToShortDateString()</strong>
+                    </td>
                     <td>聯絡人</td>
                     <td>@row["ContactName"] @row["ContactTitle"]</td>
                 </tr>
@@ -54,7 +58,10 @@
                 </tr>
                 <tr>
                     <td>出貨日期</td>
-                    <td colspan="3"><strong>@Convert.ToDateTime(row["ShippedDate"]).ToShortDateString()</strong></td>
+                    <td colspan="3">
+                        @*<strong>@Convert.ToDateTime(row["ShippedDate"]).ToShortDateString()</strong>*@
+                        <strong> @(row["ShippedDate"].ToString().IsEmpty() ? "尚未出貨" : Convert.ToDateTime(row["ShippedDate"]).ToShortDateString())</strong>
+                    </td>                         @*三元關係式 若ShippedDate is null 顯示:尚未出貨*@
 
                 </tr>
             </table>
@@ -62,7 +69,9 @@
             <hr />
             <h3 class="text-center">商品明細</h3>
             <hr />
-            @Html.Action("_DisplayDetail")
+            @Html.Action("_DisplayDetail2")
+
+            @Html.Action("_Sum")
         </div>
     </div>
 }

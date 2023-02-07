@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<_06ADOnet.Models.OrderDetails>
 @{
-    int i = 0;
+    int i = 1;
 }
 <table class="table">
     <thead>
@@ -29,10 +29,10 @@
     {
         <tr>
             <td>
-                @(++i)
+                @(i++)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Products.ProductName)
+                @Html.DisplayFor(modelItem => item.Products.ProductName) @*利用EF viewModel可以使用有關聯的資料表的值 ADO.net要寫sql inner join*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UnitPrice)
@@ -47,8 +47,16 @@
             <td>
                 @(item.UnitPrice*item.Quantity)
             </td>
+
+
         </tr>
     }
+
+  
+        <tr>
+            <th colspan="6" class="text-right"> 總計:</th>
+        </tr>
+
 
 </table>
 

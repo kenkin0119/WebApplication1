@@ -44,7 +44,7 @@ namespace _06ADOnet.Models
                 adp.SelectCommand.Parameters.Add(p);
             }
 
-            adp.Fill(ds);  //把取到的Table填入DataSet
+            adp.Fill(ds);  //取到的Table填入DataSet
 
             dt = ds.Tables[0];
 

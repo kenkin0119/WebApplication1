@@ -1,6 +1,7 @@
 ﻿using _06ADOnet.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -42,11 +43,37 @@ namespace _06ADOnet.Controllers
 
         public ActionResult _DisplayDetail(int id)
         {
-
             return PartialView(db.OrderDetails.Where(m => m.OrderID == id).ToList());
 
         }
 
+        public ActionResult _DisplayDetail2(int id)
+        {
+            string sql = "SELECT Products.ProductName, OrderDetails.UnitPrice, OrderDetails.Quantity, OrderDetails.Discount,(OrderDetails.UnitPrice*OrderDetails.Quantity*(1-OrderDetails.Discount)) as 小計 FROM OrderDetails INNER JOIN Products ON OrderDetails.ProductID = Products.ProductID where OrderDetails.OrderID=@id";
 
+            List<SqlParameter> list = new List<SqlParameter>
+            {
+                new SqlParameter("@id",id)
+            };
+
+            var order = gd.TableQuery(sql, list);
+
+            return PartialView(order);
+
+        }
+
+        public ActionResult _Sum(int id)
+        {
+            string sql = "SELECT Round(sum((UnitPrice*Quantity)*(1-Discount)),2) FROM OrderDetails group by OrderID having OrderID=@id";
+
+            List<SqlParameter> list = new List<SqlParameter>
+            {
+                new SqlParameter("@id",id)
+            };
+
+            var order = gd.TableQuery(sql, list);
+
+            return PartialView(order);
+        }
     }
 }
