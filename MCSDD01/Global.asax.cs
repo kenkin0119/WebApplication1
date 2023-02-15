@@ -16,7 +16,7 @@ namespace MCSDD01
         protected void Application_Start()
         {
             //啟動DB Initializer建立資料庫  每次載入網頁時啟動
-            Database.SetInitializer<MCSDD01Context>(new MCSDD01initializer() );
+            //Database.SetInitializer<MCSDD01Context>(new MCSDD01initializer() );
 
             //應用程式啟動時的程式碼
             AreaRegistration.RegisterAllAreas();

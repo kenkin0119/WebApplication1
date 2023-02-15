@@ -12,7 +12,7 @@ namespace _06ADOnet.Controllers
 {
     public class LoginController : Controller
     {
-        NorthwindEntities2 db = new NorthwindEntities2();
+        //NorthwindEntities2 db = new NorthwindEntities2();
 
         GetData gd = new GetData();
 

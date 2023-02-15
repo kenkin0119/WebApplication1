@@ -4,6 +4,8 @@
 
 @{ 
     int i = 1;
+    double total = 0;
+
 }
 
 <table class="table">
@@ -21,15 +23,22 @@
     <tbody>
         @foreach (DataRow row in Model.Rows)
         {
+            total += Convert.ToDouble(row["UnitPrice"]) * Convert.ToDouble(row["Quantity"]) * (1 - Convert.ToDouble(row["Discount"]));
             <tr>
                 <td>@(i++)</td>
                 <td>@row["ProductName"]</td>
-                <td>@row["UnitPrice"]</td>
-                <td>@row["Quantity"]</td>
-                <td>@row["Discount"]</td>
-                <td>@row["小計"]</td>
+                <td>@Convert.ToDouble(row["UnitPrice"])</td>
+                <td>@Convert.ToDouble(row["Quantity"])</td>
+                <td>@(Convert.ToSingle(row["Discount"])*100)% off</td>
+                @*<td>@row["小計"]</td>*@
+                <td>@Math.Round((Convert.ToDouble(row["UnitPrice"]) * Convert.ToDouble(row["Quantity"]) * (1 - Convert.ToDouble(row["Discount"]))),2)</td>
             </tr>
         }
+
+        <tr>
+            <th colspan="6" class="text-right"> 總計:@Math.Round(total,2)</th>
+        </tr>
+
 
     </tbody>
 </table>

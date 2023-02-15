@@ -1,0 +1,42 @@
+﻿@model Tour.Models.Attrations
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Attrations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AttrationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttrationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttrationPhotos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttrationPhotos)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AttrationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

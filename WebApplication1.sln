@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05CustomValidation", "05Cus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06ADOnet", "06ADOnet\06ADOnet.csproj", "{980E4DAE-7C28-4ADF-B01F-648674FD96F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tour", "Tour\Tour.csproj", "{CBF3576C-3C44-43C3-8A5F-BCB0D3022038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07WebAPI", "07WebAPI\07WebAPI.csproj", "{ADEE3456-B880-48E0-AD51-A52A2A98AB7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{980E4DAE-7C28-4ADF-B01F-648674FD96F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{980E4DAE-7C28-4ADF-B01F-648674FD96F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{980E4DAE-7C28-4ADF-B01F-648674FD96F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF3576C-3C44-43C3-8A5F-BCB0D3022038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF3576C-3C44-43C3-8A5F-BCB0D3022038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF3576C-3C44-43C3-8A5F-BCB0D3022038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF3576C-3C44-43C3-8A5F-BCB0D3022038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEE3456-B880-48E0-AD51-A52A2A98AB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEE3456-B880-48E0-AD51-A52A2A98AB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEE3456-B880-48E0-AD51-A52A2A98AB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEE3456-B880-48E0-AD51-A52A2A98AB7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
