@@ -33,7 +33,7 @@ namespace Tour.Controllers
             var rd = gd.LoginQuery(sql, list);
             if (rd == null)
             {
-                ViewBag.ErrMsg = "帳號或密碼有誤1";
+                ViewBag.ErrMsg = "帳號或密碼有誤";
                 return RedirectToAction("Index","Comments");
             }
 

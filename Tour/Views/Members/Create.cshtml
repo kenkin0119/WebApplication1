@@ -1,19 +1,17 @@
 ﻿@model Tour.Models.Members
 
 @{
-    ViewBag.Title = "Create";
+        ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+                                                                    @*上傳資料Form一定要有enctype*@
+@using (Html.BeginForm("Create", "Members", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Members</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.MemberName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -23,18 +21,29 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberPhoto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MemberPhoto, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*<div class="form-group ">
+                @Html.LabelFor(model => model.MemberPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MemberPhoto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MemberPhoto, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MemberPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<input type="file" class="form-control-file" name="photo">*@
+        @*有Model=>Editorfor LabelFor TextboxFor 沒Model=>Editor Label Textbox ("傳name",可以新增htmlAttributes)
+        只有Editor和其他人寫法不同 因為多載的參數不包含htmlAttributes所以要先new htmlAttributes*@
+        @Html.Editor("photo", new { htmlAttributes = new { @class = "form-control-file btn", type = "file" } })
+    </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MemberBirthday, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MemberBirthday,new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control",type = "date" } })*@
+                @Html.Editor("birth", new {htmlAttributes = new {@class = "form-control" ,type="text",id= "SelectDate" } })
+                @*@Html.DropDownListFor(model => model.MemberBirthday,new SelectList())*@
+
                 @Html.ValidationMessageFor(model => model.MemberBirthday, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,34 +64,41 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FavoriteAt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FavoriteAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FavoriteAt, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FavoriteAt, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FavoriteAt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FavoriteAt, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("返回登入畫面", "Login", "Login")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.dateLists.dev.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#SelectDate').dateDropDowns({
+            });
+        });
+    </script>
 }

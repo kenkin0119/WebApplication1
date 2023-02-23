@@ -247,6 +247,7 @@
     <Content Include="Views\Orders\_Sum.cshtml" />
     <Content Include="Views\Orders\getPivotOfProducts.cshtml" />
     <Content Include="Views\Orders\getPivotOfProducts2.cshtml" />
+    <Content Include="Views\Employees\_Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

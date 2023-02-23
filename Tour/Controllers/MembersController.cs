@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,6 +14,8 @@ namespace Tour.Controllers
     public class MembersController : Controller
     {
         private TourContext db = new TourContext();
+
+        SetData sd = new SetData();
 
         // GET: Members
         public ActionResult Index()
@@ -46,12 +49,48 @@ namespace Tour.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MemberID,MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt")] Members members)
+        public ActionResult Create(Members members, HttpPostedFileBase photo,DateTime birth)
         {
+            string photoPath = "";
+
             if (ModelState.IsValid)
             {
-                db.Members.Add(members);
-                db.SaveChanges();
+                if (photo != null)
+                {
+                        if (photo.ContentLength > 0)
+                        {
+                            string subName = "";
+                            string nowStr = DateTime.Now.ToString("yyyyMMddhhmmssff"); //取上傳時間(命名用)
+                            string random = Guid.NewGuid().ToString(); //給變數 (命名用)
+                            subName = photo.FileName.Substring(photo.FileName.IndexOf(".") + 1, 3);
+                            subName = subName.ToLower();
+                            if (subName == "jpg" || subName == "png" || subName == "gif")
+                            {
+                                photoPath = Server.MapPath("~/photos/" + nowStr + random + "." + subName);
+                                photo.SaveAs(photoPath);
+                            }
+                        }
+                    }
+
+                members.MemberPhoto = photoPath;
+
+                string sql = "insert into Members(MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate,@FavoriteAt)";
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("MemberName",members.MemberName),
+                    new SqlParameter("MemberPhoto",members.MemberPhoto),
+                    new SqlParameter("MemberBirthday",members.MemberBirthday),
+                    new SqlParameter("Account",members.Account),
+                    new SqlParameter("Password",members.Password),
+                    new SqlParameter("CreatedDate",DateTime.Today),
+                    new SqlParameter("FavoriteAt","")
+                };
+
+                sd.executeSql(sql,list);
+                
+                //db.Members.Add(members);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

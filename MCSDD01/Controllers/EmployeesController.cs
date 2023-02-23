@@ -10,6 +10,7 @@ using MCSDD01.Models;
 
 namespace MCSDD01.Controllers
 {
+    [LoginCheck]
     public class EmployeesController : Controller
     {
         private MCSDD01Context db = new MCSDD01Context();

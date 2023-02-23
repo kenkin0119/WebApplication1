@@ -1,0 +1,51 @@
+﻿@model _06ADOnet.Models.Employees
+
+@{ 
+    Layout = "";
+}
+<div class="">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            <h3>@Model.TitleOfCourtesy @Model.FirstName @Model.LastName</h3>
+        </div>
+
+
+        <div class="panel-body row">
+            <div class="col-xs-4 text-center">
+                @*@Html.DisplayFor(model => model.Photo)*@
+                <img src="@Url.Action("GetEmployeePhoto", new {id=Model.EmployeeID})" />
+            </div>
+            <div class="col-xs-8">
+
+                <h4>@Model.Title</h4>
+                <p>@Html.DisplayNameFor(model => model.BirthDate) @Html.DisplayFor(model => model.BirthDate)</p>
+                <p>@Html.DisplayNameFor(model => model.HireDate) @Html.DisplayFor(model => model.HireDate)</p>
+                <p>
+                    @Html.DisplayNameFor(model => model.Address):
+                    @Html.DisplayFor(model => model.Address)
+                    @Html.DisplayFor(model => model.City)
+                    @Html.DisplayFor(model => model.PostalCode)
+                    @Html.DisplayFor(model => model.Country)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.HomePhone): @Html.DisplayFor(model => model.HomePhone)
+                    分機:@Model.Extension
+                </p>
+                <p>
+                    @*@Html.DisplayNameFor(model => model.Fax): @Html.DisplayFor(model => model.Fax)*@
+                </p>
+            </div>
+            <div class="col-xs-12" style="margin-top:10px">
+                <p>@Html.Raw(Model.Notes.ToString().Replace("\r\n","<br>"))</p>
+                
+            </div>
+        </div>
+
+        @*<div class="panel-footer">
+           
+        </div>*@
+    </div>
+</div>
+

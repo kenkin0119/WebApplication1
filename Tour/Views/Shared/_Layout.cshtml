@@ -21,11 +21,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (Session["emp"] != null)
+                    {
+                        <li>@Html.ActionLink("會員資料管理", "Index", "Customers")</li>
+                        <li>@Html.ActionLink("員工資料管理", "Index", "Employees")</li>
+                        <li>@Html.ActionLink("產品資料管理", "Index", "Products")</li>
+                        <li>@Html.ActionLink("產品類別管理", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("送貨方式管理", "Index", "Shippers")</li>
+                        <li>@Html.ActionLink("登出", "Logout", "Login", null, new { @class = "btn btn-default" })</li>
+                    }
+                    else
+                    {
                     <li>@Html.ActionLink("首頁", "Index", "Home")</li>
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
+                    }
                 </ul>
             </div>
+            
+
         </div>
     </div>
     <div class="container body-content">

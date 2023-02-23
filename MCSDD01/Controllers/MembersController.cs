@@ -10,6 +10,7 @@ using MCSDD01.Models;
 
 namespace MCSDD01.Controllers
 {
+    //[LoginCheck]
     public class MembersController : Controller
     {
         private MCSDD01Context db = new MCSDD01Context();
@@ -21,7 +22,8 @@ namespace MCSDD01.Controllers
         }
 
         // GET: Members/Details/5
-        public ActionResult Details(int? id)
+        [ChildActionOnly]
+        public ActionResult _Details(int? id)
         {
             if (id == null)
             {
@@ -32,7 +34,7 @@ namespace MCSDD01.Controllers
             {
                 return HttpNotFound();
             }
-            return View(members);
+            return PartialView(members);
         }
 
         // GET: Members/Create

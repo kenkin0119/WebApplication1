@@ -22,18 +22,21 @@ namespace _06ADOnet.Controllers
         }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult _Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employees employees = db.Employees.Find(id);
+
+
+
             if (employees == null)
             {
                 return HttpNotFound();
             }
-            return View(employees);
+            return PartialView(employees);
         }
 
         // GET: Employees/Create
