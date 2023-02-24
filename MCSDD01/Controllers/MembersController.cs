@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using MCSDD01.Models;
+using PagedList;
 
 namespace MCSDD01.Controllers
 {
@@ -14,11 +17,19 @@ namespace MCSDD01.Controllers
     public class MembersController : Controller
     {
         private MCSDD01Context db = new MCSDD01Context();
-
-        // GET: Members
-        public ActionResult Index()
+        SetData sd = new SetData();
+        int pageSize = 10;
+        
+        public ActionResult Index(int page = 1)
         {
-            return View(db.Members.ToList());
+            //pagedlist
+            int currentPage = page < 1 ? 1 : page;
+
+            var member = db.Members.ToList();
+
+            var result = member.ToPagedList(page, pageSize);
+
+            return View(result);
         }
 
         // GET: Members/Details/5
@@ -61,7 +72,7 @@ namespace MCSDD01.Controllers
         }
 
         // GET: Members/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult _Edit(int? id)
         {
             if (id == null)
             {
@@ -72,7 +83,7 @@ namespace MCSDD01.Controllers
             {
                 return HttpNotFound();
             }
-            return View(members);
+            return PartialView(members);
         }
 
         // POST: Members/Edit/5
@@ -80,15 +91,35 @@ namespace MCSDD01.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemberID,MemberName,MemberPhotoFile,MemberBirthday,Account,Password,CreatedDate")] Members members)
+        public ActionResult _Edit(Members members)
         {
-            if (ModelState.IsValid)
+            string sql = "update members set MemberName=@MemberName , MemberBirthday=@MemberBirthday where MemberID=@MemberID";
+
+            List<SqlParameter> list = new List<SqlParameter>
             {
-                db.Entry(members).State = EntityState.Modified;
-                db.SaveChanges();
+                new SqlParameter("MemberID",members.MemberID),
+                new SqlParameter("MemberName",members.MemberName),
+                new SqlParameter("MemberBirthday",members.MemberBirthday)
+            };
+
+            try
+            {
+                sd.executeSql(sql, list);//因為存取資料庫容易發生例外
                 return RedirectToAction("Index");
             }
-            return View(members);
+            catch (Exception ex)
+            {
+                ViewBag.Msg = ex.Message;
+                return View(members);
+            }
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(members).State = EntityState.Modified;
+            //    db.SaveChanges();
+                
+            //}
+            
         }
 
         // GET: Members/Delete/5

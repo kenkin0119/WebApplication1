@@ -22,7 +22,7 @@ namespace MCSDD01.Models
         public string MemberPhotoFile { get; set; }
 
         [DisplayName("生日")]
-        [Required(ErrorMessage = "請填寫生日")]
+        [Required(ErrorMessage = "請填寫生日")]             //應用時間格式到編輯模式
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public DateTime MemberBirthday { get; set; }

@@ -11,11 +11,14 @@
         $.fn.dateDropDowns = function(options) {
 
             var defaults = {
-                dateFormat: 'yy-mm-dd', 
+                dateFormat: 'yyyy-MM-dd', 
                 monthNames: ['1','2','3','4','5','6','7','8','9','10','11','12'], 
                 yearStart: new Date().getFullYear() - 100,
                 yearEnd: new Date().getFullYear(),
-				defaultCurrentDate: true
+                defaultCurrentDate: true,
+                yearOption: '',
+                monthOption: '',
+                dayOption: ''
             };
             var options = $.extend(defaults, options);
 

@@ -17,33 +17,21 @@ namespace Tour.Controllers
             return View();
         }
 
-        public ActionResult Login()
-        {
-            return Login();
-        }
+        //[HttpPost]
+        //public ActionResult Login(VMLogin vMLogin)
+        //{
+        //    string pw = BR.getHashPassword(vMLogin.Password);
 
-        [HttpPost]
-        public ActionResult Login(VMLogin vMLogin)
-        {
-            string pw = BR.getHashPassword(vMLogin.Password);
+        //    var admin = db.Administrators.Where(x => x.Account == vMLogin.Account && x.Password == pw).FirstOrDefault();
 
-            var admin = db.Administrators.Where(x => x.Account == vMLogin.Account && x.Password == pw).FirstOrDefault();
+        //    if (admin == null)
+        //    {
+        //        ViewBag.ErrMsg = "帳號或密碼有誤";
+        //        return View(vMLogin);
+        //    }
 
-            if (admin == null)
-            {
-                ViewBag.ErrMsg = "帳號或密碼有誤";
-                return View(vMLogin);
-            }
-
-            Session["admin"] = admin;
-            return RedirectToAction("Index");
-        }
-
-        [LoginCheck]
-        public ActionResult Logout()
-        {
-            Session["admin"] = null;
-            return RedirectToAction("Login");
-        }
+        //    Session["admin"] = admin;
+        //    return RedirectToAction("Index");
+        //}
     }
 }

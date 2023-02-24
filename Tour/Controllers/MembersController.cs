@@ -74,9 +74,11 @@ namespace Tour.Controllers
 
                 members.MemberPhoto = photoPath;
 
-                string sql = "insert into Members(MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate,@FavoriteAt)";
+                if (members.MemberBirthday != null)
+                {
+                    string sql = "insert into Members(MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate,@FavoriteAt)";
 
-                List<SqlParameter> list = new List<SqlParameter>
+                    List<SqlParameter> list = new List<SqlParameter>
                 {
                     new SqlParameter("MemberName",members.MemberName),
                     new SqlParameter("MemberPhoto",members.MemberPhoto),
@@ -87,11 +89,14 @@ namespace Tour.Controllers
                     new SqlParameter("FavoriteAt","")
                 };
 
-                sd.executeSql(sql,list);
-                
-                //db.Members.Add(members);
-                //db.SaveChanges();
-                return RedirectToAction("Index");
+                    sd.executeSql(sql, list);
+
+                    //db.Members.Add(members);
+                    //db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(members);
             }
 
             return View(members);

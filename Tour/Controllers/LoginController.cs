@@ -12,6 +12,7 @@ namespace Tour.Controllers
     public class LoginController : Controller
     {
         GetData gd = new GetData();
+        TourContext db = new TourContext();
 
         // GET: Login
         public ActionResult Login()
@@ -31,17 +32,19 @@ namespace Tour.Controllers
             };
 
             var rd = gd.LoginQuery(sql, list);
-            if (rd == null)
+            var admin = db.Administrators.Where(x => x.Account == vMLogin.Account && x.Password == vMLogin.Password).FirstOrDefault();
+            if (rd != null && rd.HasRows)
             {
-                ViewBag.ErrMsg = "帳號或密碼有誤";
-                return RedirectToAction("Index","Comments");
-            }
-
-            if (rd.HasRows)
-            {
-                Session["emp"] = rd;
+                Session["user"] = rd;
                 rd.Close();
                 return RedirectToAction("Index", "Attrations");
+            }
+
+            if (admin != null)
+            {
+                Session["admin"] = admin;
+                rd.Close();
+                return RedirectToAction("Index", "HomeManager");
             }
 
             ViewBag.ErrMsg = "帳號或密碼有誤";

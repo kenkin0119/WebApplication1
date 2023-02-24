@@ -92,6 +92,14 @@
     <Content Include="19BS_Button.html" />
     <Content Include="20BS_ListGroup.html" />
     <Content Include="21BS_Dropdown.html" />
+    <Content Include="22BS-Nav.html" />
+    <Content Include="23BS-Collapse.html" />
+    <Content Include="24BS-Jumbotron.html" />
+    <Content Include="25BS-Jumbotron2.html" />
+    <Content Include="26BS-MediaObject.html" />
+    <Content Include="27BS-Carouel.html" />
+    <Content Include="28BS-Model.html" />
+    <Content Include="29BS-Navbar.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -100,6 +108,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\MyStyle.css" />
     <Content Include="FL3bm9KUYAATA5_.jpg" />
+    <Content Include="FrontHW3.html" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

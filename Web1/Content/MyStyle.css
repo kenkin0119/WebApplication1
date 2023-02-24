@@ -1,0 +1,71 @@
+﻿#container {
+    /*opacity:0.5;*/
+    display: none;
+}
+
+    .container > h1 {
+        background-color: #3facfb;
+        padding: 5px;
+        color: white;
+        /*text-shadow:0 0 3px yellow;*/
+    }
+
+
+    .container > div {
+        /*border:1px solid black;*/
+        width: 600px;
+        height: 570px;
+        border-radius: 5px;
+        float: left;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 5px black;
+        padding: 5px;
+    }
+
+        .container > div:hover {
+            background-color: aqua;
+        }
+
+    .container img {
+        width: 100%;
+    }
+
+/*        #container h1,
+        #container h2,
+        #container h3,
+        #container > div ~ div { ~div:找子節點內的所有div套用
+            text-align: center;
+        }*/
+
+.text-center {
+    text-align: center;
+}
+
+#switcher {
+    text-align: right;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+    #switcher > span {
+        border: 1px solid gray;
+        padding: 2px;
+        cursor: pointer;
+    }
+
+.selected {
+    background-color: yellow;
+}
+
+.larger {
+    font-size: 1.2em;
+}
+
+.smaller {
+    font-size: 0.8em;
+}
+
+.default {
+    font-size: 1em;
+}

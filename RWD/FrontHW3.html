@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/MyStyle.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
+                    <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+
+
+
+
+
+
+
+        <div class="text-right">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                登入
+            </button> |
+            <button type="button" class="btn btn-link">
+                寫信給我
+            </button>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                        <!--<button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>-->
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>E-Mail</label>
+                            <input type="text" placeholder="Your E-mail..." class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Your Password..." class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-success">登入</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="jumbotron txtFont">
+
+            <h1 class="display-4">
+                <strong>世界那麼大 我想去看看</strong>
+            </h1>
+            <h2 class="lead">
+                <strong>錢包那麼小 是要看三小</strong>
+            </h2>
+            <hr class="my-4 bg-white">
+            <h4 class="bg-warning p-2 rounded">隨著疫情趨緩，各國開始解封，您是不是也準備好來趟難忘的旅程了呢？</h4>
+            <a class="btn btn-success btn-lg" href="#">查看更多...</a>
+        </div>
+
+        <ul class="list-unstyled">
+        </ul>
+
+
+        <div id="PhotoCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            </ol>
+            <div class="carousel-inner">
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-target="#PhotoCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#PhotoCarousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+
+            </button>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-3.6.1.min.js"></script>
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        $('.carousel').carousel({
+            interval: 4000
+        })
+
+        $.ajax({
+            type: 'get',
+            url: 'https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx',
+            success: function (data) {
+                console.log(data);
+
+                for (let i = 0; i < 10; i++) {
+                    item = `<li class="media mb-3">
+                                        <img src=${data[i].Photo} class="mr-3" width="200" />
+                                        <div class="media-body">
+                                            <h4 class="mt-0 mb-1"> ${data[i].Name} </h4>
+                                            <p class="mt-2">電話:${data[i].Tel}</p>
+                                            <p>地址:${data[i].Address}</p>
+                                            <button type="button" class=" btn btn-link" data-toggle="modal" data-target="#exampleModal">查看更多...</button>
+                                        </div>
+                                     </li>`;
+                    
+
+                    slide = `<li data-target="#PhotoCarousel" data-slide-to="${i}"></li>`;
+
+                    
+
+
+                    inner = `<div class="carousel-item">
+                                            <img src="${data[i].Photo}" class="d-block w-100" />
+                                            <div class="carousel-caption d-none d-md-block">
+                                                 <h5>${data[i].Name}</h5>
+                                                 <p class="mt-2">電話:${data[i].Tel}</p>
+                                                 <p>地址:${data[i].Address}</p>
+                                            </div>
+                                 </div>`;
+
+
+                    $('.container>ul').append(item);
+                    $('.container >.carousel slide >ol').append(slide);
+                    $('.container >.carousel slide >.carousel-inner').append(inner);
+
+                }
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+
+
+
+    </script>
+
+    <!--<div><img src=${data[i].Photo} /></div>
+    <h3 class="text-center">${data[i].City} ${data[i].Town}</h3>
+        <span>電話：${data[i].Tel}<span>
+        <span>地址：${data[i].Address}<span>
+        <a href="https://www.google.com.tw/maps/place/${data[i].Name}" target="_blank">地圖</a>-->
+</body>
+</html>
