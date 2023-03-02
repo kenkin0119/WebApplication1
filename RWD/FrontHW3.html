@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
         <div class="container">
 
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">全國農業旅遊休閒園區</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,13 +28,11 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                            更多資訊
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="https://admin.taiwan.net.tw/BusinessInfo/GuanguangTuiguang/DomesticTravel.htm">觀光局:悠遊國旅振興方案</a>
+                            <a class="dropdown-item" href="https://taiwanstay.net.tw/">旅宿網</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -43,7 +41,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
                     <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-light my-2 my-sm-0" type="submit">搜尋</button>
                 </form>
             </div>
         </div>
@@ -51,12 +49,7 @@
 
 
 
-    <div class="container">
-
-
-
-
-
+    <div id="container">
 
 
         <div class="text-right">
@@ -68,14 +61,15 @@
             </button>
         </div>
 
+        <div class="madal-container">
+
+        </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                        <!--<button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>-->
+                        <h5 class="modal-title" id="exampleModalLabel">登入</h5>
+
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -96,25 +90,21 @@
         </div>
 
 
-
-
-
-
         <div class="jumbotron txtFont">
 
             <h1 class="display-4">
-                <strong>世界那麼大 我想去看看</strong>
+                <strong>終於解封了 我想去看看</strong>
             </h1>
             <h2 class="lead">
                 <strong>錢包那麼小 是要看三小</strong>
             </h2>
             <hr class="my-4 bg-white">
-            <h4 class="bg-warning p-2 rounded">隨著疫情趨緩，各國開始解封，您是不是也準備好來趟難忘的旅程了呢？</h4>
-            <a class="btn btn-success btn-lg" href="#">查看更多...</a>
+            <h4 class="bg-warning p-2 rounded">隨著疫情趨緩，您是不是也準備好來趟難忘的旅程了呢？</h4>
         </div>
 
-        <ul class="list-unstyled">
-        </ul>
+        <div class="row">
+
+        </div>
 
 
         <div id="PhotoCarousel" class="carousel slide" data-ride="carousel">
@@ -134,13 +124,10 @@
             </button>
         </div>
     </div>
-
     <script src="Scripts/jquery-3.6.1.min.js"></script>
     <script src="Scripts/bootstrap.bundle.min.js"></script>
     <script>
-        $('.carousel').carousel({
-            interval: 4000
-        })
+
 
         $.ajax({
             type: 'get',
@@ -148,36 +135,65 @@
             success: function (data) {
                 console.log(data);
 
-                for (let i = 0; i < 10; i++) {
-                    item = `<li class="media mb-3">
-                                        <img src=${data[i].Photo} class="mr-3" width="200" />
-                                        <div class="media-body">
-                                            <h4 class="mt-0 mb-1"> ${data[i].Name} </h4>
-                                            <p class="mt-2">電話:${data[i].Tel}</p>
-                                            <p>地址:${data[i].Address}</p>
-                                            <button type="button" class=" btn btn-link" data-toggle="modal" data-target="#exampleModal">查看更多...</button>
-                                        </div>
-                                     </li>`;
-                    
+                for (let i = 0; i < data.length; i++) {
+                    item = `<div class="card shadow col-lg-3 col-sm-6">
+                                <img src=${data[i].Photo} class="card-img-top img-thumbnail" />
+                                <div class="card-body">
+                                    <h4 class="card-title"> ${data[i].Name} </h4>
+                                    <h5>電話:${data[i].Tel}</h5>
+                                    <p class="card-text">地址:${data[i].Address}</p>
+                                </div>
+                                <div class="card-footer bg-white border-0">
+                                    <button type="button" class=" btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal${i}">查看更多...</button>
+                                </div>
+                            </div>`;
 
-                    slide = `<li data-target="#PhotoCarousel" data-slide-to="${i}"></li>`;
-
-                    
-
-
-                    inner = `<div class="carousel-item">
-                                            <img src="${data[i].Photo}" class="d-block w-100" />
-                                            <div class="carousel-caption d-none d-md-block">
-                                                 <h5>${data[i].Name}</h5>
-                                                 <p class="mt-2">電話:${data[i].Tel}</p>
-                                                 <p>地址:${data[i].Address}</p>
+                    modal = `<div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">詳細資訊</h5>
                                             </div>
-                                 </div>`;
+                                            <div class="modal-body">
+                                                <h3 class="text-center">${data[i].Name}</h3>
+                                                <h5 class="text-right">${data[i].City} ${data[i].Town}</h3>
+                                                <div>${data[i].Introduction}</div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="https://www.google.com.tw/maps/search/${data[i].Name}/@${data[i].Latitude},${data[i].Longitude},15z/" target="_blank" class="btn btn-success btn-block">查看地圖</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
 
+                    if (i == 0) {
+                        slide = `<li data-target="#PhotoCarousel" data-slide-to="${i}" class="active"></li>`;
 
-                    $('.container>ul').append(item);
-                    $('.container >.carousel slide >ol').append(slide);
-                    $('.container >.carousel slide >.carousel-inner').append(inner);
+                        inner = `<div class="carousel-item active">
+                                                <img src="${data[i].Photo}" class="d-block w-100" />
+                                                <div class="carousel-caption d-none d-md-block">
+                                                     <h5>${data[i].Name}</h5>
+                                                     <p class="mt-2">電話:${data[i].Tel}</p>
+                                                     <p>地址:${data[i].Address}</p>
+                                                </div>
+                                     </div>`;
+                    } else {
+                        slide = `<li data-target="#PhotoCarousel" data-slide-to="${i}"></li>`;
+
+                        inner = `<div class="carousel-item">
+                                                <img src="${data[i].Photo}" class="d-block w-100" />
+                                                <div class="carousel-caption d-none d-md-block">
+                                                     <h5>${data[i].Name}</h5>
+                                                     <p class="mt-2">電話:${data[i].Tel}</p>
+                                                     <p>地址:${data[i].Address}</p>
+                                                </div>
+                                     </div>`;
+                    };
+
+                    $('#container > .row').append(item);
+                    $('#container > .carousel > .carousel-indicators').append(slide);
+                    $('#container > .carousel > .carousel-inner').append(inner);
+                    $('#container > .madal-container').append(modal);
 
                 }
 
@@ -187,10 +203,27 @@
             }
         });
 
+        $('.carousel').carousel({
+            interval: 4000
+        });
 
 
     </script>
 
+    <!--item = `<li class="media mb-3">
+        <img src=${data[i].Photo} class="mr-3" width="200" />
+        <div class="media-body">
+            <h4 class="mt-0 mb-1"> ${data[i].Name} </h4>
+            <p class="mt-2">電話:${data[i].Tel}</p>
+            <p>地址:${data[i].Address}</p>
+            <button type="button" class=" btn btn-link" data-toggle="modal" data-target="#exampleModal${i}">查看更多...</button>
+        </div>
+    </li>`;-->
+
+    <!--<script>
+        $('#container > .carousel > .carousel-indicators > li').addClass('active');
+        $('#container > .carousel > .carousel-inner > .carousel-item').addClass('active');
+    </script>-->
     <!--<div><img src=${data[i].Photo} /></div>
     <h3 class="text-center">${data[i].City} ${data[i].Town}</h3>
         <span>電話：${data[i].Tel}<span>

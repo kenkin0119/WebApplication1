@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,7 +50,7 @@ namespace Tour.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Members members, HttpPostedFileBase photo,DateTime birth)
+        public ActionResult Create(Members members, HttpPostedFileBase photo,SqlDateTime birth)
         {
             string photoPath = "";
 
@@ -82,7 +83,7 @@ namespace Tour.Controllers
                 {
                     new SqlParameter("MemberName",members.MemberName),
                     new SqlParameter("MemberPhoto",members.MemberPhoto),
-                    new SqlParameter("MemberBirthday",members.MemberBirthday),
+                    new SqlParameter("MemberBirthday",birth),
                     new SqlParameter("Account",members.Account),
                     new SqlParameter("Password",members.Password),
                     new SqlParameter("CreatedDate",DateTime.Today),

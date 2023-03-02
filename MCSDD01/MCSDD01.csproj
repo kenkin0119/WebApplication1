@@ -177,6 +177,7 @@
     <Compile Include="Controllers\HomeManagerController.cs" />
     <Compile Include="Controllers\LoginCheck.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +265,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -331,6 +333,20 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="SourcePhotos\P001.jpg" />
+    <Content Include="SourcePhotos\P002.jpg" />
+    <Content Include="SourcePhotos\P003.jpg" />
+    <Content Include="SourcePhotos\P004.jpg" />
+    <Content Include="SourcePhotos\P005.jpg" />
+    <Content Include="SourcePhotos\P006.jpg" />
+    <Content Include="SourcePhotos\P007.jpg" />
+    <Content Include="SourcePhotos\P008.jpg" />
+    <Content Include="SourcePhotos\P009.jpg" />
+    <Content Include="SourcePhotos\P010.jpg" />
+    <Content Include="SourcePhotos\P011.jpg" />
+    <Content Include="SourcePhotos\P012.jpg" />
+    <Content Include="SourcePhotos\P013.jpg" />
+    <Content Include="SourcePhotos\產品資料.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -368,6 +384,12 @@
     <Content Include="Views\HomeManager\Index.cshtml" />
     <Content Include="Views\HomeManager\Login.cshtml" />
     <Content Include="Views\Shared\_Layout_Manager.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateDropDownList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

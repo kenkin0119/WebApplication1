@@ -41,7 +41,7 @@
             @Html.LabelFor(model => model.MemberBirthday, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control",type = "date" } })*@
-                @Html.Editor("birth", new { htmlAttributes = new { @class = "form-control", type = "text", id = "SelectDate"} })
+                @Html.Editor("birth", new { htmlAttributes = new { @class = "form-control", type = "text", id = "SelectDate" } })
                 @*@Html.DropDownListFor(model => model.MemberBirthday,new SelectList())*@
 
                 @Html.ValidationMessageFor(model => model.MemberBirthday, "", new { @class = "text-danger" })
@@ -91,26 +91,21 @@
 <div>
     @Html.ActionLink("返回登入畫面", "Login", "Login")
 </div>
-@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
-@*<script src="~/Scripts/jquery.validate.min.js"></script>
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 @*下拉式選單
-https://kevintsengtw.blogspot.com/2014/08/aspnet-mvc-part1.html#.U_DVPvmSwZk*@
+    https://kevintsengtw.blogspot.com/2014/08/aspnet-mvc-part1.html#.U_DVPvmSwZk*@
 
-    @*@Scripts.Render("~/bundles/jqueryval")*@
-    <script src="~/Scripts/jquery.dateLists.dev.js"></script>
-    <script type="text/javascript">
+@*@Scripts.Render("~/bundles/jqueryval")*@
+<script src="~/Scripts/jquery.dateLists.dev.js"></script>
+<script type="text/javascript">
         $(function () {
             $('#SelectDate').dateDropDowns({
-                dateFormat: 'yyyy-MM-dd',
-                monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                yearStart: 1923,
-                yearEnd: 2023,
-                defaultCurrentDate: true,
-                yearOption:'年',
-                monthOption:'月',
-                dayOption:'日'
+                dateFormat: 'yy-MM-DD',
+                monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                yearStart: '1912', yearEnd: '2011',
+                yearOption: '年', monthOption: '月', dayOption: '日'
             });
-        });
-    </script>
-
+    });
+</script>

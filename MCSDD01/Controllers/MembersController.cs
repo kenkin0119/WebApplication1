@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -59,12 +60,23 @@ namespace MCSDD01.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MemberID,MemberName,MemberPhotoFile,MemberBirthday,Account,Password,CreatedDate")] Members members)
+        public ActionResult Create(Members members)
         {
             if (ModelState.IsValid)
             {
-                db.Members.Add(members);
-                db.SaveChanges();
+                string sql = "insert into Members(MemberName,MemberPhotoFile,MemberBirthday,Account,Password,CreatedDate) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate)";
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("MemberName",members.MemberName),
+                    new SqlParameter("MemberPhotoFile",members.MemberPhotoFile),
+                    new SqlParameter("MemberBirthday",members.MemberBirthday),
+                    new SqlParameter("Account",members.Account),
+                    new SqlParameter("Password",members.Password),
+                    new SqlParameter("CreatedDate",DateTime.Today),
+                };
+
+                sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
 
