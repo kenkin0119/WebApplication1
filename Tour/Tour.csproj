@@ -325,7 +325,6 @@
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\HomeManager\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_Manager.cshtml" />
     <Content Include="Views\HomeManager\Login.cshtml" />
@@ -334,7 +333,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="photos\" />
-    <Folder Include="Views\ManagerLoginCheck\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
