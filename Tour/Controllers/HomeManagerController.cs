@@ -8,13 +8,13 @@ using Tour.Models;
 
 namespace Tour.Controllers
 {
-    //[ManagerLoginCheck]
+
     public class HomeManagerController : Controller
     {
-        TourContext db = new TourContext();
         GetData gd = new GetData();
         // GET: HomeManager
-        
+
+        [LoginCheck]
         public ActionResult Index()
         {
             return View();
@@ -41,7 +41,7 @@ namespace Tour.Controllers
             {
                 Session["admin"] = rd;
                 rd.Close();
-                return RedirectToAction("Index", "Members");
+                return RedirectToAction("Index");
             }
 
             ViewBag.ErrMsg = "帳號或密碼有誤";

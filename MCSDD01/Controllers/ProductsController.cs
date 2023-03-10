@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MCSDD01.Controllers;
 using MCSDD01.Models;
 
 namespace MCSDD31.Controllers
 {
+    [LoginCheck]
     public class ProductsController : Controller
     {
         private MCSDD01Context db = new MCSDD01Context();
@@ -20,6 +22,7 @@ namespace MCSDD31.Controllers
             return View(db.Products.ToList());
         }
 
+        [LoginCheck(flag = false)] //旗標控制:控制正向與負向 true 要登入 false 不用登入
         public FileContentResult GetImage(string id)
         {
             var photo = db.Products.Find(id);

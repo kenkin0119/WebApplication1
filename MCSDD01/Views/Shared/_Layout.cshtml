@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@*把判斷式提出*@
+@{
+    string text = "", action = "";
+
+    text = Session["member"] == null ? "登入" : "登出";
+    action = Session["member"] == null ? "Login" : "Logout";
+
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,9 +23,9 @@
         @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
         <div class="container">
-            @Html.ActionLink("鍋具商城", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("鍋具商城", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-dark" })
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,17 +33,21 @@
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        @Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link  text-dark" })
+                    </li>
+
+                    <li class="nav-item ml-auto">
+                        @Html.ActionLink(text, action, "Home", new { area = "" }, new { @class = "nav-link btn btn-info text-light" })
                     </li>
                     @*<li class="nav-item">
-                        @Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })
-                    </li>*@
+                            @Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })
+                        </li>*@
 
                 </ul>
                 @*<form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-                </form>*@
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
             </div>
         </div>
     </nav>
@@ -49,6 +61,6 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 
-    @RenderSection("scripts",false)
+    @RenderSection("scripts", false)
 </body>
 </html>

@@ -9,9 +9,14 @@ namespace MCSDD01.Models
 {                                   //DropCreateDatabaseAlways:執行就砍掉資料庫並重新建立
                                     //DropCreateDatabaseIfModelChanges:資料庫模型變動就砍掉重建
 
-                                    //寫在Global.asax
-                                    //啟動DB Initializer建立資料庫  每次載入網頁時啟動
-                                    //Database.SetInitializer<MCSDD01Context>(new MCSDD01initializer() );
+    //寫在Global.asax
+    //啟動DB Initializer建立資料庫  每次載入網頁時啟動
+    //Database.SetInitializer<MCSDD01Context>(new MCSDD01initializer() );
+
+    //!!不用initializer重建資料庫 更新資料庫模型方法
+    //1.修改完model後 開啟上方工具列>專案>設定為啟動專案
+    //2.上方工具列>工具>Nuget套件管理員>套件管理器主控台
+    //3.依序輸入指令"Enable-migrations">"add-migration Modify(有更動的項目名稱ex:OrderID)Length">"update-database"
     public class MCSDD01initializer: DropCreateDatabaseAlways<MCSDD01Context>
     {
         protected override void Seed(MCSDD01Context db)

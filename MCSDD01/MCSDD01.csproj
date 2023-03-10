@@ -182,6 +182,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303010410065_InitialCreate.cs" />
+    <Compile Include="Migrations\202303010410065_InitialCreate.designer.cs">
+      <DependentUpon>202303010410065_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303100436065_ModifyOrderIDLength.cs" />
+    <Compile Include="Migrations\202303100436065_ModifyOrderIDLength.designer.cs">
+      <DependentUpon>202303100436065_ModifyOrderIDLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BR.cs" />
     <Compile Include="Models\Employees.cs" />
     <Compile Include="Models\MCSDD01Context.cs" />
@@ -393,6 +402,7 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Home\Display.cshtml" />
     <Content Include="Views\Home\MyCart.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +415,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202303010410065_InitialCreate.resx">
+      <DependentUpon>202303010410065_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303100436065_ModifyOrderIDLength.resx">
+      <DependentUpon>202303100436065_ModifyOrderIDLength.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
