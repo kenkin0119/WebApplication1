@@ -14,7 +14,7 @@ using PagedList;
 
 namespace MCSDD01.Controllers
 {
-    //[LoginCheck]
+    [LoginCheck]
     public class MembersController : Controller
     {
         private MCSDD01Context db = new MCSDD01Context();
@@ -28,7 +28,7 @@ namespace MCSDD01.Controllers
 
             var member = db.Members.ToList();
 
-            var result = member.ToPagedList(page, pageSize);
+            var result = member.ToPagedList(currentPage, pageSize);
 
             return View(result);
         }
@@ -60,11 +60,37 @@ namespace MCSDD01.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Members members)
+        public ActionResult Create(Members members, HttpPostedFileBase photo)
         {
-            if (ModelState.IsValid)
+            string photoPath = "";
+
+            if (ModelState.IsValid && members.MemberBirthday.Year > 1753)
             {
-                string sql = "insert into Members(MemberName,MemberPhotoFile,MemberBirthday,Account,Password,CreatedDate) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate)";
+                if (photo != null)
+                {
+                    if (photo.ContentLength > 0)
+                    {
+                        string subName = "";
+                        string nowStr = DateTime.Now.ToString("yyyyMMddhhmmssff"); //取上傳時間(命名用)
+                        string random = Guid.NewGuid().ToString(); //給變數 (命名用)
+                        subName = photo.FileName.Substring(photo.FileName.IndexOf(".") + 1, 3);
+                        subName = subName.ToLower();
+                        if (subName == "jpg" || subName == "png" || subName == "gif")
+                        {
+                            photoPath = Server.MapPath("~/photos/" + nowStr + random + "." + subName);
+                            photo.SaveAs(photoPath);
+                        }
+                    }
+                }
+
+                members.MemberPhotoFile = photoPath;
+
+
+
+
+
+
+                string sql = "insert into Members(MemberName,MemberPhotoFile,MemberBirthday,Account,Password,CreatedDate) values(@MemberName,@MemberPhotoFile,@MemberBirthday,@Account,@Password,@CreatedDate)";
 
                 List<SqlParameter> list = new List<SqlParameter>
                 {
@@ -73,7 +99,7 @@ namespace MCSDD01.Controllers
                     new SqlParameter("MemberBirthday",members.MemberBirthday),
                     new SqlParameter("Account",members.Account),
                     new SqlParameter("Password",members.Password),
-                    new SqlParameter("CreatedDate",DateTime.Today),
+                    new SqlParameter("CreatedDate",DateTime.Today)
                 };
 
                 sd.executeSql(sql, list);
@@ -105,6 +131,7 @@ namespace MCSDD01.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult _Edit(Members members)
         {
+
             string sql = "update members set MemberName=@MemberName , MemberBirthday=@MemberBirthday where MemberID=@MemberID";
 
             List<SqlParameter> list = new List<SqlParameter>
@@ -122,7 +149,7 @@ namespace MCSDD01.Controllers
             catch (Exception ex)
             {
                 ViewBag.Msg = ex.Message;
-                return View(members);
+                return RedirectToAction("Index",members);
             }
 
             //if (ModelState.IsValid)

@@ -34,6 +34,7 @@ namespace MCSDD01.Models
         [Required(ErrorMessage = "請填寫單價")]
         [Range(0, short.MaxValue, ErrorMessage = "單價不可小於0")]
         [DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
+                                        //C0:取到整數 C1:小數一位
         public short UnitPrice { get; set; }
 
         [DisplayName("產品描述")]

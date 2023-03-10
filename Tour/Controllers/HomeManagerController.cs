@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,31 +8,52 @@ using Tour.Models;
 
 namespace Tour.Controllers
 {
+    //[ManagerLoginCheck]
     public class HomeManagerController : Controller
     {
         TourContext db = new TourContext();
+        GetData gd = new GetData();
         // GET: HomeManager
-        [LoginCheck]
+        
         public ActionResult Index()
         {
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Login(VMLogin vMLogin)
-        //{
-        //    string pw = BR.getHashPassword(vMLogin.Password);
+        public ActionResult Login()
+        {
+            return View();
+        }
 
-        //    var admin = db.Administrators.Where(x => x.Account == vMLogin.Account && x.Password == pw).FirstOrDefault();
+        [HttpPost]
+        public ActionResult Login(VMLogin vMLogin)
+        {
+            string sql = "select * from Adminstrators where Account=@id and Password=@pw";
 
-        //    if (admin == null)
-        //    {
-        //        ViewBag.ErrMsg = "帳號或密碼有誤";
-        //        return View(vMLogin);
-        //    }
+            List<SqlParameter> list = new List<SqlParameter>
+            {
+                new SqlParameter("@id",vMLogin.Account),
+                new SqlParameter("@pw",vMLogin.Password)
+            };
 
-        //    Session["admin"] = admin;
-        //    return RedirectToAction("Index");
-        //}
+            var rd = gd.LoginQuery(sql, list);
+            if (rd != null && rd.HasRows)
+            {
+                Session["admin"] = rd;
+                rd.Close();
+                return RedirectToAction("Index", "Members");
+            }
+
+            ViewBag.ErrMsg = "帳號或密碼有誤";
+            rd.Close();
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["admin"] = null;
+            return RedirectToAction("Login");
+        }
+
     }
 }

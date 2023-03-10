@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MemberBirthday, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control" ,type="date", id = "SelectDate" } })
+                @Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control", type = "date" } })
 
                 @*@Html.Editor("birth", new { htmlAttributes = new { @class = "form-control", type = "date", id = "SelectDate" ,value = ""} })*@
                 @*<input class="form-control" id="SelectDate" name="birth" value="" type="date" />*@
@@ -45,23 +45,10 @@
     <span class="text-danger">@ViewBag.Msg</span>
 }
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
-<script src="~/Scripts/jquery-3.6.1.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/jquery.dateLists.dev.js"></script>
-    <script>
-        $(function () {
-            $('#SelectDate').dateDropDowns({
-                dateFormat: 'yy-MM-DD',
-                monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
-                yearOption: '年', monthOption: '月', dayOption: '日',
-                defaultCurrentDate:true
-            });
-        });
-    </script>
-
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

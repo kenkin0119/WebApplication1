@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Tour.Models.Members>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Tour.Models.Members>
+@*@model IEnumerable<Tour.Models.Members>*@
 
 @{
     ViewBag.Title = "Index";
@@ -12,58 +15,46 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MemberName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().MemberName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MemberPhoto)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().MemberBirthday)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MemberBirthday)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Account)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Account)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FavoriteAt)
-        </th>
-        <th></th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FavoriteAt)
+        </th>*@
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberPhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberBirthday)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Account)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FavoriteAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MemberID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MemberID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MemberID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberBirthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.FavoriteAt)
+            </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MemberID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MemberID })
+            </td>
+        </tr>
+    }
 
 </table>

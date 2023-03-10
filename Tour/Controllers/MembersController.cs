@@ -9,23 +9,36 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Tour.Models;
+using PagedList;
 
 namespace Tour.Controllers
 {
+    //[ManagerLoginCheck]
     public class MembersController : Controller
     {
         private TourContext db = new TourContext();
+        int pageSize = 10;
 
         SetData sd = new SetData();
 
+
         // GET: Members
-        public ActionResult Index()
+        
+        public ActionResult Index(int page = 1)
         {
-            return View(db.Members.ToList());
+            //pagedlist
+            int currentPage = page < 1 ? 1 : page;
+
+            var member = db.Members.ToList();
+
+            var result = member.ToPagedList(currentPage, pageSize);
+
+            return View(result);
         }
 
         // GET: Members/Details/5
-        public ActionResult Details(int? id)
+        [ChildActionOnly]
+        public ActionResult _Details(int? id)
         {
             if (id == null)
             {
@@ -36,7 +49,7 @@ namespace Tour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(members);
+            return PartialView(members);
         }
 
         // GET: Members/Create
@@ -50,11 +63,11 @@ namespace Tour.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Members members, HttpPostedFileBase photo,SqlDateTime birth)
+        public ActionResult Create(Members members, HttpPostedFileBase photo)
         {
             string photoPath = "";
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && members.MemberBirthday.Year > 1753)
             {
                 if (photo != null)
                 {
@@ -73,17 +86,15 @@ namespace Tour.Controllers
                         }
                     }
 
-                members.MemberPhoto = photoPath;
+                    members.MemberPhoto = photoPath;
 
-                if (members.MemberBirthday != null)
-                {
                     string sql = "insert into Members(MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate,@FavoriteAt)";
 
-                    List<SqlParameter> list = new List<SqlParameter>
-                {
+                    List<SqlParameter> list = new List<SqlParameter> { 
+
                     new SqlParameter("MemberName",members.MemberName),
                     new SqlParameter("MemberPhoto",members.MemberPhoto),
-                    new SqlParameter("MemberBirthday",birth),
+                    new SqlParameter("MemberBirthday",members.MemberBirthday),
                     new SqlParameter("Account",members.Account),
                     new SqlParameter("Password",members.Password),
                     new SqlParameter("CreatedDate",DateTime.Today),
@@ -99,9 +110,6 @@ namespace Tour.Controllers
 
                 return View(members);
             }
-
-            return View(members);
-        }
 
         // GET: Members/Edit/5
         public ActionResult Edit(int? id)

@@ -10,7 +10,7 @@ namespace Tour.Controllers
     {
         void LoginState(HttpContext context)
         {
-            if (context.Session["user"] == null && context.Session["admin"] == null)
+            if (context.Session["user"] == null)
             {
                 context.Response.Redirect("/Login/Login");
             }

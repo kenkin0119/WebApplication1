@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center alert alert-info">我的購物車</h2>
+
+<div id="MyCart">
+
+</div>
+
+<hr />
+
+<h1 class="text-right" id="btnArea">
+    <i class="bi bi-cart-check text-info" id="updateCart" data-toggle="tooltip" data-placement="bottom" title="更新購物車"></i>
+    <i class="bi bi-cart-x text-danger" id="clearCart" data-toggle="tooltip" data-placement="bottom" title="清空購物車"></i>
+    <i class="bi bi-cash-coin text-success" data-toggle="tooltip" data-placement="bottom" title="確定結帳"></i>
+</h1>
+
+<div class="text-right mt-3">
+    <a  href="@Url.Action("Index")"><i class="bi bi-backspace-fill"></i><b>返回商品主頁</b></a>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        let toNTD = new Intl.NumberFormat('zh-TW', {
+            style: 'currency',
+            currency: 'NTD'
+        });
+
+        var cart = [];
+
+        let initCart = function () {
+
+            console.log(!localStorage.getItem("cart")); // !localStorage.getItem("cart") 判定是否為null
+
+            if (!localStorage.getItem("cart") || localStorage.getItem("cart") == "[]") {
+                $('#MyCart').html(`<h2 class="text-danger text-center">目前購物車內沒有任何商品</h2>`);
+
+            }
+            else {
+                cart = JSON.parse(localStorage.getItem("cart"));
+                let cartList = "";
+                let c = 0;
+                let total = 0;
+
+                for (let item of cart) {
+
+                    total += item.Amount * item.Price
+                    console.log(total);
+
+                    cartList +=
+                        `<div class="media p-4 border-bottom border-dark">
+                            <h2 style="font-size:2.5rem" class="align-self-center text-black-50 mr-5">${++c}</h2>
+                            <img src="/Products/GetImage/${item.PID}" class="mr-3" width="200">
+                            <div class="media-body">
+                                <h3 class="mt-0"><strong>${item.PName}</strong></h3>
+                                <h4>
+                                    <span>數量：<input class="text-center" id="${item.PID}"  type="text" value="${item.Amount}" style="width:60px" /></span>
+                                    <span>價格：$${item.Price}</span>
+                                </h4>
+                                <hr />
+                                <h4 class="text-right"><strong>小計:<span class="text-danger">$${toNTD.format(item.Amount * item.Price)}</span></strong></h4>
+
+                                <p class="text-right"><button class="btn btn-danger" id="${c}"><i class="bi bi-trash3-fill"></i> 移除商品</button></p>
+                            </div>
+                        </div>`
+                }
+
+                $('#MyCart').html(cartList);
+                $('#MyCart').append(`<h3 class="text-right">總計金額：<strong class="text-danger">$${toNTD.format(total)}</strong></h3>`);
+            }
+        }
+
+        initCart();
+
+
+        //清空購物車
+        $('#clearCart').click(() => {
+            if (confirm('確定清空購物車？')) {
+                cart = [];
+                localStorage.removeItem("cart");
+
+                initCart();
+            }
+        });
+
+        //更新購物車
+        $('#updateCart').click(() => {
+            for (var item of cart) {
+                item.Amount = $('#' + item.PID).val();
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            initCart();
+        });
+
+        //移除單一品項
+        $('#MyCart').click(evt => {
+            /*alert(evt.target.id-1)*/
+            /* https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice */
+            /*splice(start,deletecount,item1,item2,.....) 從 索引值start開始 刪除 deletecount個元素 並插入 item1,item2,....*/
+            if (evt.target.id > 0) {
+                if (confirm('確定移除此商品')) {
+
+                    cart.splice(evt.target.id - 1, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    initCart();
+                }
+            }
+        });
+
+    </script>
+}

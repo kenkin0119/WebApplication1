@@ -32,19 +32,11 @@ namespace Tour.Controllers
             };
 
             var rd = gd.LoginQuery(sql, list);
-            var admin = db.Administrators.Where(x => x.Account == vMLogin.Account && x.Password == vMLogin.Password).FirstOrDefault();
             if (rd != null && rd.HasRows)
             {
                 Session["user"] = rd;
                 rd.Close();
                 return RedirectToAction("Index", "Attrations");
-            }
-
-            if (admin != null)
-            {
-                Session["admin"] = admin;
-                rd.Close();
-                return RedirectToAction("Index", "HomeManager");
             }
 
             ViewBag.ErrMsg = "帳號或密碼有誤";
@@ -54,7 +46,7 @@ namespace Tour.Controllers
 
         public ActionResult Logout()
         {
-            Session["emp"] = null;
+            Session["user"] = null;
             return RedirectToAction("Login");
         }
     }

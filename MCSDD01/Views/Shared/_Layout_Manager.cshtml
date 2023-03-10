@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav mr-auto w-100">
                     <li class="nav-item">
-                        @Html.ActionLink("客戶管理", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("客戶管理", "Index", "Members", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("商品管理", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
@@ -28,16 +28,16 @@
                     <li class="nav-item ml-auto">
                         @Html.ActionLink("登出", "Logout", "HomeManager", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
                     </li>
-                   
+
                     @*<li class="nav-item">
-            @Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })
-        </li>*@
+                            @Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })
+                        </li>*@
 
                 </ul>
                 @*<form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-                </form>*@
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
             </div>
         </div>
     </nav>
@@ -49,8 +49,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,24 +1,171 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+﻿@model IEnumerable<MCSDD01.Models.Products>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string active = "";
+    int c = 0;
+}
+
+<div id="adForProduct" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#adForProduct" data-slide-to="0" class="active"></li>
+        @for (int i = 1; i < Model.Count(); i++)
+        {
+
+            <li data-target="#adForProduct" data-slide-to="@i"></li>
+
+        }
+    </ol>
+    <div class="carousel-inner">
+        @foreach (var item in Model)
+        {
+
+            active = c == 0 ? "active" : "";
+
+            <div class="carousel-item @active">
+                <img src="@Url.Action("GetImage","Products",new { id=item.ProductID})" class="d-block w-100 h-75" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="bg-dark">@item.ProductName</h5>
+                    <p class="text-truncate bg-dark">@item.Description</p>
+                </div>
+            </div>
+            c++;
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </button>
 </div>
+
+
+
+
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 border border-danger p-1">
+            <div class="card border-info h-100">
+                <a class="card-body" href="@Url.Action("Display", new {id=item.ProductID})">
+                    <img src="@Url.Action("GetImage","Products",new { id=item.ProductID})" class="img-fluid mt-2" />
+                    <div class="card-body">
+                        <input  type="hidden" value="@item.ProductID" class="PID"/>
+                        <h6 class="text-dark">
+                            <strong class="PName">@item.ProductName</strong>
+                        </h6>
+                    </div>
+                </a>
+                <div class="card-footer  bg-white  border-0 ">
+                    @*只讀欄位名稱 無視Model Display Format屬性:@item.UnitPrice*@
+                    <h3 class="text-danger text-right Price" price="@item.UnitPrice">@Html.DisplayFor(modelItem => item.UnitPrice)</h3>
+                    <p>
+                        <button class="btn btn-success btn-block addCart"><i class="bi bi-cart2"></i> 加入購物車 &raquo;</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+<span id="MyCart">
+    <a href="@Url.Action("MyCart")">
+        <i class="bi bi-cart4"></i>
+        <span class="badge badge-light text-white bg-danger"></span>
+    </a>
+</span>
+
+@section css{
+    <style>
+        a:hover {
+            text-decoration: none;
+        }
+
+        #MyCart {
+            position: fixed;
+            right: 30px;
+            bottom: 70px;
+            font-size: 3rem;
+        }
+
+            #MyCart > i {
+                text-shadow: 0 0 4px #ffd800
+            }
+
+            #MyCart > a > span {
+                font-size: 1.3rem;
+            }
+    </style>
+}
+
+@section scripts{
+    <script>
+        var cart = [];
+
+        if (localStorage.getItem("cart")) {
+            cart = JSON.parse(localStorage.getItem("cart")); //parse 從json轉成object
+        }
+
+        $('#MyCart .badge').text(cart.length);
+
+        $('.addCart').click(function () {
+            let product = $(this).closest('.card');
+            let newPID = product.find('.PID').val();
+                                     //箭頭函數(lambda):把函數當參數傳進去(類似合成函數) => 委派
+                                     //function(x)    find( x => ....(function匿名函數內容 因為不會被其他人呼叫所以不需命名)) !!只有一個參數可以省略x的()!!
+                                     //function()     find( () => ....)
+                                     //function(x,y)  find( (x,y) => ....)
+
+            let foundItem = cart.find(item => item.PID == newPID);//找到or沒找到
+
+            if (foundItem === undefined) {
+                setCart(product);
+            }
+            else {
+                foundItem.Amount += 1;
+                alert("商品數量已更新");
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+
+            //改寫法
+            //if (cart.length > 0) {
+            //    //索引值i 陣列[索引值][欄位名稱]
+            //    for (let i in cart) {
+            //        if (cart[i]["PID"] == newPID) {
+            //            cart[i]["Amount"] += 1;
+            //            alert("商品數量已更新");
+            //            break;
+
+            //        } else if (cart.length - 1 == i) {
+            //            setCart(product);
+            //        }
+            //    }
+            //}else {
+            //        setCart(product);
+            //       }
+                                //ID:自取, 值 (用stringify轉成json物件)
+            
+
+        });
+
+
+        function setCart(product) {
+            let newItem = {
+                PID: product.find('.PID').val(),
+                PName: product.find('.PName').text(),
+                Price: product.find('.Price').attr('price'),
+                Amount: 1
+            };
+            cart.push(newItem);
+            alert("商品已加入購物車");
+            $('#MyCart .badge').text(cart.length);
+        }
+
+
+    </script>
+    }

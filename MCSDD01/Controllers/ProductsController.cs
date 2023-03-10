@@ -24,7 +24,7 @@ namespace MCSDD31.Controllers
         {
             var photo = db.Products.Find(id);
             if (photo != null)
-                return File(photo.PhotoFile,photo.ImageMimeType);
+                return File(photo.PhotoFile, photo.ImageMimeType);
 
             return null;
         }
