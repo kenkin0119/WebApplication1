@@ -1,0 +1,99 @@
+﻿@model IEnumerable<MCSDD01.Models.Orders>
+
+@{
+    ViewBag.Title = "MyOrderList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cartFlag = 0;
+
+    if (TempData["cartFlag"] != null)  /*因為Temp讀過就消失 所以下方使用旗標控制*/
+    {
+        cartFlag = 1;
+    }
+}
+
+<h2>我的訂單</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employees.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members.MemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayTypes.PayTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shippers.ShipVia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShippedDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employees.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Members.MemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayTypes.PayTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shippers.ShipVia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+            </td>
+            <td>
+                @Html.ActionLink("詳細資料", "Details", new { id = item.OrderID }) |
+                @Html.ActionLink("取消訂單", "Delete", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@*把購物車清空*@
+<script>
+    if (@cartFlag === 1)
+    {
+        localStorage.removeItem("cart");
+    }
+</script>
+@*狀態保留生命週期
+        後端:ViewBag => 在Controller 和View之間 return View之後 在下一次return時消失
+             tempData => 讀過以後
+             Session => Session被清空
+        共通:瀏覽器被關掉
+
+        前端:localStorage
+             SessionStorage
+             Cookie
+        共通:清快取*@

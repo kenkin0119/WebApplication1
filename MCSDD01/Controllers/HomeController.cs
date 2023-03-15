@@ -2,6 +2,7 @@
 using MCSDD01.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,6 +13,26 @@ namespace MCSDD01.Controllers
     public class HomeController : Controller
     {
         MCSDD01Context db = new MCSDD01Context();
+
+        [HandleError(View ="Error")]
+        public ActionResult ExceptionDemo()
+        {
+            int i = 0;
+            int j = 100 / i;
+
+            return View();
+        }
+
+        public ActionResult Test()
+        {
+            //int i = 0;
+            //int j = 100 / i;
+
+            //return View();
+
+            throw new NotImplementedException();
+        }
+
         public ActionResult Index()
         {
 
@@ -32,6 +53,8 @@ namespace MCSDD01.Controllers
 
             var user = db.Members.Where(m => m.Account == vMLogin.Account && m.Password == password).FirstOrDefault();
 
+            var order = TempData.Where(o => o.Key == "order").FirstOrDefault();
+
             if (user == null)
             {
                 ViewBag.ErrMsg = "帳號或密碼有誤";
@@ -39,6 +62,10 @@ namespace MCSDD01.Controllers
             }
 
             Session["member"] = user;
+
+            if (order.Value != null)
+                return RedirectToAction("MemberOrder/Order");
+
             return RedirectToAction("Index");
         }
 
@@ -60,6 +87,21 @@ namespace MCSDD01.Controllers
                 return HttpNotFound();
 
             return View(product);
+        }
+
+        //[Route(@"Products/{title}")]
+        public ActionResult DisplayByTitle(string title)
+        {
+            if (title == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var Title = Server.UrlDecode(title);
+            var product = db.Products.Where(p =>p.ProductName == Title).FirstOrDefault();
+
+            if (product == null)
+                return HttpNotFound();
+
+            return View("Display",product);
         }
 
         public ActionResult MyCart()

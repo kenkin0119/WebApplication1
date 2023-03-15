@@ -14,7 +14,7 @@ namespace Tour
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<TourContext>(new Tourinitializer());
+            //Database.SetInitializer<TourContext>(new Tourinitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

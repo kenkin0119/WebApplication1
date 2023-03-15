@@ -143,7 +143,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminstratorsController.cs" />
+    <Compile Include="Controllers\AttrationsAPIController.cs" />
     <Compile Include="Controllers\AttrationsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -154,6 +156,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Adminstrators.cs" />
+    <Compile Include="Models\AtData.cs" />
     <Compile Include="Models\Attrations.cs" />
     <Compile Include="Models\BR.cs" />
     <Compile Include="Models\Comments.cs" />
@@ -282,6 +285,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -315,7 +319,7 @@
     <Content Include="Views\Attrations\Delete.cshtml" />
     <Content Include="Views\Attrations\Details.cshtml" />
     <Content Include="Views\Attrations\Edit.cshtml" />
-    <Content Include="Views\Attrations\Index.cshtml" />
+    <Content Include="Views\Attrations\IndexOLD.cshtml" />
     <Content Include="Views\Comments\Create.cshtml" />
     <Content Include="Views\Comments\Delete.cshtml" />
     <Content Include="Views\Comments\Details.cshtml" />
@@ -329,6 +333,7 @@
     <Content Include="Views\Shared\_Layout_Manager.cshtml" />
     <Content Include="Views\HomeManager\Login.cshtml" />
     <Content Include="Views\Members\_Details.cshtml" />
+    <Content Include="Views\Attrations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Tour.Models.Attrations>
+﻿@model IEnumerable<Tour.Models.AtData>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
 
 <h2>Index</h2>
@@ -11,33 +12,15 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AttrationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AttrationPhotos)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AttrationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AttrationPhotos)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AttrationID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AttrationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AttrationID })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

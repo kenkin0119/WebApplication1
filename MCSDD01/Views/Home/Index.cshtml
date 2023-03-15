@@ -50,7 +50,7 @@
     {
         <div class="col-lg-4 border border-danger p-1">
             <div class="card border-info h-100">
-                <a class="card-body" href="@Url.Action("Display", new {id=item.ProductID})">
+                <a class="card-body" href="@Url.Action("DisplayByTitle", new {title = Server.UrlEncode(item.ProductName)})">
                     <img src="@Url.Action("GetImage","Products",new { id=item.ProductID})" class="img-fluid mt-2" />
                     <div class="card-body">
                         <input  type="hidden" value="@item.ProductID" class="PID"/>

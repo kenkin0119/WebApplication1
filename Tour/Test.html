@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script src="Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $.ajax({
+        type: 'get',
+        url: 'https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json',
+        success: function (data) {
+            console.log(data.info);
+
+        },
+        error: function () {
+            alert('error');
+        }
+    });
+</script>

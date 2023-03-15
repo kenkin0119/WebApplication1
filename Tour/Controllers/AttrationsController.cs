@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Tour.Models;
@@ -15,9 +18,21 @@ namespace Tour.Controllers
         private TourContext db = new TourContext();
 
         // GET: Attrations
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View(db.Attrations.ToList());
+        //}
+
+        public async Task<ActionResult> Index()
         {
-            return View(db.Attrations.ToList());
+            string url = "https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = Int32.MaxValue;
+            var resp = await client.GetStringAsync(url);
+
+            var collection = JsonConvert.DeserializeObject<IEnumerable<AtData>>(resp);
+
+            return View(collection);
         }
 
         // GET: Attrations/Details/5

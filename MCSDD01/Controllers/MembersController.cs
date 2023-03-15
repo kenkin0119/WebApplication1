@@ -85,11 +85,6 @@ namespace MCSDD01.Controllers
 
                 members.MemberPhotoFile = photoPath;
 
-
-
-
-
-
                 string sql = "insert into Members(MemberName,MemberPhotoFile,MemberBirthday,Account,Password,CreatedDate) values(@MemberName,@MemberPhotoFile,@MemberBirthday,@Account,@Password,@CreatedDate)";
 
                 List<SqlParameter> list = new List<SqlParameter>

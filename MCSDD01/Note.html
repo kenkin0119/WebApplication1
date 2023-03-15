@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<!--Web.config:伺服器端
+Global:程式端(全域性)
+
+Web.config > system.web => 伺服器端產生的錯誤
+
+(是否使用 3.若為開發時Local執行則不使用) (觸發後導向位置)                    (導向模式   1.切換網址導向目標 2.利用目標頁面內容進行覆寫，網址不變)
+mode="1.On 2.Off 3.RemoteOnly"           defaultRedirect="/ErrorPage.html"  redirectMode="1.ResponseRedirect 2.ResponseRewrite"
+
+Web.config > system.webSever => 伺服器端執行完丟回來的回應(ex:HttpStatusCode.BadRequest  HttpNotFound)
+
+<httpErrors errorMode="Custom">
+
+    <remove statusCode="400" /> 移除HttpStatusCode.BadRequest 400預設錯誤頁面
+    <remove statusCode="404" /> 移除HttpNotFound 404預設錯誤頁面
+                           (觸發後導向位置)       (導向模式  = 1.切換網址導向目標 2.利用目標頁面內容進行覆寫，網址不變)
+    <error statusCode="400" path="/ErrorPage.html" responseMode="1.Redirect 2.ExecuteURL" />
+    <error statusCode="404" path="/ErrorPage.html" responseMode="ExecuteURL" />
+
+</httpErrors>-->

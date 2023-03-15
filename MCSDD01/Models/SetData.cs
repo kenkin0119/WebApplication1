@@ -44,5 +44,38 @@ namespace MCSDD01.Models
             cmd.Dispose();
             conn.Close();
         }
+
+        public void executeSqlBySP(string SPName)
+        {
+            cmd.CommandText = SPName;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            conn.Open();
+            cmd.ExecuteNonQuery();//只有執行sql存值不取值(select)
+            cmd.Dispose();//把cmd物件Dispose=>參數清空 下一筆資料才能用相同參數
+            conn.Close();
+        }
+
+
+        /// <summary>
+        /// 必須傳入SqlParameter List泛型參數
+        /// </summary>
+        /// <param name="SPName"></param>
+        /// <param name="list"></param>
+        public void executeSqlBySP(string SPName, List<SqlParameter> list)
+        {
+            cmd.CommandText = SPName;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            foreach (var p in list)
+            {
+                cmd.Parameters.Add(p);
+            }
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            conn.Close();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace MCSDD01.Controllers
 {
@@ -16,7 +17,7 @@ namespace MCSDD01.Controllers
         void MemberLoginState(HttpContext context)
         {
             if (context.Session["member"] == null)
-            {
+            { 
                 context.Response.Redirect("/Home/Login");
             }
         }
@@ -34,9 +35,10 @@ namespace MCSDD01.Controllers
             if (flag)
             {
                 HttpContext context = HttpContext.Current;
-
-                if(id == 1) 
+                if (id == 1)
+                {
                     MemberLoginState(context);
+                }
                 else
                     AdminLoginState(context);
             }
