@@ -17,8 +17,8 @@ namespace Tour.Controllers
     {
         private TourContext db = new TourContext();
 
-        // GET: Attrations
-        //public ActionResult Index()
+
+        //public ActionResult IndexOLD()
         //{
         //    return View(db.Attrations.ToList());
         //}
@@ -30,7 +30,7 @@ namespace Tour.Controllers
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             var resp = await client.GetStringAsync(url);
 
-            var collection = JsonConvert.DeserializeObject<IEnumerable<AtData>>(resp);
+            var collection = JsonConvert.DeserializeObject<AtData>(resp);
 
             return View(collection);
         }

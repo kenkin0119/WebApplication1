@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -40,31 +40,26 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.AttrationID })
         </td>
     </tr>
-}
+}*@
 
 
 
-</table>
+@*</table>*@
 
-
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
 
-    //$.ajax({
-    //        type: 'get',
-    //        url: 'https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json',
-    //        success: function (data) {
-    //            console.log(data);
+    $.ajax({
+            type: 'get',
+        url: 'https://media.taiwan.net.tw/XMLReleaseALL_public/v2.0/Zh_tw/AttractionList.xml',
+            success: function (data) {
+                console.log(data.Infos);
 
-    //            for (let i = 0; i < data.length; i++) {
-    //                item = 
-
-    //            }
-
-    //        },
-    //        error: function () {
-    //            alert('error');
-    //        }
-    //    });
+            },
+            error: function () {
+                alert('error');
+            }
+        });
 
 
 

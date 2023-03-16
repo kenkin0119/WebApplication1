@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Web;
 
-namespace Tour.Models
+namespace _07WebAPI.Models
 {
     public class AtData
     {
-        public class Rootobject
-        {
-            public XML_Head XML_Head { get; set; }
-        }
+
+        //public class Rootobject
+        //{
+        //    public XML_Head XML_Head { get; set; }
+        //}
 
         public class XML_Head
         {
@@ -65,8 +65,6 @@ namespace Tour.Models
             public string Keyword { get; set; }
             public DateTime? Changetime { get; set; }
         }
-
-
 
     }
 }
