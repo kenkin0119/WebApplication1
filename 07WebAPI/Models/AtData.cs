@@ -8,10 +8,10 @@ namespace _07WebAPI.Models
     public class AtData
     {
 
-        //public class Rootobject
-        //{
-        //    public XML_Head XML_Head { get; set; }
-        //}
+        public class Rootobject
+        {
+            public XML_Head XML_Head { get; set; }
+        }
 
         public class XML_Head
         {
