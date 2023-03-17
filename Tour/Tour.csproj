@@ -333,6 +333,7 @@
     <Content Include="Views\Shared\_Layout_Manager.cshtml" />
     <Content Include="Views\HomeManager\Login.cshtml" />
     <Content Include="Views\Members\_Details.cshtml" />
+    <Content Include="Views\Attrations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

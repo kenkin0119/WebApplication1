@@ -10,7 +10,7 @@ namespace Tour.Models
     {
         public TourContext() : base("name=TourConnection")
         {
-
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Adminstrators> Administrators { get; set; }

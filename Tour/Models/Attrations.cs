@@ -23,8 +23,31 @@ namespace Tour.Models
         [Required]
         public string Address { get; set; }
 
-        [DisplayName("景點照片")]
-        public string AttrationPhotos { get; set; }
+        [DisplayName("景點照片1")]
+        public string Picture1 { get; set; }
+        public string Picdescribe1 { get; set; }
+        [DisplayName("景點照片2")]
+        public string Picture2 { get; set; }
+        public string Picdescribe2 { get; set; }
+        [DisplayName("景點照片3")]
+        public string Picture3 { get; set; }
+        public string Picdescribe3 { get; set; }
+
+        [DisplayName("景點介紹")]
+        public string Description { get; set; }
+
+        [DisplayName("電話")]
+        public string Tel { get; set; }
+
+        [DisplayName("收費方式")]
+        public string Ticketinfo { get; set; }
+
+        [DisplayName("緯度")]
+        public float Px { get; set; }
+        [DisplayName("經度")]
+        public float Py { get; set; }
+
+
 
     }
 }

@@ -1,19 +1,38 @@
-﻿@model Tour.Models.Attrations
+﻿@*@model IEnumerable<Tour.Models.AtData>*@
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Index</h2>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
-@section Scripts {
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-    <script>
+    <div id="container">
+
+        <ul class="list-unstyled">
+        </ul>
+        @*@foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }*@
+    </div>
+
+
+
+
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
     $.ajax({
         type: 'get',
         url: 'http://localhost:56942/api/AttrationsAPI',
@@ -37,7 +56,7 @@
 
 
 
-                $('#container > .form-horizontal').append(item);
+                $('#container > .list-unstyled').append(item);
             }
 
         },
@@ -45,6 +64,4 @@
             alert('error');
         }
     });
-    </script>
-
-}
+</script>*@

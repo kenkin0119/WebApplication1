@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Tour.Models;
+using static Tour.Models.AtData;
 
 namespace Tour.Controllers
 {
@@ -23,17 +24,22 @@ namespace Tour.Controllers
         //    return View(db.Attrations.ToList());
         //}
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            string url = "https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
-            HttpClient client = new HttpClient();
-            client.MaxResponseContentBufferSize = Int32.MaxValue;
-            var resp = await client.GetStringAsync(url);
-
-            var collection = JsonConvert.DeserializeObject<AtData>(resp);
-
-            return View(collection);
+            return View();
         }
+
+        //public async Task<Rootobject> Index()
+        //{
+        //    string url = "https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
+        //    HttpClient client = new HttpClient();
+        //    client.MaxResponseContentBufferSize = Int32.MaxValue;
+        //    var resp = await client.GetStringAsync(url);
+
+        //    var collection = JsonConvert.DeserializeObject<Rootobject>(resp);
+
+        //    return View(collection);
+        //}
 
         // GET: Attrations/Details/5
         public ActionResult Details(int? id)

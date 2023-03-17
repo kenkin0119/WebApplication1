@@ -13,14 +13,14 @@ namespace _07WebAPI.Controllers
 {
     public class AtTestController : ApiController
     {
-        public async Task<IEnumerable<Info>> Get()
+        public async Task<Rootobject> Get()
         {
             string url = "https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
             HttpClient client = new HttpClient();
             client.MaxResponseContentBufferSize = Int32.MaxValue;
             var resp = await client.GetStringAsync(url);
 
-            var collection = JsonConvert.DeserializeObject<IEnumerable<Info>>(resp);
+            var collection = JsonConvert.DeserializeObject<Rootobject>(resp);
 
             return collection;
         }
