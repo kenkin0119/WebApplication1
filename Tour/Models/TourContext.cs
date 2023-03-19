@@ -14,8 +14,8 @@ namespace Tour.Models
         }
 
         public virtual DbSet<Adminstrators> Administrators { get; set; }
-        public virtual DbSet<Attrations> Attrations { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Members> Members { get; set; }
+        public virtual DbSet<Attrations> Attrations { get; set; }
     }
 }

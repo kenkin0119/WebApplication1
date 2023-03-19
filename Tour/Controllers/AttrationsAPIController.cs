@@ -14,7 +14,6 @@ namespace Tour.Controllers
 {
     public class AttrationsAPIController : ApiController
     {
-        TourContext db = new TourContext();
 
         // GET: Covid19API 先用自己的伺服器和對方取資料  再ajax傳給html
         public async Task<Rootobject> Get()
@@ -51,21 +50,23 @@ namespace Tour.Controllers
         //}
 
 
-        //public IHttpActionResult Post([FromBody] Customers value)
+        //public IHttpActionResult Post([FromBody] Attrations value)
         //{
 
         //    if (!ModelState.IsValid)
         //    {
         //        return BadRequest(ModelState);
         //    }
-        //    db.Customers.Add(value);
+        //    db.Attrations.Add(value);
+
+
         //    try
         //    {
         //        db.SaveChanges();
         //    }
         //    catch (DbUpdateException)
         //    {
-        //        if (db.Customers.Count(c => c.CustomerID == value.CustomerID) > 0)
+        //        if (db.Attrations.Count(c => c.AttrationID == value.AttrationID) > 0)
         //        {
         //            return Conflict();
         //        }
@@ -75,17 +76,23 @@ namespace Tour.Controllers
         //        }
         //    }
 
-        //    return CreatedAtRoute("DefaultApi", new { id = value.CustomerID }, value);
+
+        //    return CreatedAtRoute("DefaultApi", new { id = value.AttrationID }, value);
+
         //}
 
+            //public void Put(int id, [FromBody] string value)
+            //{
+            //}
 
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+
+            //public void Delete(int id)
+            //{
+            //}
+       
+        
 
 
-        //public void Delete(int id)
-        //{
-        //}
+
     }
 }

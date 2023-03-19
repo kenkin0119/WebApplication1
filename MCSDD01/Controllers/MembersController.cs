@@ -14,7 +14,7 @@ using PagedList;
 
 namespace MCSDD01.Controllers
 {
-    [LoginCheck]
+    //[LoginCheck]
     public class MembersController : Controller
     {
         private MCSDD01Context db = new MCSDD01Context();

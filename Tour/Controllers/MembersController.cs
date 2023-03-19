@@ -88,7 +88,7 @@ namespace Tour.Controllers
 
                     members.MemberPhoto = photoPath;
 
-                    string sql = "insert into Members(MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate,@FavoriteAt)";
+                    string sql = "insert into Members(MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate) values(@MemberName,@MemberPhoto,@MemberBirthday,@Account,@Password,@CreatedDate)";
 
                     List<SqlParameter> list = new List<SqlParameter> { 
 
@@ -97,8 +97,7 @@ namespace Tour.Controllers
                     new SqlParameter("MemberBirthday",members.MemberBirthday),
                     new SqlParameter("Account",members.Account),
                     new SqlParameter("Password",members.Password),
-                    new SqlParameter("CreatedDate",DateTime.Today),
-                    new SqlParameter("FavoriteAt","")
+                    new SqlParameter("CreatedDate",DateTime.Today)
                 };
 
                     sd.executeSql(sql, list);
@@ -131,7 +130,7 @@ namespace Tour.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemberID,MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate,FavoriteAt")] Members members)
+        public ActionResult Edit([Bind(Include = "MemberID,MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate")] Members members)
         {
             if (ModelState.IsValid)
             {

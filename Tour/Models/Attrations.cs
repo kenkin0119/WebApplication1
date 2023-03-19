@@ -26,12 +26,7 @@ namespace Tour.Models
         [DisplayName("景點照片1")]
         public string Picture1 { get; set; }
         public string Picdescribe1 { get; set; }
-        [DisplayName("景點照片2")]
-        public string Picture2 { get; set; }
-        public string Picdescribe2 { get; set; }
-        [DisplayName("景點照片3")]
-        public string Picture3 { get; set; }
-        public string Picdescribe3 { get; set; }
+        
 
         [DisplayName("景點介紹")]
         public string Description { get; set; }

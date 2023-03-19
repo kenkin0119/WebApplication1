@@ -34,9 +34,6 @@ namespace Tour.Models
         [Required]
         public DateTime DateTime { get; set; }
 
-        [StringLength(20)]
-        public string HashTag { get; set; }
-
         [DisplayName("評分")]
         [RegularExpression("[0-5]{1}")]
         [Required]
@@ -46,8 +43,7 @@ namespace Tour.Models
 
 
         //拉關聯
-
-        public virtual Attrations Attrations { get; set; }
         public virtual Members Members { get; set; }
+        public virtual Attrations Attrations { get; set; }
     }
 }

@@ -1,48 +1,38 @@
-﻿using Newtonsoft.Json;
+﻿using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Tour.Models;
-using static Tour.Models.AtData;
 
 namespace Tour.Controllers
 {
     public class AttrationsController : Controller
     {
         private TourContext db = new TourContext();
+        SetData sd = new SetData();
 
+        int pageSize = 20;
 
-        //public ActionResult IndexOLD()
-        //{
-        //    return View(db.Attrations.ToList());
-        //}
-
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View();
+            //pagedlist
+            int currentPage = page < 1 ? 1 : page;
+
+            var Attration = db.Attrations.ToList();
+
+            var result = Attration.ToPagedList(currentPage, pageSize);
+
+            return View(result);
         }
 
-        //public async Task<Rootobject> Index()
-        //{
-        //    string url = "https://media.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
-        //    HttpClient client = new HttpClient();
-        //    client.MaxResponseContentBufferSize = Int32.MaxValue;
-        //    var resp = await client.GetStringAsync(url);
-
-        //    var collection = JsonConvert.DeserializeObject<Rootobject>(resp);
-
-        //    return View(collection);
-        //}
-
         // GET: Attrations/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult _Details(int? id)
         {
             if (id == null)
             {
@@ -53,34 +43,34 @@ namespace Tour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(attrations);
+            return PartialView(attrations);
         }
 
         // GET: Attrations/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: Attrations/Create
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AttrationID,AttrationName,Address,AttrationPhotos")] Attrations attrations)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Attrations.Add(attrations);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "AttrationID,AttrationName,Address,Picture1,Picdescribe1,Description,Tel,Ticketinfo,Px,Py")] Attrations attrations)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Attrations.Add(attrations);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(attrations);
-        }
+        //    return View(attrations);
+        //}
 
         // GET: Attrations/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult _Edit(int? id)
         {
             if (id == null)
             {
@@ -91,7 +81,7 @@ namespace Tour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(attrations);
+            return PartialView(attrations);
         }
 
         // POST: Attrations/Edit/5
@@ -99,15 +89,30 @@ namespace Tour.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AttrationID,AttrationName,Address,AttrationPhotos")] Attrations attrations)
+        public ActionResult _Edit(Attrations attrations)
         {
-            if (ModelState.IsValid)
+            string sql = "update Attrations set AttrationName=@AttrationName , Address=@Address , Picture1=@Picture1 , Picdescribe1=@Picdescribe1 , Description=@Description , Tel=@Tel , Ticketinfo=@Ticketinfo , Px=@Px , Py=@Py where AttrationID=@AttrationID";
+
+            List<SqlParameter> list = new List<SqlParameter>
             {
-                db.Entry(attrations).State = EntityState.Modified;
-                db.SaveChanges();
+                new SqlParameter("AttrationID",attrations.AttrationID),
+                new SqlParameter("AttrationName",attrations.AttrationName),
+                new SqlParameter("Address",attrations.Address),
+                new SqlParameter("Picture1",attrations.Picture1),
+                new SqlParameter("Picdescribe1",attrations.Picdescribe1),
+                new SqlParameter("Description",attrations.Description),
+                new SqlParameter("Tel",attrations.Tel),
+                new SqlParameter("Ticketinfo",attrations.Ticketinfo),
+                new SqlParameter("Px",attrations.Px),
+                new SqlParameter("Py",attrations.Py)
+            };
+
+
+                sd.executeSql(sql, list);//因為存取資料庫容易發生例外
                 return RedirectToAction("Index");
-            }
-            return View(attrations);
+
+
+
         }
 
         // GET: Attrations/Delete/5

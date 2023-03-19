@@ -54,8 +54,5 @@ namespace Tour.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
-
-        [DisplayName("我的最愛")]
-        public string FavoriteAt { get; set; }
     }
 }

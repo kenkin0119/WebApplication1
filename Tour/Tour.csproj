@@ -147,7 +147,6 @@
     <Compile Include="Controllers\AdminstratorsController.cs" />
     <Compile Include="Controllers\AttrationsAPIController.cs" />
     <Compile Include="Controllers\AttrationsController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeManagerController.cs" />
     <Compile Include="Controllers\LoginCheck.cs" />
@@ -178,7 +177,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\site.css" />
+    <Content Include="Content\set.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -315,10 +314,7 @@
     <Content Include="Views\Adminstrators\Details.cshtml" />
     <Content Include="Views\Adminstrators\Edit.cshtml" />
     <Content Include="Views\Adminstrators\Index.cshtml" />
-    <Content Include="Views\Attrations\Create.cshtml" />
-    <Content Include="Views\Attrations\Delete.cshtml" />
-    <Content Include="Views\Attrations\Details.cshtml" />
-    <Content Include="Views\Attrations\Edit.cshtml" />
+    <Content Include="Views\Attrations\CreateOLD.cshtml" />
     <Content Include="Views\Attrations\IndexOLD.cshtml" />
     <Content Include="Views\Comments\Create.cshtml" />
     <Content Include="Views\Comments\Delete.cshtml" />
@@ -333,6 +329,10 @@
     <Content Include="Views\Shared\_Layout_Manager.cshtml" />
     <Content Include="Views\HomeManager\Login.cshtml" />
     <Content Include="Views\Members\_Details.cshtml" />
+    <Content Include="Views\Attrations\Create.cshtml" />
+    <Content Include="Views\Attrations\Delete.cshtml" />
+    <Content Include="Views\Attrations\_Details.cshtml" />
+    <Content Include="Views\Attrations\_Edit.cshtml" />
     <Content Include="Views\Attrations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

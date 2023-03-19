@@ -1,4 +1,7 @@
-﻿@*@model IEnumerable<Tour.Models.AtData>*@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@*@model IEnumerable<Tour.Models.Attrations>*@
+@model IPagedList<Tour.Models.Attrations>
 
 @{
     ViewBag.Title = "Index";
@@ -10,58 +13,105 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr class="row">
+        <th class="col-4">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AttrationName)
+        </th>
+        <th class="col-4 text-left">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
+        </th>
+        <th class="col text-left">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Tel)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="row">
+            <td class="col-4">
+                @Html.DisplayFor(modelItem => item.AttrationName)
+            </td>
+            <td class="col-4">
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td class="col">
+                @Html.DisplayFor(modelItem => item.Tel)
+            </td>
+            <td>
+                <button type="button" id="@item.AttrationID" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                    編輯資料
+                </button>
+
+                <button type="button" id="@item.AttrationID" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+                    查看詳細資料
+                </button>
 
 
-    <div id="container">
 
-        <ul class="list-unstyled">
-        </ul>
-        @*@foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-            }*@
+
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.AttrationID })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+@* modal-Details *@
+<div class="modal fade" id="showDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("_Details", new { id = 1 })
+            </div>
+        </div>
     </div>
+</div>
+
+@* modal-Edit *@
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("_Edit")
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
-@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@section scripts{
+    <script>
 
-<script>
-    $.ajax({
-        type: 'get',
-        url: 'http://localhost:56942/api/AttrationsAPI',
-        success: function (data) {
-            let Data = data.XML_Head.Infos.Info
-            console.log(Data);
+        $('.pagination-container > ul').addClass('justify-content-center');
+        $('.pagination-container > ul > li').removeClass().addClass('page-item');
+        $('.pagination-container > ul > li > a').addClass('page-link');
 
-            for (i = 0; i < 5; i++) {
-                item = `<li class="media mb-3">
-                                <img src=${Data[i].Picture1} class="mr-3" width="200" />
-                                <div class="media-body">
-                                    <h4 class="mt-0 mb-1"> ${Data[i].Name} </h4>
-                                    <h5>電話:${Data[i].Tel}</h5>
-                                    <p class="card-text">地址:${Data[i].Add}</p>
-                                </div>
-                                <a href="https://www.google.com.tw/maps/search/${Data[i].Name}/@@${Data[i].Py},${Data[i].Px},15z/" target="_blank" class="btn btn-success btn-block">查看地圖</a>
-                        </li>`;
-
-
-
-
-
-
-                $('#container > .list-unstyled').append(item);
-            }
-
-        },
-        error: function () {
-            alert('error');
+        function getDetailData(evt) {
+            $('#showDetailModal .modal-body').load("/Attrations/_Details/" + evt.target.id)
         }
-    });
-</script>*@
+
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/Attrations/_Edit/" + evt.target.id)
+        }
+
+    </script>
+}
+
+

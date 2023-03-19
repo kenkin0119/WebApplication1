@@ -12,7 +12,7 @@ namespace Tour.Models
             //寫在Global.asax
             //啟動DB Initializer建立資料庫  每次載入網頁時啟動
             //Database.SetInitializer<MCSDD01Context>(new MCSDD01initializer() );
-    public class Tourinitializer: DropCreateDatabaseIfModelChanges<TourContext>
+    public class Tourinitializer: DropCreateDatabaseAlways<TourContext>
     {
         protected override void Seed(TourContext db)
         {
@@ -22,14 +22,26 @@ namespace Tour.Models
 
                 new Members
                 {
-                    MemberName="莊孝維",
+                    MemberName="member01",
                     MemberBirthday=Convert.ToDateTime("1999/10/10"),
                     CreatedDate=DateTime.Today,
-                    Account="Ahiao",
+                    Account="member",
                     Password="12345678"
                 }
             };
             members.ForEach(s => db.Members.Add(s));
+            db.SaveChanges();
+
+            List<Adminstrators> admins = new List<Adminstrators> {
+
+                new Adminstrators
+                {
+                    AdminName = "admin01",
+                    Account = "admin",
+                    Password = "12345678"
+                }
+            };
+            admins.ForEach(s => db.Administrators.Add(s));
             db.SaveChanges();
         }
     }
