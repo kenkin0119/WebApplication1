@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,7 +10,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Tour.Models;
-using PagedList;
+
 
 namespace Tour.Controllers
 {
@@ -37,7 +38,6 @@ namespace Tour.Controllers
         }
 
         // GET: Members/Details/5
-        [ChildActionOnly]
         public ActionResult _Details(int? id)
         {
             if (id == null)
@@ -111,7 +111,7 @@ namespace Tour.Controllers
             }
 
         // GET: Members/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult _Edit(int? id)
         {
             if (id == null)
             {
@@ -122,7 +122,7 @@ namespace Tour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(members);
+            return PartialView(members);
         }
 
         // POST: Members/Edit/5
@@ -130,15 +130,19 @@ namespace Tour.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemberID,MemberName,MemberPhoto,MemberBirthday,Account,Password,CreatedDate")] Members members)
+        public ActionResult _Edit(Members members)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(members).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(members);
+            string sql = "update Members set MemberName=@MemberName , Password=@Password where MemberID=@MemberID";
+
+            List<SqlParameter> list = new List<SqlParameter> { 
+            new SqlParameter("MemberID",members.MemberID),
+            new SqlParameter("MemberName",members.MemberName),
+            new SqlParameter("Password",members.Password)
+            };
+
+            sd.executeSql(sql, list);//因為存取資料庫容易發生例外
+            return RedirectToAction("Index");
+
         }
 
         // GET: Members/Delete/5

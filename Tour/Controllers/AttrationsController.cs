@@ -16,6 +16,7 @@ namespace Tour.Controllers
     {
         private TourContext db = new TourContext();
         SetData sd = new SetData();
+        GetData gd = new GetData();
 
         int pageSize = 20;
 
@@ -27,6 +28,27 @@ namespace Tour.Controllers
             var Attration = db.Attrations.ToList();
 
             var result = Attration.ToPagedList(currentPage, pageSize);
+
+            return View(result);
+        }
+
+        public ActionResult Search()
+        {
+            
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string keyword)
+        {
+            string sql = "SELECT *  FROM Attrations WHERE AttrationName like '%'+@keyword+'%' or Address like '%'+@keyword+'%'";
+
+            List<SqlParameter> list = new List<SqlParameter> { 
+            new SqlParameter("keyword",keyword)
+            };
+
+            var result = gd.TableQuery(sql, list, false);
 
             return View(result);
         }

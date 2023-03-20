@@ -1,0 +1,43 @@
+﻿@using System.Data;
+
+@model System.Data.DataTable
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    @foreach (DataRow row in Model.Rows)
+    {
+        <div class="col-lg-4 p-1">
+            <div class="card h-100">
+                <a class="card-body" href="@Url.Action("DisplayByTitle", new {title = row["AttrationName"].ToString()})">
+
+                    @if (row["Picture1"].ToString() == "")
+                    {
+                        <img src="~/photos/null.jpg" class="img-fluid mt-2" />
+                    }
+                    else
+                    {
+                        <img src="@row["Picture1"].ToString()" class="img-fluid mt-2" />
+                    }
+
+                    <div class="card-body">
+                        <input type="hidden" value="@row["AttrationID"]" class="AID" />
+                        <h6 class="text-dark">
+                            <strong class="AName">@row["AttrationName"]"</strong>
+                        </h6>
+                    </div>
+                </a>
+                <div class="card-footer  bg-white  border-0 ">
+                    <p>
+                        <button class="btn btn-success btn-block addCart"><i class="bi bi-cart2"></i> 加入購物車 &raquo;</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

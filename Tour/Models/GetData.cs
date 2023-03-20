@@ -10,11 +10,88 @@ namespace Tour.Models
 {
     public class GetData
     {
+        //1.建立資料庫連線物件 static:可以直接使用
         static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["TourConnection"].ConnectionString);
-
+        //2.建立SQL命令物件
         SqlCommand cmd = new SqlCommand("", conn);
-
+        //3.建立資料讀取物件
         SqlDataReader rd;
+        //一列一列讀 不佔記憶體 但是較慢 要手動connect和close
+
+        SqlDataAdapter adp = new SqlDataAdapter("", conn);
+        //用DataSet or DataTable讀取 較快但是佔記憶體 可以用fill自動connect取完資料後自動close
+
+        //使用時機:SqlDataReader:照順序讀or資料數較少 不需要再對資料進行其他動作時
+        //        SqlDataAdapter:資料數多 存成ds(DataSet).dt(DataTable)方便進行其他操作
+
+
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+
+
+        //設定使用方法時的說明
+        /// <summary>
+        /// 必須傳入sql指令，與是否使用預存程序
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="a"></param>
+        public DataTable TableQuery(string sql, bool a)
+        {
+            adp.SelectCommand.CommandText = sql;  //指定 Select Command
+
+            if (a == true)
+            {
+                adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            }
+
+            adp.Fill(ds);  //把取到的DataSet填入DataTable
+
+            if (ds.Tables.Count == 0)
+            {
+                return dt;
+            }
+
+            dt = ds.Tables[0]; //DataSet填好的第一個DataTable存到dt再回傳
+
+            return dt;
+        }
+
+
+        //設定使用方法時的說明
+        /// <summary>
+        /// 必須傳入sql指令，SqlParameter List泛型參數，與是否使用預存程序
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="para"></param>
+        /// <param name="a"></param>
+        public DataTable TableQuery(string sql, List<SqlParameter> para, bool a)   //多載:同樣方法名稱只要參數不同就OK
+        {
+            adp.SelectCommand.CommandText = sql;  //指定 Select Command
+
+            if (a)
+            {
+                adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            }
+
+            foreach (SqlParameter p in para)
+            {
+                adp.SelectCommand.Parameters.Add(p);
+            }
+
+            adp.Fill(ds);  //取到的Table填入DataSet
+
+            if (ds.Tables.Count == 0)
+            {
+                return dt;
+            }
+
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+
+
 
         public SqlDataReader LoginQuery(string sql, List<SqlParameter> para)
         {

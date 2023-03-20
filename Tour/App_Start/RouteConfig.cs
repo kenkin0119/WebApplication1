@@ -13,6 +13,18 @@ namespace Tour
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "AttrationDisplay",
+            //    url: "Attrations/{id}",
+            //    defaults: new { controller = "Home", action = "DisplayByTitle" }
+            //);
+
+
+
+
+            //啟用自訂路由的方法
+            //routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
 
 <h2>Index</h2>
@@ -11,33 +12,28 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        <th class="col-4">
             @Html.DisplayNameFor(model => model.AdminName)
         </th>
-        <th>
+        <th class="col-4">
             @Html.DisplayNameFor(model => model.Account)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th></th>
+        <th class="col-4"></th>
+
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td class="col-4">
             @Html.DisplayFor(modelItem => item.AdminName)
         </td>
-        <td>
+        <td class="col-4">
             @Html.DisplayFor(modelItem => item.Account)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AdminID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AdminID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AdminID })
+        <td class="col-4">
+            @Html.ActionLink("Edit", "Edit", new { id=item.AdminID }, htmlAttributes: new {@class = "btn btn-warning btn-sm" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.AdminID }, htmlAttributes: new { @class = "btn btn-success btn-sm" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.AdminID }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }

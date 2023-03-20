@@ -1,4 +1,9 @@
-﻿@{
+﻿@*@model IEnumerable<Tour.Models.Attrations>*@
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Tour.Models.Attrations>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,23 +14,49 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 p-1">
+            <div class="card h-100">
+                <a class="card-body" href="@Url.Action("Display",item.AttrationID)">
+
+                    @if (item.Picture1 == "")
+                    {
+                        <img src="~/photos/null.jpg" class="img-fluid mt-2" />
+                    }
+                    else
+                    {
+                        <img src="@item.Picture1" class="img-fluid mt-2" />
+                    }
+
+                    <div class="card-body">
+                        <input type="hidden" value="@item.AttrationID" class="AID" />
+                        <h6 class="text-dark">
+                            <strong class="PName">@item.AttrationName</strong>
+                        </h6>
+                    </div>
+                </a>
+                <div class="card-footer  bg-white  border-0 ">
+                    <p>
+                        <button class="btn btn-success btn-block addCart"><i class="bi bi-cart2"></i> 加入購物車 &raquo;</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+@section scripts{
+    
+    <script>
+
+        $('.pagination-container > ul').addClass('justify-content-center');
+        $('.pagination-container > ul > li').removeClass().addClass('page-item');
+        $('.pagination-container > ul > li > a').addClass('page-link');
+
+    </script>
+    
+    }
