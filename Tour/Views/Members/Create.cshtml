@@ -2,92 +2,123 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>加入會員</h2>
+<div class="row">
+    @*上傳資料Form一定要有enctype*@
+    @using (Html.BeginForm("Create", "Members", FormMethod.Post, new { enctype = "multipart/form-data", @class = "col-7" }))
+    {
+        @Html.AntiForgeryToken()
 
-@*上傳資料Form一定要有enctype*@
-@using (Html.BeginForm("Create", "Members", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MemberName, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MemberName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MemberName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MemberName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        @*<div class="form-group ">
+            @*<div class="form-group ">
+                    @Html.LabelFor(model => model.MemberPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MemberPhoto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MemberPhoto, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.MemberPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <br />
+                @*<input type="file" class="form-control-file" name="photo">*@
+                @*有Model=>Editorfor LabelFor TextboxFor 沒Model=>Editor Label Textbox ("傳name",可以新增htmlAttributes)
+                    只有Editor和其他人寫法不同 因為多載的參數不包含htmlAttributes所以要先new htmlAttributes*@
+                @Html.Editor("photo", new { htmlAttributes = new { @class = "form-control-file btn", type = "file", id = "imgInp" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MemberBirthday, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.MemberPhoto, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MemberPhoto, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @*@Html.Editor("birth", new { htmlAttributes = new { @class = "form-control", type = "text", id = "SelectDate" } })*@
+                    @*@Html.DropDownListFor(model => model.MemberBirthday,new SelectList())*@
+
+                    @Html.ValidationMessageFor(model => model.MemberBirthday, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-            @*<input type="file" class="form-control-file" name="photo">*@
-            @*有Model=>Editorfor LabelFor TextboxFor 沒Model=>Editor Label Textbox ("傳name",可以新增htmlAttributes)
-                只有Editor和其他人寫法不同 因為多載的參數不包含htmlAttributes所以要先new htmlAttributes*@
-            @Html.Editor("photo", new { htmlAttributes = new { @class = "form-control-file btn", type = "file" } })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberBirthday, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberBirthday, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                @*@Html.Editor("birth", new { htmlAttributes = new { @class = "form-control", type = "text", id = "SelectDate" } })*@
-                @*@Html.DropDownListFor(model => model.MemberBirthday,new SelectList())*@
-
-                @Html.ValidationMessageFor(model => model.MemberBirthday, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="加入會員" class="btn btn-success" />
+                </div>
             </div>
         </div>
+    }
+
+    <div class="col-5 p-0">
+        <img id="preimg" class="img-fluid" src="" />
     </div>
-}
+
+    <div class="text-danger">
+        @ViewBag.ErrMsg
+    </div>
+
+</div>
 
 <div>
-    @Html.ActionLink("返回登入畫面", "Login", "Home")
+    @Html.ActionLink("返回登入畫面", "Login", "Home", new {@class="btn btn-warning"})
 </div>
 @section scripts{
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $("#imgInp").change(function () {
+            //當檔案改變後，做一些事 
+            readURL(this);   // this代表<input id="imgInp">
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#preimg").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+    </script>
+
 }
 
 

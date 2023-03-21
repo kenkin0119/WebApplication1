@@ -49,31 +49,54 @@ namespace Tour.Controllers
         [HttpPost]
         public ActionResult Login(VMLogin vMLogin)
         {
-            string sql = "select * from Members where Account=@id and Password=@pw";
+            // 方法1.使用LoginQuery 但也因為使用SqlDataReader 而無法使用 ((Members)Session["user"]).MemberID 傳值
+            //string sql = "select * from Members where Account=@id and Password=@pw";
 
-            List<SqlParameter> list = new List<SqlParameter>
-            {
-                new SqlParameter("@id",vMLogin.Account),
-                new SqlParameter("@pw",vMLogin.Password)
-            };
+            //List<SqlParameter> list = new List<SqlParameter>
+            //{
+            //    new SqlParameter("@id",vMLogin.Account),
+            //    new SqlParameter("@pw",vMLogin.Password)
+            //};
 
-            var rd = gd.LoginQuery(sql, list);
-            if (rd != null && rd.HasRows)
+            //var rd = gd.LoginQuery(sql, list);
+            //if (rd != null && rd.HasRows)
+            //{
+            //    Session["user"] = rd;
+            //    rd.Close();
+            //    return RedirectToAction("Index");
+            //}
+
+            //ViewBag.ErrMsg = "帳號或密碼有誤";
+            //rd.Close();
+            //return View();
+
+            var password = vMLogin.Password;
+
+            var user = db.Members.Where(m => m.Account == vMLogin.Account && m.Password == password).FirstOrDefault();
+
+
+            if (user == null)
             {
-                Session["user"] = rd;
-                rd.Close();
-                return RedirectToAction("Index");
+                ViewBag.ErrMsg = "帳號或密碼有誤";
+                return View(vMLogin);
             }
 
-            ViewBag.ErrMsg = "帳號或密碼有誤";
-            rd.Close();
-            return View();
+            Session["user"] = user;
+
+            return RedirectToAction("Index");
+
         }
 
         public ActionResult Logout()
         {
             Session["user"] = null;
             return RedirectToAction("Login");
+        }
+
+        [LoginCheck(i = 1)]
+        public ActionResult MyBookMark() 
+        { 
+            return View();
         }
     }
 }

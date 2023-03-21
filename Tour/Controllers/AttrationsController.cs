@@ -12,6 +12,7 @@ using Tour.Models;
 
 namespace Tour.Controllers
 {
+    [LoginCheck]
     public class AttrationsController : Controller
     {
         private TourContext db = new TourContext();
@@ -32,13 +33,13 @@ namespace Tour.Controllers
             return View(result);
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult Search()
         {
-            
-
             return View();
         }
 
+        [LoginCheck(flag = false)]
         [HttpPost]
         public ActionResult Search(string keyword)
         {
@@ -138,30 +139,30 @@ namespace Tour.Controllers
         }
 
         // GET: Attrations/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Attrations attrations = db.Attrations.Find(id);
-            if (attrations == null)
-            {
-                return HttpNotFound();
-            }
-            return View(attrations);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Attrations attrations = db.Attrations.Find(id);
+        //    if (attrations == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(attrations);
+        //}
 
         // POST: Attrations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Attrations attrations = db.Attrations.Find(id);
-            db.Attrations.Remove(attrations);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Attrations attrations = db.Attrations.Find(id);
+        //    db.Attrations.Remove(attrations);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "MyBookMark";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center alert alert-info">我的書籤</h2>
+
+<div id="MyBookMark">
+
+</div>
+
+@section scripts{
+    <script>
+
+        var bookmark = [];
+
+        let initBookMark = function () {
+
+            console.log(!localStorage.getItem("bookmark")); // !localStorage.getItem("bookmark") 判定是否為null
+
+            if (!localStorage.getItem("bookmark") || localStorage.getItem("bookmark") == "[]") {
+                $('#MyBookMark').html(`<h2 class="text-danger text-center">目前書籤內沒有任何景點</h2>`);
+
+            } else {
+                bookmark = JSON.parse(localStorage.getItem("bookmark"));
+                let bookmarkList = "";
+                let c = 0;
+
+                for (let item of bookmark) {
+
+                    bookmarkList +=
+                        `<div class="media p-4 border-bottom border-dark">
+                            <h2 style="font-size:2.5rem" class="align-self-center text-black-50 mr-5">${++c}</h2>
+                            <div class="media-head">
+                                <img src="${item.Picture1}" class="mt-5 display" width="300"  data-toggle="tooltip" data-placement="bottom" title="${item.Picdescribe1}">
+                                <a href="http://localhost:56942/Home/Display/${item.AID}" class="btn btn-info btn-block mt-5">詳細資料</a>
+                            </div> 
+                            <div class="ml-2">
+                                <h3 class="mt-0"><strong>${item.AName}</strong></h3>
+                                <h4>
+                                    <span>${item.Address}</span>
+                                    <span>(${item.Tel})</span>
+                                </h4>
+                                <hr />
+                                <h4><strong>${item.Description}</strong></h4>
+
+                                <p class="text-right"><button class="btn btn-danger" id="${c}"><i class="bi bi-trash3-fill"></i> 移除景點</button></p>
+                            </div>
+                        </div>`
+                }
+
+                $('#MyBookMark').html(bookmarkList);
+            }
+        }
+
+        initBookMark();
+
+        //移除單一景點
+        $('#MyBookMark').click(evt => {
+            /*alert(evt.target.id-1)*/
+            /*splice(start,deletecount,item1,item2,.....) 從 索引值start開始 刪除 deletecount個元素 並插入 item1,item2,....*/
+            if (evt.target.id > 0) {
+                if (confirm('確定移除此商品')) {
+
+                    bookmark.splice(evt.target.id - 1, 1);
+                    localStorage.setItem("bookmark", JSON.stringify(bookmark));
+                    initBookMark();
+                }
+            }
+        });
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+    </script>
+    }

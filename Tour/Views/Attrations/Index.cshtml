@@ -4,15 +4,12 @@
 @model IPagedList<Tour.Models.Attrations>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "觀光地管理";
     Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2 class="mt-3">觀光地管理</h2>
+<br>
 <table class="table">
     <tr class="row">
         <th class="col-4">
@@ -29,13 +26,13 @@
     @foreach (var item in Model)
     {
         <tr class="row">
-            <td class="col-4">
+            <td class="col-4 text-truncate">
                 @Html.DisplayFor(modelItem => item.AttrationName)
             </td>
-            <td class="col-4">
+            <td class="col-4 text-truncate">
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
-            <td class="col">
+            <td class="col text-truncate">
                 @Html.DisplayFor(modelItem => item.Tel)
             </td>
             <td>

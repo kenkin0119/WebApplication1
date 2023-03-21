@@ -22,7 +22,7 @@
             </h3>
 
         </div>
-
+        @*<img src="~/photos/20230321103434064e5e304a-e9fc-4d6d-880d-4990135ec580.jpg" />*@
         <div class="col-4">
             <div>
                 @if (Model.MemberPhoto == "")
@@ -31,7 +31,7 @@
                 }
                 else
                 {
-                    <img src="@Model.MemberPhoto" class="img-thumbnail"/>
+                    <img src="@Html.DisplayFor(model => model.MemberPhoto)" class="img-thumbnail"/>
                 }
             </div>
         </div>

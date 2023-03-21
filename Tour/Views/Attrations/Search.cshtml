@@ -29,15 +29,65 @@
                         <h6 class="text-dark">
                             <strong class="AName">@row["AttrationName"]"</strong>
                         </h6>
+                        <p class="text-truncate text-dark Description" Address="@row["Address"]" Tel="@row["Tel"]" Px="@row["Px"]" Py="@row["Py"]" Picture1="@row["Picture1"]" Picdescribe1="@row["Picdescribe1"]" Ticketinfo="@row["Ticketinfo"]">
+                            @row["Description"]
+                        </p>
                     </div>
                 </a>
-                <div class="card-footer  bg-white  border-0 ">
-                    <p>
-                        <button class="btn btn-success btn-block addCart"><i class="bi bi-cart2"></i> 加入購物車 &raquo;</button>
-                    </p>
-                </div>
+                @if (Session["user"] != null)
+                {
+                    <div class="text-right">
+                        <i class="bi bi-heart-fill text-danger mr-2 mb-2 addBookMark" style="font-size:2rem" data-toggle="tooltip" data-placement="bottom" title="加入書籤"></i>
+                    </div>
+                }
             </div>
         </div>
     }
 </div>
+
+@section scripts{
+    <script>
+        var bookmark = [];
+        if (localStorage.getItem("bookmark")) {
+            bookmark = JSON.parse(localStorage.getItem("bookmark"));
+        }
+
+        $('.addBookMark').click(function () {
+            let attration = $(this).closest('.card');
+            let newAID = attration.find('.AID').val();
+
+            let foundItem = bookmark.find(item => item.AID == newAID);//找到or沒找到
+
+            if (foundItem === undefined) {
+                setBookMark(attration);
+            }
+            else {
+                alert("該景點已在書籤中!!!");
+            }
+
+            localStorage.setItem("bookmark", JSON.stringify(bookmark));
+        });
+
+        function setBookMark(attration) {
+            let newItem = {
+                AID: attration.find('.AID').val(),
+                AName: attration.find('.AName').text(),
+                Address: attration.find('.Description').attr('Address'),
+                Tel: attration.find('.Description').attr('Tel'),
+                Px: attration.find('.Description').attr('Px'),
+                Py: attration.find('.Description').attr('Py'),
+                Picture1: attration.find('.Description').attr('Picture1'),
+                Picdescribe1: attration.find('.Description').attr('Picdescribe1'),
+                Ticketinfo: attration.find('.Description').attr('Ticketinfo'),
+                Description: attration.find('.Description').text()
+            };
+            bookmark.push(newItem);
+            alert("景點已加入書籤");
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    }
 

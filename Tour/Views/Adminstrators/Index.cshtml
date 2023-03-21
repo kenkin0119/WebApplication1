@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="mt-2">帳戶管理</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="float-right">
+    @Html.ActionLink("新增管理員", "Create", new {area=""}, new {@class="btn btn-info"})
 </p>
 <table class="table">
     <tr>
@@ -31,11 +31,19 @@
             @Html.DisplayFor(modelItem => item.Account)
         </td>
         <td class="col-4">
-            @Html.ActionLink("Edit", "Edit", new { id=item.AdminID }, htmlAttributes: new {@class = "btn btn-warning btn-sm" }) 
-            @Html.ActionLink("Details", "Details", new { id=item.AdminID }, htmlAttributes: new { @class = "btn btn-success btn-sm" })
-            @Html.ActionLink("Delete", "Delete", new { id=item.AdminID }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("編輯", "Edit", new { id=item.AdminID }, htmlAttributes: new {@class = "btn btn-warning btn-sm" })  
+            @Html.ActionLink("刪除", "Delete", new { id=item.AdminID }, htmlAttributes: new { @class = "btn btn-danger btn-sm",@onclick="Confirm_Form()" })
         </td>
     </tr>
 }
 
 </table>
+
+@section scripts{
+    <script>
+        function Confirm_Form() {
+            if (!confirm("您確定要刪除嗎?"))
+                return false;
+        }
+    </script>
+    }

@@ -184,8 +184,16 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\set.css" />
+    <Content Include="Content\set2.css" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="photos\2023-03-21 192229.png" />
+    <Content Include="photos\202302160332317217adc0a8-06b6-49c7-9278-b1ef1d9aaafa.jpg" />
+    <Content Include="photos\2023021611565783c8297637-38f1-410d-8147-215066673941.jpg" />
+    <Content Include="photos\2023030302144370bc5736dc-3693-4b1f-8556-77cba3605347.jpg" />
+    <Content Include="photos\202303210805101802e9f782-d8b8-42b3-9cbc-fd8c8aba7585.png" />
+    <Content Include="photos\20230321081037442c4e9898-883b-4644-9909-8651eba80bfb.jpg" />
+    <Content Include="photos\2023032108122664e6a95e85-9d81-4def-9132-2e15c25d69cb.jpg" />
+    <Content Include="photos\20230321103434064e5e304a-e9fc-4d6d-880d-4990135ec580.jpg" />
     <Content Include="photos\null.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -350,6 +358,8 @@
     <Content Include="Scripts\leaflet-src.js.map" />
     <Content Include="Scripts\leaflet.js.map" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Members\_EditF.cshtml" />
+    <Content Include="Views\Home\MyBookMark.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

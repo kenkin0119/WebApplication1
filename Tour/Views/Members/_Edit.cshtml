@@ -2,10 +2,10 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+    //Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>重置密碼</h2>
 
 
 @using (Html.BeginForm())
@@ -32,7 +32,7 @@
                 @Html.EditorFor(model => model.MemberPhoto, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MemberPhoto, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.MemberBirthday, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -48,25 +48,31 @@
                 @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control pwdChange", hidden=true} })
+                @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger" })
+                <div class="btn btn-danger" id="pwdChange">重設密碼</div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="送出" class="btn btn-warning" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
+<script>
+
+    $('#pwdChange').click(() => {
+        if (confirm('確定重置密碼？')) {
+            $('.pwdChange').attr('value', '12345678')
+        }
+    });
+</script>

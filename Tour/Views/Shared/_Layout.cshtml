@@ -1,9 +1,16 @@
-﻿@*把判斷式提出*@
+﻿@using Tour.Models
+@*把判斷式提出*@
 @{
     string text = "", action = "";
 
     text = Session["user"] == null ? "登入" : "登出";
     action = Session["user"] == null ? "Login" : "Logout";
+
+    var MemID = 0;
+    if (Session["user"] != null)
+    {
+        MemID = ((Members)Session["user"]).MemberID;
+    }
 
 }
 
@@ -13,10 +20,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title 鍋具商城</title>
+    <title>@ViewBag.Title</title>
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/set.css" rel="stylesheet" />
+    <link href="~/Content/set2.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     @RenderSection("map", false)
     @RenderSection("css", false)
@@ -32,17 +39,22 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    @if (Session["user"] != null)
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" id="@MemID" data-toggle="modal" data-target="#showEditModal" href="">會員資料管理 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Url.Action("MyBookMark","Home")">我的書籤</a>
+                        </li>
+                    }
+                    
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                             更多資訊
                         </a>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="https://www.taiwan.net.tw/">觀光資訊網</a>
                             <a class="dropdown-item" href="https://admin.taiwan.net.tw/BusinessInfo/GuanguangTuiguang/DomesticTravel.htm">觀光局:悠遊國旅振興方案</a>
                             <a class="dropdown-item" href="https://taiwanstay.net.tw/">旅宿網</a>
                         </div>
@@ -52,21 +64,24 @@
                         @Html.ActionLink(text, action, "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
                     </li>
 
-                    @if (Session["user"] == null) { 
-                    <li>
-                        @Html.ActionLink("加入會員","Create","Members", new { area = "" }, new { @class = "nav-link btn btn-light text-dark ml-2" })
-                    </li>
+                    @if (Session["user"] == null)
+                    {
+                        <li>
+                            @Html.ActionLink("加入會員", "Create", "Members", new { area = "" }, new { @class = "nav-link btn btn-light text-dark ml-2" })
+                        </li>
                     }
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0" action="@Url.Action("Search","Attrations")" method="post">
-                    <input class="form-control mr-sm-2" id="keyword" name="keyword" type="text" placeholder="輸入關鍵字">
+                    <input class="form-control mr-sm-2" id="keyword" name="keyword" type="text" placeholder="請輸入關鍵字">
                     <button class="btn btn-light my-2 my-sm-0" type="submit">搜尋</button>
                 </form>
 
             </div>
         </div>
     </nav>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />

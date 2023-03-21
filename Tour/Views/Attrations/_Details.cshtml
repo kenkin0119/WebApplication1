@@ -2,10 +2,11 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout_Manager.cshtml";
+    //Layout = "~/Views/Shared/_Layout_Manager.cshtml";
 }
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-<h3 class="mt-3">會員詳細資料</h3>
+<h3 class="mt-3">觀光地詳細資料</h3>
 
 <div class="card border-primary">
     <div class="card-body row">
@@ -50,14 +51,12 @@
     </div>
 </div>
 
-@section scripts{
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script>
-
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-
-
     </script>
-    }
+
 

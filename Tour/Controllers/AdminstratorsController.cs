@@ -10,6 +10,7 @@ using Tour.Models;
 
 namespace Tour.Controllers
 {
+    [LoginCheck]
     public class AdminstratorsController : Controller
     {
         private TourContext db = new TourContext();
@@ -21,12 +22,8 @@ namespace Tour.Controllers
         }
 
         // GET: Adminstrators/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Adminstrators adminstrators = db.Administrators.Find(id);
             if (adminstrators == null)
             {
@@ -93,19 +90,21 @@ namespace Tour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(adminstrators);
-        }
-
-        // POST: Adminstrators/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Adminstrators adminstrators = db.Administrators.Find(id);
             db.Administrators.Remove(adminstrators);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //// POST: Adminstrators/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Adminstrators adminstrators = db.Administrators.Find(id);
+        //    db.Administrators.Remove(adminstrators);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

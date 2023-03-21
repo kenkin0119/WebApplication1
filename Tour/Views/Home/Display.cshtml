@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Display</h2>
+
 <div class="card shadow mt-4" href="@Url.Action("Display", new {id = Model.AttrationID})">
     <div class="row">
 
@@ -23,14 +23,15 @@
         <div class="col-md-7">
             <div class="card-body mt-2 mr-2" id="card-body">
                 <h2 class="text-dark">
-                    <strong>@Model.AttrationName</strong>
+                    <input type="hidden" class="AID" value="@Model.AttrationID" />
+                    <strong class="AName">@Model.AttrationName</strong>
                 </h2>
-                <h4>@Model.Address </h4>
-                <h6>@Model.Tel</h6>
-                <p>
+                <h4 class="Address" Px="@Model.Px" Py="@Model.Py">@Model.Address</h4>
+                <h6 class="Tel" Picture1="@Model.Picture1" Picdescribe1="@Model.Picdescribe1">@Model.Tel</h6>
+                <p class="Ticketinfo" Ticketinfo="@Model.Ticketinfo">
                     @Html.Raw(Model.Ticketinfo.ToString().Replace("\n", "<br>")) @*把\n都換成<br>  Html.Raw:遇到html標籤都執行*@
                 </p>
-                <div>
+                <div class="Description" Description="@Model.Description">
                     @Html.Raw(Model.Description.ToString().Replace("\n", "<br>")) @*把\n都換成<br>  Html.Raw:遇到html標籤都執行*@
                 </div>
             </div>
@@ -42,10 +43,13 @@
 
 
         <div id="map" class="float-right"></div>
+        @if (Session["user"] != null)
+        {
+            <h3 class="text-right">
+                <i class="bi bi-heart-fill text-danger addBookMark" data-toggle="tooltip" data-placement="bottom" title="加入書籤"></i>
+            </h3>
+        }
 
-        <h3 class="text-right">
-            <i class="bi bi-heart-fill text-danger" data-toggle="tooltip" data-placement="bottom" title="加入書籤"></i>
-        </h3>
     </div>
 </div>
 
@@ -71,6 +75,45 @@
 
 @section scripts{
     <script>
+        var bookmark = [];
+
+        if (localStorage.getItem("bookmark")) {
+            bookmark = JSON.parse(localStorage.getItem("bookmark"));
+        }
+
+        $('.addBookMark').click(function () {
+            let attration = $(this).closest('.card');
+            let newAID = attration.find('.AID').val();
+
+            let foundItem = bookmark.find(item => item.AID == newAID);//找到or沒找到
+
+            if (foundItem === undefined) {
+                setBookMark(attration);
+            }
+            else {
+                alert("該景點已在書籤中!!!");
+            }
+
+            localStorage.setItem("bookmark", JSON.stringify(bookmark));
+        });
+
+        function setBookMark(attration) {
+            let newItem = {
+                AID: attration.find('.AID').val(),
+                AName: attration.find('.AName').text(),
+                Address: attration.find('.Address').text(),
+                Tel: attration.find('.Tel').text(),
+                Px: attration.find('.Address').attr('Px'),
+                Py: attration.find('.Address').attr('Py'),
+                Picture1: attration.find('.Tel').attr('Picture1'),
+                Picdescribe1: attration.find('.Tel').attr('Picdescribe1'),
+                Ticketinfo: attration.find('.Ticketinfo').attr('Ticketinfo'),
+                Description: attration.find('.Description').attr('Description')
+            };
+            bookmark.push(newItem);
+            alert("景點已加入書籤");
+        }
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -101,7 +144,7 @@
                 "</div>" +
                 '<h1 id="firstHeading" class="firstHeading">@Model.AttrationName</h1>' +
                 '<div id="bodyContent">' +
-                "<p>@Model.Description</p>" +
+                "<p></p>" +
                 "</div>" +
                 "</div>";
 
