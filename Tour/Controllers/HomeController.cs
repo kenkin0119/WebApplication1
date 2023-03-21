@@ -29,10 +29,8 @@ namespace Tour.Controllers
             return View(result);
         }
 
-        public ActionResult Display(string id)
+        public ActionResult Display(int id)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var attration = db.Attrations.Find(id);
 

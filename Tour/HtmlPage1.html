@@ -1,0 +1,76 @@
+﻿<html>
+<head>
+    <title>Add Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>-->
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 600px; /* The height is 400 pixels */
+            width: 600px; /* The width is the width of the web page */
+        }
+    </style>
+
+</head>
+<body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+    <!--
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+
+</body>
+</html>
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIsHhLc3NR0CNIU94kRkZy-owisY9ksNw&callback=initMap">
+</script>
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        const uluru = { lat: 24.94333, lng: 121.2972 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 16,
+            center: uluru,
+        });
+
+        const contentString =
+            '<div id="content">' +
+            '<div id="siteNotice">' +
+            "</div>" +
+            '<h1 id="firstHeading" class="firstHeading">宏亞食品巧克力觀光工廠</h1>' +
+            '<div id="bodyContent">' +
+            "<p>巧克力共和國是一座以巧克力為主題的觀光工廠，建築設計、館內主題設計皆以巧克力為主題，這裡也提供豐富的巧克力相關知識，亦可以DIY創作巧克力，為一寓教於樂、適合親子休閒娛樂的絕佳去處。</p>" +
+            "</div>" +
+            "</div>";
+
+        const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            ariaLabel: "宏亞食品巧克力觀光工廠",
+        });
+
+
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+        });
+
+        marker.addListener("click", () => {
+            infowindow.open({
+                anchor: marker,
+                map,
+            });
+        });
+    }
+
+    window.initMap = initMap;
+</script>

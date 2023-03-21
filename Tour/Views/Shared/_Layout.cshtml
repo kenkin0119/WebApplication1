@@ -2,8 +2,8 @@
 @{
     string text = "", action = "";
 
-    text = Session["member"] == null ? "登入" : "登出";
-    action = Session["member"] == null ? "Login" : "Logout";
+    text = Session["user"] == null ? "登入" : "登出";
+    action = Session["user"] == null ? "Login" : "Logout";
 
 }
 
@@ -18,13 +18,14 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/set.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    @RenderSection("map", false)
+    @RenderSection("css", false)
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
         <div class="container">
 
-            <a class="navbar-brand" href="#">全國農業旅遊休閒園區</a>
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">主頁</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,9 +49,14 @@
                     </li>
 
                     <li class="nav-item ml-auto">
-                        @Html.ActionLink(text, action, "HomeManager", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
+                        @Html.ActionLink(text, action, "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
                     </li>
 
+                    @if (Session["user"] == null) { 
+                    <li>
+                        @Html.ActionLink("加入會員","Create","Members", new { area = "" }, new { @class = "nav-link btn btn-light text-dark ml-2" })
+                    </li>
+                    }
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0" action="@Url.Action("Search","Attrations")" method="post">

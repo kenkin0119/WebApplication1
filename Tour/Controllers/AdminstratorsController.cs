@@ -59,12 +59,8 @@ namespace Tour.Controllers
         }
 
         // GET: Adminstrators/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Adminstrators adminstrators = db.Administrators.Find(id);
             if (adminstrators == null)
             {
@@ -90,12 +86,8 @@ namespace Tour.Controllers
         }
 
         // GET: Adminstrators/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Adminstrators adminstrators = db.Administrators.Find(id);
             if (adminstrators == null)
             {
@@ -107,7 +99,7 @@ namespace Tour.Controllers
         // POST: Adminstrators/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Adminstrators adminstrators = db.Administrators.Find(id);
             db.Administrators.Remove(adminstrators);

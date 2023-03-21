@@ -19,7 +19,7 @@
     {
         <div class="col-lg-4 p-1">
             <div class="card h-100">
-                <a class="card-body" href="@Url.Action("Display",item.AttrationID)">
+                <a class="card-body" href="@Url.Action("Display",new { id = item.AttrationID })">
 
                     @if (item.Picture1 == "")
                     {
@@ -32,16 +32,15 @@
 
                     <div class="card-body">
                         <input type="hidden" value="@item.AttrationID" class="AID" />
-                        <h6 class="text-dark">
+                        <h5 class="text-dark">
                             <strong class="PName">@item.AttrationName</strong>
-                        </h6>
+                        </h5>
+                        <h6></h6>
+                        <p class="text-truncate text-dark">
+                            @item.Description
+                        </p>
                     </div>
                 </a>
-                <div class="card-footer  bg-white  border-0 ">
-                    <p>
-                        <button class="btn btn-success btn-block addCart"><i class="bi bi-cart2"></i> 加入購物車 &raquo;</button>
-                    </p>
-                </div>
             </div>
         </div>
     }
