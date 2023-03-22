@@ -15,8 +15,8 @@ namespace Tour
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
-        {
-            //Database.SetInitializer<TourContext>(new Tourinitializer());
+        {   
+            Database.SetInitializer<TourContext>(new Tourinitializer());
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

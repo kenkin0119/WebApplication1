@@ -12,7 +12,7 @@ namespace Tour.Models
             //寫在Global.asax
             //啟動DB Initializer建立資料庫  每次載入網頁時啟動
             //Database.SetInitializer<MCSDD01Context>(new MCSDD01initializer() );
-    public class Tourinitializer: DropCreateDatabaseAlways<TourContext>
+    public class Tourinitializer: DropCreateDatabaseIfModelChanges<TourContext>
     {
         protected override void Seed(TourContext db)
         {

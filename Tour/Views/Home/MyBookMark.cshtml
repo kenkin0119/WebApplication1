@@ -61,7 +61,7 @@
             /*alert(evt.target.id-1)*/
             /*splice(start,deletecount,item1,item2,.....) 從 索引值start開始 刪除 deletecount個元素 並插入 item1,item2,....*/
             if (evt.target.id > 0) {
-                if (confirm('確定移除此商品')) {
+                if (confirm('確定移除此景點?')) {
 
                     bookmark.splice(evt.target.id - 1, 1);
                     localStorage.setItem("bookmark", JSON.stringify(bookmark));
